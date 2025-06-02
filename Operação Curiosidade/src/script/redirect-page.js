@@ -3,9 +3,10 @@ function loginChangePage(){
     var passwordInput = document.getElementById("password-input").value;
 
     if(emailInput != 0 && passwordInput != 0){
-        console.log("Entrou");
-        console.log(emailInput);
-        console.log(passwordInput);
         window.location.href = "dashboard-page.html";
     }
+}
+
+function createProfilePage(){
+    window.location.href = "newProfile-page.html";
 }

@@ -1,0 +1,61 @@
+.active-profile-checkbox{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin: 30px 50px 0px 0px;
+}
+
+.active-profile-title{
+    margin: 10px;
+}
+
+.profile-title{
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+}
+
+.facts-inputs{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-input{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 10px;
+}
+
+.profile-input textarea,
+.profile-input input{
+    font-size: 16px;
+    padding: 10px;    
+    background-color: #EEEBEB;
+    border-style: none;
+}
+
+.profile-input textarea{
+    resize: none;
+}
+
+.profile-birthday-email{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.createProfile-button{
+    display: flex;
+    justify-content: center;
+}
+
+.createProfile-button button{
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 15px 0px;
+    padding: 10px 50px;
+    color: #FFF;
+    background-color: #61A057;
+    border-style: none;
+    cursor: pointer;
+}

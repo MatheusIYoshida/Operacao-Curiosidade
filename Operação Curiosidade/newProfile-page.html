@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/styles/sidebar.css">
     <link rel="stylesheet" href="src/styles/header-menu.css">
     <link rel="stylesheet" href="src/styles/main-container.css">
-    <link rel="stylesheet" href="src/styles/profiles-page.css">
+    <link rel="stylesheet" href="src/styles/newProfile-page.css"
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,18 +76,70 @@
                 <div class="main-container">
                     <div class="main-container-area">
                         <div class="main-container-top">
-                            <div class="main-container-title">Profiles</div>
-                            <div class="profile-button">
-                                <button type="submit" onclick="createProfilePage()">CREATE PROFILE</button>
+                            <div class="main-container-title">Create Profile</div>
+                            <div class="active-profile-checkbox">
+                                <input type="checkbox" name="active" value="active">
+                                <div class="active-profile-title">Active</div>
                             </div>
                         </div>
                         <div class="main-container-table">
-                            <div class="table-title">NAME</div>
-                            <div class="table-title">E-MAIL</div>
-                            <div id="status-title" class="table-title">STATUS</div>
+                            <div class="profile-title">1º Facts and Figures</div>
                         </div>
                         <div class="table-line"></div>
-                        
+                        <div class="facts-inputs">
+                            <div class="profile-input">
+                                Name:
+                                <input type="text" name="Name"> 
+                            </div>
+                            <div class="profile-birthday-email">
+                                <div class="profile-input">
+                                    Birthday date:
+                                    <input type="datetime" name="Birthday">
+                                </div>
+                                <div class="profile-input">
+                                    E-mail:
+                                    <input type="email" name="Email">
+                                </div>
+                            </div>
+                            <div class="profile-input">
+                                Address:
+                                <input type="text" name="Address">
+                            </div>
+                            <div class="profile-input">
+                                More Informations:
+                                <textarea name="More Informations" rows="4" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <div class="main-container-table">
+                            <div class="profile-title">2º Interests</div>
+                        </div>
+                        <div class="table-line"></div>
+                        <div class="facts-inputs">
+                            <div class="profile-input">
+                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <div class="main-container-table">
+                            <div class="profile-title">3º Values</div>
+                        </div>
+                        <div class="table-line"></div>
+                        <div class="facts-inputs">
+                            <div class="profile-input">
+                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <div class="main-container-table">
+                            <div class="profile-title">4º Core Values</div>
+                        </div>
+                        <div class="table-line"></div>
+                        <div class="facts-inputs">
+                            <div class="profile-input">
+                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                            </div>
+                        </div>
+                        <div class="createProfile-button">
+                            <button type="submit" onclick="">CREATE PROFILE</button>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -96,6 +148,5 @@
     <footer>
 
     </footer>
-    <script src="src/script/redirect-page.js"></script>
 </body>
 </html>
