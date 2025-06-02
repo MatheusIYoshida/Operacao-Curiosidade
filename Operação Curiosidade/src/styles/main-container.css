@@ -15,10 +15,15 @@
     margin: 20px;
 }
 
+.main-container-top{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .main-container-title{
     font-size: 18px;
     padding:20px 0px 0px 10px;   
-
 }
 
 .main-container-table{
