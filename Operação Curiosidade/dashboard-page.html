@@ -6,6 +6,8 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="src/styles/sidebar.css">
     <link rel="stylesheet" href="src/styles/header-menu.css">
+    <link rel="stylesheet" href="src/styles/main-container.css">
+    <link rel="stylesheet" href="src/styles/dashboard-page.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,21 +23,21 @@
                 </div>
                 <div class="sidebar-menu">
                     <div class="sidebar-menu-item">
-                        <a href="">
+                        <a href="dashboard-page.html">
                             <img src="src/assets/icons/Home.png" alt="" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Home</div>
                         </a>
                     </div>
                     <div class="sidebar-menu-line"></div>
                     <div id="cadastro-menu" class="sidebar-menu-item">
-                        <a href=""> 
+                        <a href="register.html"> 
                             <img src="src/assets/icons/Cadastro.png" alt="" id="cadastro-icon" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Cadastro</div>
                         </a>
                     </div>
                     <div class="sidebar-menu-line"></div>
                     <div id="relatorios-menu" class="sidebar-menu-item">    
-                        <a href="">
+                        <a href="reports.html">
                             <img src="src/assets/icons/Relatórios.png" alt="" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Relatórios</div>
                         </a>
@@ -63,7 +65,7 @@
                         </div>
                         <div class="header-line">|</div>
                         <div class="exit">
-                            <a href="">
+                            <a href="login-page.html">
                                 EXIT
                             </a>
                         </div>
@@ -71,12 +73,49 @@
                 </div>
             </header>
             <main>
-
+                <div class="main-container">
+                    <div class="registrations-infos">
+                        <div class="reg-info-box">
+                            <div id="total-reg" class="info-box-count">
+                                0
+                            </div>
+                            <div class="info-box-title">
+                                Total de Cadastros 
+                            </div>
+                        </div>
+                        <div class="reg-info-box">
+                            <div id="lastMonth-reg" class="info-box-count">
+                                0
+                            </div>
+                            <div class="info-box-title">
+                                Cadastros do último mês
+                            </div>
+                        </div>
+                        <div class="reg-info-box">
+                            <div id="pending-reg" class="info-box-count">
+                                0
+                            </div>
+                            <div class="info-box-title">
+                                Cadastro com pendência de revisão
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-container-area">
+                        <div class="main-container-title">Lastest Registrations</div>
+                        <div class="main-container-table">
+                            <div class="table-title">NAME</div>
+                            <div class="table-title">E-MAIL</div>
+                            <div id="status-title" class="table-title">STATUS</div>
+                        </div>
+                        <div class="table-line"></div>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
     <footer>
 
     </footer>
+
 </body>
 </html>

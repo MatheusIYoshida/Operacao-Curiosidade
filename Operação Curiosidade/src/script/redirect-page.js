@@ -6,6 +6,6 @@ function loginChangePage(){
         console.log("Entrou");
         console.log(emailInput);
         console.log(passwordInput);
-        window.location.href = "dashboard-page.html"
+        window.location.href = "dashboard-page.html";
     }
 }
