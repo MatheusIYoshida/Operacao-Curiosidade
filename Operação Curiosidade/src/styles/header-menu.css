@@ -1,0 +1,73 @@
+.main-content{
+    font-family: "Roboto", sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: #F0F0F0;
+}
+
+.header-menu{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 20px 20px;
+    width: auto;
+    height: 60px;
+    background-color: #E0E0E0;
+}
+
+.header-input{
+    height: 65%;
+    width: 400px;
+    margin: 10px 0px 10px 15px;
+}
+
+.header-input-box{
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    background-color: #F0F0F0;
+    border-color: transparent;
+}
+
+.header-options{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+    font-size: 16px;
+}
+
+.header-user a{
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+.header-username{
+    color: #000;    
+}
+
+.header-user-img{
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #A9A9A9;
+}
+
+.header-line{
+    font-size: 25px;
+    color: #A9A9A9;
+    cursor:default;
+}
+
+.exit{
+    margin-left: 15px;
+    color: #000;
+}
+
+.exit a{
+    text-decoration: none;
+}

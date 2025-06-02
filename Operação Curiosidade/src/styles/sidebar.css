@@ -4,9 +4,14 @@
     padding: 0px;
 }
 
+.full-page{
+    width: 100%;
+    display: flex;
+}
+
 .sidebar{
-    position: fixed;
-    width: 339px;
+
+    width: 340px;
     top: 0;
     left: 0;
     bottom: 0;

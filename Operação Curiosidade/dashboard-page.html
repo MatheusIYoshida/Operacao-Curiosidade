@@ -5,54 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="src/styles/sidebar.css">
+    <link rel="stylesheet" href="src/styles/header-menu.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="sidebar"> 
-        <nav>
-            <div class="box-logo">
-                <div class="logo-img">OC</div>
-                <div class="logo-title">Operação Curiosidade</div>
-            </div>
-            <div class="sidebar-menu">
-                <div class="sidebar-menu-item">
-                    <a href="">
-                        <img src="src/assets/icons/Home.png" alt="" class="sidebar-menu-icon">
-                        <div class="sidebar-menu-title">Home</div>
-                    </a>
+    <div class="full-page">
+        <div class="sidebar"> 
+            <nav>
+                <div class="box-logo">
+                    <div class="logo-img">OC</div>
+                    <div class="logo-title">Operação Curiosidade</div>
                 </div>
-                <div class="sidebar-menu-line"></div>
-                <div id="cadastro-menu" class="sidebar-menu-item">
-                    <a href=""> 
-                        <img src="src/assets/icons/Cadastro.png" alt="" id="cadastro-icon" class="sidebar-menu-icon">
-                        <div class="sidebar-menu-title">Cadastro</div>
-                    </a>
+                <div class="sidebar-menu">
+                    <div class="sidebar-menu-item">
+                        <a href="">
+                            <img src="src/assets/icons/Home.png" alt="" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Home</div>
+                        </a>
+                    </div>
+                    <div class="sidebar-menu-line"></div>
+                    <div id="cadastro-menu" class="sidebar-menu-item">
+                        <a href=""> 
+                            <img src="src/assets/icons/Cadastro.png" alt="" id="cadastro-icon" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Cadastro</div>
+                        </a>
+                    </div>
+                    <div class="sidebar-menu-line"></div>
+                    <div id="relatorios-menu" class="sidebar-menu-item">    
+                        <a href="">
+                            <img src="src/assets/icons/Relatórios.png" alt="" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Relatórios</div>
+                        </a>
+                    </div>
                 </div>
-                <div class="sidebar-menu-line"></div>
-                <div id="relatorios-menu" class="sidebar-menu-item">    
-                    <a href="">
-                        <img src="src/assets/icons/Relatórios.png" alt="" class="sidebar-menu-icon">
-                        <div class="sidebar-menu-title">Relatórios</div>
-                    </a>
-                </div>
-            </div>
-            
-        </nav>
-    </div>
-    <div class="main-content">
-        <header>
-            <div class="header-menu">
                 
-            </div>
-        </header>
-        <main>
+            </nav>
+        </div>
+        <div class="main-content">
+            <header>
+                <div class="header-menu">
+                    <div class="header-input">
+                        <input type="search" class="header-input-box" name="Search" placeholder="Search...">
+                    </div>
+                    <div class="header-options">   
+                        <div class="header-user">
+                            <a href="">
+                                <div class="header-user-img">
+                                    <img src="">
+                                </div>
+                                <div class="header-username">
+                                    User
+                                </div>
+                            </a>
+                        </div>
+                        <div class="header-line">|</div>
+                        <div class="exit">
+                            <a href="">
+                                EXIT
+                            </a>
+                        </div>
+                    </div>    
+                </div>
+            </header>
+            <main>
 
-        </main>
+            </main>
+        </div>
     </div>
-    
     <footer>
 
     </footer>
