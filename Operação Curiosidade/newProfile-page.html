@@ -78,7 +78,7 @@
                         <div class="main-container-top">
                             <div class="main-container-title">Create Profile</div>
                             <div class="active-profile-checkbox">
-                                <input type="checkbox" name="active" value="active">
+                                <input id="profile-active" type="checkbox" name="active" value="active">
                                 <div class="active-profile-title">Active</div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="profile-input">
                                     <label for="birthday date">Birthday date:</label> 
-                                    <input type="datetime" name="Birthday">
+                                    <input id="profile-birthday" type="datetime" name="Birthday">
                                 </div>
                             </div>
                             <div class="profile-birthday-email">
@@ -112,11 +112,11 @@
                             </div>
                             <div class="profile-input">
                                 <label for="address">Address:</label>
-                                <input type="text" name="Address">
+                                <input id="profile-address" type="text" name="Address">
                             </div>
                             <div class="profile-input">
                                 <label for="more informations">More Informations:</label>
-                                <textarea name="More Informations" rows="4" maxlength="500"></textarea>
+                                <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="500"></textarea>
                             </div>
                         </div>
                         <div class="main-container-table">
@@ -125,16 +125,16 @@
                         <div class="table-line"></div>
                         <div class="facts-inputs">
                             <div class="profile-input">
-                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                               <textarea id="profile-interests" name="Interests" rows="4" maxlength="500"></textarea>
                             </div>
                         </div>
                         <div class="main-container-table">
-                            <div class="profile-title">3º Values</div>
+                            <div class="profile-title">3º Feelings</div>
                         </div>
                         <div class="table-line"></div>
                         <div class="facts-inputs">
                             <div class="profile-input">
-                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                               <textarea id="profile-feelings" name="Interests" rows="4" maxlength="500"></textarea>
                             </div>
                         </div>
                         <div class="main-container-table">
@@ -143,11 +143,11 @@
                         <div class="table-line"></div>
                         <div class="facts-inputs">
                             <div class="profile-input">
-                               <textarea name="Interests" rows="4" maxlength="500"></textarea>
+                               <textarea id="profile-coreValues" name="Interests" rows="4" maxlength="500"></textarea>
                             </div>
                         </div>
                         <div class="createProfile-button">
-                            <button id="createProfile-submit" type="submit">CREATE PROFILE</button>
+                            <input id="createProfile-submit" type="submit" value="CREATE PROFILE">
                         </div>
                     </div>
                 </div>
@@ -158,6 +158,6 @@
 
     </footer>
 
-    <script src="src/script/alert-user.js"></script>
+    <script src="src/script/create-profile.js"></script>
 </body>
 </html>
