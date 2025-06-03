@@ -27,6 +27,23 @@
     margin: 15px 10px;
 }
 
+.profile-name-password{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.profile-birthday-email{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.alert-user{
+    display: none;
+    color: #ff0000;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
 .profile-input textarea,
 .profile-input input{
     font-size: 16px;
@@ -37,11 +54,6 @@
 
 .profile-input textarea{
     resize: none;
-}
-
-.profile-birthday-email{
-    display: grid;
-    grid-template-columns: 1fr 2fr;
 }
 
 .createProfile-button{

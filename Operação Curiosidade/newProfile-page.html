@@ -87,26 +87,35 @@
                         </div>
                         <div class="table-line"></div>
                         <div class="facts-inputs">
-                            <div class="profile-input">
-                                Name:
-                                <input type="text" name="Name"> 
+                            <div class="profile-name-password">
+                                <div class="profile-input">
+                                    <label for="name">Name:</label>
+                                    <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
+                                    <span class="alert-user">Enter your name</span>
+                                </div>
+                                <div class="profile-input">
+                                    <label for="birthday date">Birthday date:</label> 
+                                    <input type="datetime" name="Birthday">
+                                </div>
                             </div>
                             <div class="profile-birthday-email">
                                 <div class="profile-input">
-                                    Birthday date:
-                                    <input type="datetime" name="Birthday">
+                                    <label for="email">Email:</label>
+                                    <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
+                                    <span class="alert-user">Enter your Email</span>
                                 </div>
                                 <div class="profile-input">
-                                    E-mail:
-                                    <input type="email" name="Email">
+                                    <label for="password">Password:</label>
+                                    <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
+                                    <span class="alert-user">Enter your Password</span>
                                 </div>
                             </div>
                             <div class="profile-input">
-                                Address:
+                                <label for="address">Address:</label>
                                 <input type="text" name="Address">
                             </div>
                             <div class="profile-input">
-                                More Informations:
+                                <label for="more informations">More Informations:</label>
                                 <textarea name="More Informations" rows="4" maxlength="500"></textarea>
                             </div>
                         </div>
@@ -138,7 +147,7 @@
                             </div>
                         </div>
                         <div class="createProfile-button">
-                            <button type="submit" onclick="">CREATE PROFILE</button>
+                            <button id="createProfile-submit" type="submit">CREATE PROFILE</button>
                         </div>
                     </div>
                 </div>
@@ -148,5 +157,7 @@
     <footer>
 
     </footer>
+
+    <script src="src/script/alert-user.js"></script>
 </body>
 </html>
