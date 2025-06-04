@@ -1,0 +1,27 @@
+.newProfile-title{
+    background-color: #FFF;
+    font-size: 20px;
+}
+
+.input-changes{
+    margin:15px 0px 0px 0px; 
+}
+
+.alert-user-changes{
+    background-color: #FFF;
+}
+
+.newProfile-input{
+    background-color: #FFF;
+}
+
+#createProfile-submit{
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 15px 0px;
+    padding: 10px 50px;
+    color: #FFF;
+    background-color: #61A057;
+    border-style: none;
+    cursor: pointer;
+}

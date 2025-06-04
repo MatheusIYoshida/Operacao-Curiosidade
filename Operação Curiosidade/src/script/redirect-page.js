@@ -10,3 +10,7 @@ function loginChangePage(){
 function createProfilePage(){
     window.location.href = "newProfile-page.html";
 }
+
+function createProfileLogin(){
+    window.location.href = "login-newProfile.html"
+}

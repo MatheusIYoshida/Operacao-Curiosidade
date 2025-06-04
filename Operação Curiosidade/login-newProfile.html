@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="src/styles/login-page.css">
+    <link rel="stylesheet" href="src/styles/login-newProfile.css">
+    <link rel="stylesheet" href="src/styles/newProfile-page.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div class="login-container">
+            <div class="login-icon">
+                <div class="login-page-title">OC</div>
+                <div class="login-page-subtitle">Operação Curiosidade</div>
+            </div>
+            <div class="newProfile-title">Create Account</div>
+            <div class="newProfile-informations">
+                <div class="input-area">
+                    <input id="profile-name" class="input input-changes" type="text" name="Name" placeholder="Name:" oninput="removeRedBorder(this)">
+                    <span class="alert-user alert-user-changes">Enter your name</span>
+                </div>
+                <div class="input-area">
+                    <input id="profile-email" class="input input-changes" type="email" name="Email" placeholder="Email:" oninput="removeRedBorder(this)">
+                    <span class="alert-user alert-user-changes">Enter your email</span>
+                </div>
+                <div class="input-area">
+                    <input id="profile-password" class="input input-changes" type="password" name="Password" placeholder="Password:" oninput="removeRedBorder(this)">
+                    <span class="alert-user alert-user-changes">Enter your password</span>
+                </div>
+            </div>
+            <div class="newProfile-input">
+                <input id="createProfile-submit" type="submit" value="CREATE PROFILE">
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-area">
+            Created by: Matheus Imazu Yoshida
+        </div>
+    </footer>
+
+    <script src="src/script/create-profile.js"></script>
+</body>
+</html>

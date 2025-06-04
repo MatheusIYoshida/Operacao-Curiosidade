@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="src/styles/login-page.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -12,17 +16,24 @@
     </header>
     <main>
         <div class="login-container">
-            <div class="login-img">
-                <div class="img"></div>
+            <div class="login-icon">
+                <div class="login-page-title">OC</div>
+                <div class="login-page-subtitle">Operação Curiosidade</div>
             </div>
             <div class="input-area">
                 <input id="email-input" type="email" class="input" name="email" placeholder="Email:"> 
                 <input id="password-input" type="password" class="input" name="password" placeholder="Password:">
             </div>
             <div class="button-area">
-                <button type="submit" class="submit" onclick="loginChangePage()">
-                    Sign in
-                </button>
+                <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
+            </div>
+            <div class="login-createProfile">
+                <div class="login-createProfile-title">
+                    <div class="createProfile-bar"></div>
+                    <div class="createProfile-text">New to Operação Curiosidade?</div>
+                    <div class="createProfile-bar"></div>
+                </div>
+                <button type="button" onclick="createProfileLogin()">Create a new profile</button>
             </div>
         </div>
     </main>

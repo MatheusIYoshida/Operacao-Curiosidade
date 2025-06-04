@@ -41,6 +41,6 @@ document.getElementById("createProfile-submit").onclick = function(){
 }
 
 function removeRedBorder(input){
-    input.style.borderColor = "Transparent";
+    input.style.borderColor = "#000";
     input.nextElementSibling.style.display = "none";
 }
