@@ -28,18 +28,12 @@
 
 .main-container-table{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     margin:30px 20px 0px 20px;
     color: #A9A9A9;
 }
 
 .table-title{
-    margin-bottom: 10px;
-}
-
-.table-line{
-    display: flex;
-    justify-content: center;
-    margin: 0px 20px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #A9A9A9;
 }
