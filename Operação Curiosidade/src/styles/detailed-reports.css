@@ -1,0 +1,16 @@
+.profile-printOut{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.profile-printOut button{
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 15px;
+    padding: 10px 50px;
+    color: #FFF;
+    background-color: #5763A0;
+    border-style: none;
+    cursor: pointer;
+}
