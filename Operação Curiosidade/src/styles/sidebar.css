@@ -73,6 +73,10 @@
     color: #000;
 }
 
+.sidebar-menu-title:hover{
+    color: #555;
+}
+
 .sidebar-menu-line{
     border-bottom: 2px solid #F0F0F0;
     margin-left: 10px;
