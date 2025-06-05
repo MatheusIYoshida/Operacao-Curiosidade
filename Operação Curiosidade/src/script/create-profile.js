@@ -20,14 +20,54 @@ document.getElementById("createProfile-submit").onclick = function(){
     }
     if(nameValue != 0 && emailValue != 0 & passwordValue != 0){
         var name = document.getElementById("profile-name").value;
-        var birthday = document.getElementById("profile-birthday").value;
+
+        if(document.getElementById("profile-birthday") == null){
+            var birthday = "";
+        }else{
+            var birthday = document.getElementById("profile-birthday").value;
+        }
+
         var email = document.getElementById("profile-email").value;
         var password = document.getElementById("profile-password").value;
-        var address = document.getElementById("profile-address").value;
-        var moreInformations = document.getElementById("profile-moreInformations").value;
-        var interests = document.getElementById("profile-interests").value;
-        var feelings = document.getElementById("profile-feelings").value;
-        var coreValues = document.getElementById("profile-coreValues").value;
+        
+        if(address = document.getElementById("profile-address") == null){
+            var address = "";
+        }else{
+            var address = document.getElementById("profile-address").value;
+        }
+
+        if(document.getElementById("profile-moreInformations") == null){
+            var moreInformations = "";
+        }else{
+            var moreInformations = document.getElementById("profile-moreInformations").value;
+        }
+
+        if(document.getElementById("profile-interests") == null){
+            var interests = "";
+        }else{
+            var interests = document.getElementById("profile-interests").value;
+        }
+
+        if(document.getElementById("profile-feelings") == null){
+            var feelings = "";
+        }else{
+            var feelings = document.getElementById("profile-feelings").value;
+        }
+
+        if(document.getElementById("profile-coreValues") == null){
+            var coreValues = "";
+        }else{
+            var coreValues = document.getElementById("profile-coreValues").value;
+        }
+
+        if(active = document.getElementById("profile-active") == null){
+            var active = true;
+        }else{
+            var active = document.getElementById("profile-active");
+        }
+        
+
+
         var active = document.getElementById("profile-active");
     
         let profiles = new Array();

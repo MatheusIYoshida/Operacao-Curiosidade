@@ -25,3 +25,21 @@
     border-style: none;
     cursor: pointer;
 }
+
+.return-login{
+    position: absolute;
+    left: 0;
+    margin: 10px 0px 0px 10px;
+    background-color: #FFF;
+}
+
+.return-login a{
+    background-color: #FFF;
+}
+
+.return-login img{
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
