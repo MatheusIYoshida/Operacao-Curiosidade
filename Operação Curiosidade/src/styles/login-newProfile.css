@@ -1,3 +1,29 @@
+.return-login{
+    position: absolute;
+    left: 0;
+    margin: 10px 0px 0px 10px;
+    background-color: #FFF;
+}
+
+.return-login a{
+    background-color: #FFF;
+}
+
+.return-login img{
+    max-width: 30px;
+    max-height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+
+.return-login img:hover{
+    background-color: #fafafa;
+    max-width: 35px;
+    max-height: 35px;
+    transition: 0.2s;
+}
+
 .newProfile-title{
     background-color: #FFF;
     font-size: 20px;
@@ -26,20 +52,8 @@
     cursor: pointer;
 }
 
-.return-login{
-    position: absolute;
-    left: 0;
-    margin: 10px 0px 0px 10px;
-    background-color: #FFF;
-}
-
-.return-login a{
-    background-color: #FFF;
-}
-
-.return-login img{
-    max-width: 30px;
-    max-height: 30px;
-    border-radius: 50%;
-    background-color: #FFF;
+#createProfile-submit:hover{
+    font-size: 17px;
+    background-color: #7BB872;
+    transition: 0.2s;
 }

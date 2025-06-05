@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="src/styles/login-page.css">
+    <link rel="stylesheet" href="src/styles/login-newProfile.css">
+    <link rel="stylesheet" href="src/styles/newProfile-page.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +23,10 @@
                 <div class="login-page-subtitle">Operação Curiosidade</div>
             </div>
             <div class="input-area">
-                <input id="email-input" type="email" class="input" name="email" placeholder="Email:"> 
-                <input id="password-input" type="password" class="input" name="password" placeholder="Password:">
+                <input id="email-input" type="email" class="input" name="email" placeholder="Email:" oninput="removeRedBorder(this)"> 
+                <span class="alert-user alert-user-changes">Enter your email</span>
+                <input id="password-input" type="password" class="input" name="password" placeholder="Password:"oninput=" removeRedBorder(this)">
+                <span class="alert-user alert-user-changes">Enter your password</span>
             </div>
             <div class="button-area">
                 <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
@@ -44,5 +48,6 @@
     </footer>
 
     <script src="src/script/redirect-page.js"></script>
+    <script src="src/script/create-profile.js"></script>
 </body>
 </html>
