@@ -1,4 +1,4 @@
-document.getElementById("createProfile-submit").onclick = function(){
+function createProfile(refPage){
     var nameValue = document.getElementById("profile-name").value;
     var emailValue = document.getElementById("profile-email").value;
     var passwordValue = document.getElementById("profile-password").value;
@@ -77,6 +77,13 @@ document.getElementById("createProfile-submit").onclick = function(){
 
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active});
         localStorage.setItem("profiles", JSON.stringify(profiles));
+
+        if(refPage.split("/").pop() == "newProfile-page.html"){
+            console.log("Entrou")
+            window.location.href = "profiles-page.html"
+        }else if(refPage.split("/").pop() == "login-newProfile.html"){
+            window.location.href = "login-page.html"
+        }
     }
 }
 
