@@ -6,7 +6,6 @@ function userList(){
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
     if(profiles != null){
-        console.log(profiles.length);
         for (let x = 0; x < profiles.length; x++){
             const ulName = document.getElementById("name-list");
             const liName = document.createElement("li");
@@ -21,6 +20,9 @@ function userList(){
             const ulActive = document.getElementById("active-list");
             const liActive = document.createElement("li");
             liActive.textContent = profiles[x].active;
+            if(liActive.textContent == "inactive"){
+                liActive.style.color = "#A9A9A9"
+            }
             ulActive.appendChild(liActive);
         }
     }
