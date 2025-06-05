@@ -60,15 +60,15 @@ document.getElementById("createProfile-submit").onclick = function(){
             var coreValues = document.getElementById("profile-coreValues").value;
         }
 
-        if(active = document.getElementById("profile-active") == null){
-            var active = true;
+        if(document.getElementById("profile-active") == null){
+            var active = "active";
         }else{
-            var active = document.getElementById("profile-active");
+            if(document.getElementById("profile-active").checked == true){
+                var active = "active";
+            }else{
+                var active = "inactive"
+            }
         }
-        
-
-
-        var active = document.getElementById("profile-active");
     
         let profiles = new Array();
         if(localStorage.hasOwnProperty("profiles")){
