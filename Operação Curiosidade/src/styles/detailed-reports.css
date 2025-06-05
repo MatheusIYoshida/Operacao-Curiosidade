@@ -14,3 +14,19 @@
     border-style: none;
     cursor: pointer;
 }
+
+
+
+@media print {
+    .sidebar, 
+    header,
+    .profile-printOut button{
+        display: none;
+    }
+
+    .table-title,
+    .main-table-users li{
+        display: flex;
+        justify-content: center;
+    }
+}
