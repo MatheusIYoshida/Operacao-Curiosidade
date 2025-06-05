@@ -6,3 +6,12 @@
     color: #000;
     text-decoration: none;
 }
+
+.table-title-reports{
+    border-bottom: none;
+}
+
+.table-line{
+    margin: 0px 20px;
+    border-bottom: 1px solid #A9A9A9;
+}
