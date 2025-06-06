@@ -13,12 +13,23 @@ function createProfile(refPage){
         email.style.border = "2px solid red";
         email.nextElementSibling.style.display = "block";
     }
+
+    var password = document.getElementById("profile-password");
+    var passwordRequirement = document.querySelector(".password-requirements");
+    var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     if(passwordValue == 0){
-        var password = document.getElementById("profile-password");
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "block";
+        passwordRequirement.style.display = "none"
+        alertPasswordRequirement.style.display = "none"
+    }else if(passwordValue.length < 6){
+        password.style.border = "2px solid red";
+        password.nextElementSibling.style.display = "none";
+        passwordRequirement.style.display = "none"
+        alertPasswordRequirement.style.display = "block"
     }
-    if(nameValue != 0 && emailValue != 0 & passwordValue != 0){
+
+    if(nameValue != 0 && emailValue != 0 & passwordValue.length >= 6){
         var name = document.getElementById("profile-name").value;
 
         if(document.getElementById("profile-birthday") == null){

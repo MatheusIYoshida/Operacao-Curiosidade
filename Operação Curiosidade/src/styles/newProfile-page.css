@@ -37,9 +37,23 @@
     grid-template-columns: 1fr 1fr;
 }
 
+.password-requirements{
+    display: block;
+    color: #0000ff;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+.alert-password-requirements{
+    display: none;
+    color: #ba0933;
+    font-size: 11px;
+    margin-top: 3px;
+}
+
 .alert-user{
     display: none;
-    color: #ff0000;
+    color: #ba0933;
     font-size: 11px;
     margin-top: 3px;
 }
