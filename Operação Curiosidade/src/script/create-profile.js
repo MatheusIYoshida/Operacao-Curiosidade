@@ -2,21 +2,22 @@ function createProfile(refPage){
     var nameValue = document.getElementById("profile-name").value;
     var emailValue = document.getElementById("profile-email").value;
     var passwordValue = document.getElementById("profile-password").value;
+    var password = document.getElementById("profile-password");
+    var passwordRequirement = document.querySelector(".password-requirements");
+    var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     
     if(nameValue == 0){
         var name = document.getElementById("profile-name");
         name.style.border = "2px solid red";
         name.nextElementSibling.style.display = "block";
     }
+
     if(emailValue == 0){
         var email = document.getElementById("profile-email");
         email.style.border = "2px solid red";
         email.nextElementSibling.style.display = "block";
     }
 
-    var password = document.getElementById("profile-password");
-    var passwordRequirement = document.querySelector(".password-requirements");
-    var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     if(passwordValue == 0){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "block";
@@ -41,7 +42,7 @@ function createProfile(refPage){
         var email = document.getElementById("profile-email").value;
         var password = document.getElementById("profile-password").value;
         
-        if(address = document.getElementById("profile-address") == null){
+        if(document.getElementById("profile-address") == null){
             var address = "";
         }else{
             var address = document.getElementById("profile-address").value;
@@ -75,9 +76,9 @@ function createProfile(refPage){
             var active = "active";
         }else{
             if(document.getElementById("profile-active").checked == true){
-                var active = "active";
+                var active = "Active";
             }else{
-                var active = "inactive"
+                var active = "Inactive"
             }
         }
     

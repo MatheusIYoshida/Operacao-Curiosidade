@@ -57,3 +57,8 @@
     background-color: #7BB872;
     transition: 0.2s;
 }
+
+.password-requirements,
+.alert-password-requirements{
+    background-color: #FFF;
+}
