@@ -2,6 +2,9 @@
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+}
+
+body{
     background-color: #F5F7FA;
 }
 
@@ -45,7 +48,6 @@
 }
 
 .input-area{
-    background-color: #fff;
     display: flex;
     flex-direction: column;
 }
@@ -53,7 +55,6 @@
 .input{
     padding: 10px;
     margin: 15px 0px 0px 0px;
-    background-color: #fff;
     border: 2px solid #000;
     min-width: 300px;
     min-height: 50px;
@@ -86,14 +87,12 @@
     flex-direction: column;
     align-items: center;
     margin: 10px 0px 20px 0px;
-    background-color: #fff;
 }
 
 .login-createProfile-title{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
 }
 
 .createProfile-bar{
@@ -103,7 +102,6 @@
 }
 
 .createProfile-text{
-    background-color: #fff;
     font-size: 12px;
 }
 
