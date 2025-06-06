@@ -2,9 +2,17 @@ function createProfile(refPage){
     var nameValue = document.getElementById("profile-name").value;
     var emailValue = document.getElementById("profile-email").value;
     var passwordValue = document.getElementById("profile-password").value;
+    var email = document.getElementById("profile-email");
+    var alertEmailRequirement = document.querySelector(".alert-email-requirements");
+    var alertEmailExist = document.querySelector(".alert-email-exist")
+    var emailExist = false;
     var password = document.getElementById("profile-password");
     var passwordRequirement = document.querySelector(".password-requirements");
     var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
+    let profiles = new Array();    
+    if(localStorage.hasOwnProperty("profiles")){
+        profiles = JSON.parse(localStorage.getItem("profiles"));
+    }
     
     if(nameValue == 0){
         var name = document.getElementById("profile-name");
@@ -13,9 +21,30 @@ function createProfile(refPage){
     }
 
     if(emailValue == 0){
-        var email = document.getElementById("profile-email");
         email.style.border = "2px solid red";
         email.nextElementSibling.style.display = "block";
+        alertEmailRequirement.style.display = "none";
+        alertEmailExist.style.display = "none"; 
+    }else if(emailValid(emailValue) == false){
+        email.style.border = "2px solid red";
+        email.nextElementSibling.style.display = "none";
+        alertEmailRequirement.style.display = "block";
+        alertEmailExist.style.display = "none";
+    }else{
+        for(var x = 0; x < profiles.length; x++){
+            if(emailValue == profiles[x].email){
+                email.style.border = "2px solid red";
+                email.nextElementSibling.style.display = "none";
+                alertEmailRequirement.style.display = "none";
+                alertEmailExist.style.display = "block";    
+                emailExist = true;
+            }
+            if(emailExist == false){
+                email.nextElementSibling.style.display = "none"
+                alertEmailRequirement.style.display = "none"; 
+                alertEmailExist.style.display = "none";
+            }
+        }
     }
 
     if(passwordValue == 0){
@@ -27,10 +56,14 @@ function createProfile(refPage){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "block"
+        alertPasswordRequirement.style.display = "block";
+    }else{
+        password.nextElementSibling.style.display = "none";
+        passwordRequirement.style.display = "none"
+        alertPasswordRequirement.style.display = "none";
     }
 
-    if(nameValue != 0 && emailValue != 0 & passwordValue.length >= 6){
+    if(nameValue != 0 && emailValid(emailValue) == true && emailExist == false && passwordValue.length >= 6){
         var name = document.getElementById("profile-name").value;
 
         if(document.getElementById("profile-birthday") == null){
@@ -80,11 +113,6 @@ function createProfile(refPage){
             }else{
                 var active = "Inactive"
             }
-        }
-    
-        let profiles = new Array();
-        if(localStorage.hasOwnProperty("profiles")){
-            profiles = JSON.parse(localStorage.getItem("profiles"));
         }
 
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active});

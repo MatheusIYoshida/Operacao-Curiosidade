@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="src/styles/sidebar.css">
     <link rel="stylesheet" href="src/styles/header-menu.css">
     <link rel="stylesheet" href="src/styles/main-container.css">
-    <link rel="stylesheet" href="src/styles/newProfile-page.css"
+    <link rel="stylesheet" href="src/styles/newProfile-page.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +103,8 @@
                                     <label for="email">Email:</label>
                                     <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
                                     <span class="alert-user">Enter your Email</span>
+                                    <span class="alert-email-requirements">Invalid email</span>
+                                    <span class="alert-email-exist">This Email already exists, try another one!</span>
                                 </div>
                                 <div class="profile-input">
                                     <label for="password">Password:</label>
@@ -161,5 +163,6 @@
     </footer>
 
     <script src="src/script/create-profile.js"></script>
+    <script src="src/script/email-valid.js"></script>
 </body>
 </html>

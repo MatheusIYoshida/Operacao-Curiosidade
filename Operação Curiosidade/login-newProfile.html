@@ -36,6 +36,8 @@
                 <div class="input-area">
                     <input id="profile-email" class="input input-changes" type="email" name="Email" placeholder="Email:" oninput="removeRedBorder(this)">
                     <span class="alert-user alert-user-changes">Enter your email</span>
+                    <span class="alert-email-requirements">Invalid email</span>
+                    <span class="alert-email-exist">This Email already exists, try another one!</span>
                 </div>
                 <div class="input-area">
                     <input id="profile-password" class="input input-changes" type="password" name="Password" placeholder="Password:" oninput="removeRedBorder(this)">
@@ -56,5 +58,6 @@
     </footer>
 
     <script src="src/script/create-profile.js"></script>
+    <script src="src/script/email-valid.js"></script>
 </body>
 </html>

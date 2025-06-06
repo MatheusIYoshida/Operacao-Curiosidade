@@ -25,8 +25,11 @@
             <div class="input-area">
                 <input id="email-input" type="email" class="input" name="email" placeholder="Email:" oninput="removeRedBorder(this)"> 
                 <span class="alert-user alert-user-changes">Enter your email</span>
-                <input id="password-input" type="password" class="input" name="password" placeholder="Password:"oninput=" removeRedBorder(this)">
+                <span class="alert-email-requirements">Invalid email</span>
+                <input id="password-input" type="password" class="input" name="password" placeholder="Password:" oninput=" removeRedBorder(this)">
                 <span class="alert-user alert-user-changes">Enter your password</span>
+                <span class="password-requirements">Password must be at least 6 characters</span>
+                <span class="alert-password-requirements">Minimum 6 characters required</span>
             </div>
             <div class="button-area">
                 <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
@@ -49,5 +52,6 @@
 
     <script src="src/script/redirect-page.js"></script>
     <script src="src/script/create-profile.js"></script>
+    <script src="src/script/email-valid.js"></script>
 </body>
 </html>
