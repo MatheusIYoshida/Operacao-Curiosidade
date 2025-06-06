@@ -26,7 +26,7 @@ function shortUserList(){
             const ulActive = document.getElementById("active-list");
             const liActive = document.createElement("li");
             liActive.textContent = profiles[x].active;
-            if(liActive.textContent == "inactive"){
+            if(liActive.textContent == "Inactive"){
                 liActive.style.color = "#A9A9A9"
             }
             ulActive.appendChild(liActive);
