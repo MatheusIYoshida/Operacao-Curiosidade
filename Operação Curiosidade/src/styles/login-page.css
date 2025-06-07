@@ -4,16 +4,26 @@
     padding: 0px;
 }
 
-body{
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     background-color: #F5F7FA;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login-container{
     font-family: "Roboto", sans-serif;
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,17 +128,4 @@ body{
     background-color: #E0E4E8;
     transition: 0.20s;
     font-size: 14px;
-}
-
-footer{
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-}
-
-.footer-area{
-    background-color: #000;
-    color: #fff;
-    font-size: 13px;
-    padding: 5px 0px 5px 15px;
 }

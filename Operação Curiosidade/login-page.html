@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/styles/login-page.css">
     <link rel="stylesheet" href="src/styles/login-newProfile.css">
     <link rel="stylesheet" href="src/styles/newProfile-page.css">
+    <link rel="stylesheet" href="src/styles/footer.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,30 +15,32 @@
 </head>
 <body>
     <main>
-        <div class="login-container">
-            <div class="login-icon">
-                <div class="login-page-title">OC</div>
-                <div class="login-page-subtitle">Operação Curiosidade</div>
-            </div>
-            <div class="input-area">
-                <input id="email-input" type="email" class="input" name="email" placeholder="Email:" oninput="removeRedBorder(this)"> 
-                <span class="alert-user alert-user-changes">Enter your email</span>
-                <span class="alert-email-requirements">Invalid email</span>
-                <input id="password-input" type="password" class="input" name="password" placeholder="Password:" oninput=" removeRedBorder(this)">
-                <span class="alert-user alert-user-changes">Enter your password</span>
-                <span class="password-requirements">Password must be at least 6 characters</span>
-                <span class="alert-password-requirements">Minimum 6 characters required</span>
-            </div>
-            <div class="button-area">
-                <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
-            </div>
-            <div class="login-createProfile">
-                <div class="login-createProfile-title">
-                    <div class="createProfile-bar"></div>
-                    <div class="createProfile-text">New to Operação Curiosidade?</div>
-                    <div class="createProfile-bar"></div>
+        <div class="container">
+            <div class="login-container">
+                <div class="login-icon">
+                    <div class="login-page-title">OC</div>
+                    <div class="login-page-subtitle">Operação Curiosidade</div>
                 </div>
-                <button type="button" onclick="createProfileLogin()">Create a new profile</button>
+                <div class="input-area">
+                    <input id="email-input" type="email" class="input" name="email" placeholder="Email:" oninput="removeRedBorder(this)"> 
+                    <span class="alert-user alert-user-changes">Enter your email</span>
+                    <span class="alert-email-requirements">Invalid email</span>
+                    <input id="password-input" type="password" class="input" name="password" placeholder="Password:" oninput=" removeRedBorder(this)">
+                    <span class="alert-user alert-user-changes">Enter your password</span>
+                    <span class="password-requirements">Password must be at least 6 characters</span>
+                    <span class="alert-password-requirements">Minimum 6 characters required</span>
+                </div>
+                <div class="button-area">
+                    <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
+                </div>
+                <div class="login-createProfile">
+                    <div class="login-createProfile-title">
+                        <div class="createProfile-bar"></div>
+                        <div class="createProfile-text">New to Operação Curiosidade?</div>
+                        <div class="createProfile-bar"></div>
+                    </div>
+                    <button type="button" onclick="createProfileLogin()">Create a new profile</button>
+                </div>
             </div>
         </div>
     </main>

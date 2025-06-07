@@ -1,7 +1,8 @@
 .return-login{
     position: absolute;
-    left: 0;
-    margin: 10px 0px 0px 10px;
+    top: 15px;
+    left: 15px;
+    z-index: 1;
 }
 
 
@@ -10,13 +11,12 @@
     max-height: 30px;
     padding: 5px;
     border-radius: 50%;
+    transition: all 0.2s ease;
 }
 
 .return-login img:hover{
     background-color: #fafafa;
-    max-width: 35px;
-    max-height: 35px;
-    transition: 0.2s;
+    transform: scale(1.1);
 }
 
 .newProfile-title{
