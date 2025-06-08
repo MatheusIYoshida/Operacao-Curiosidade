@@ -4,13 +4,7 @@
     padding: 0px;
 }
 
-.full-page{
-    width: 100%;
-    display: flex;
-}
-
 .sidebar{
-
     width: 340px;
     top: 0;
     left: 0;
