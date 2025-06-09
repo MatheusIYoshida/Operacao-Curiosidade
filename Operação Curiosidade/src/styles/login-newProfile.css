@@ -27,19 +27,8 @@
     margin:15px 0px 0px 0px; 
 }
 
-#createProfile-submit{
-    font-size: 16px;
-    border-radius: 8px;
-    margin: 15px 0px;
-    padding: 10px 50px;
-    color: #FFF;
-    background-color: #61A057;
-    border-style: none;
-    cursor: pointer;
-}
-
 #createProfile-submit:hover{
     font-size: 17px;
-    background-color: #7BB872;
+    opacity: 1;
     transition: 0.2s;
 }

@@ -11,6 +11,7 @@
 }
 
 .profile-title{
+    margin-top: 20px;
     font-weight: bold;
     font-size: 18px;
     color: #000;
@@ -24,20 +25,18 @@
 .profile-input{
     display: flex;
     flex-direction: column;
-    margin: 15px 10px;
+    margin: 10px 10px;
 }
 
-.profile-name-password{
+.profile-name-birthday{
     display: grid;
     grid-template-columns: 2fr 1fr;
 }
 
-.profile-birthday-email{
+.profile-email-password{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
-
 
 .password-requirements{
     display: block;
@@ -68,7 +67,7 @@
     resize: none;
 }
 
-.createProfile-button{
+.profile-button{
     display: flex;
     justify-content: center;
 }
@@ -79,7 +78,9 @@
     margin: 15px 0px;
     padding: 10px 50px;
     color: #FFF;
-    background-color: #61A057;
+    background-color: #429a35;
+    opacity: .7;
+    transition: 0.4s;
     border-style: none;
     cursor: pointer;
 }
