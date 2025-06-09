@@ -1,13 +1,21 @@
-.main-table-users{
-    margin-top: 0px;
+#table-area{
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-top: 30px;
+    width: 100%;
 }
 
-.main-table-users ul{
-    list-style: none;
+#table-status{
+    text-align: center;
 }
 
-.main-table-users li{
-    color: #000;
+.table-row th{
+    text-align: start;
+    color: #00000080;
+}
+
+.table-row th,
+td{
     padding: 5px 0px;
     border-bottom: 1px solid #A9A9A9;
 }

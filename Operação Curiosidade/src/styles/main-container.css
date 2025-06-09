@@ -18,6 +18,7 @@
     background-color: #FFF;
     min-height: 618px;
     margin: 20px;
+    padding: 15px;
 }
 
 .main-container-top{
@@ -28,17 +29,6 @@
 
 .main-container-title{
     font-size: 18px;
-    padding:20px 0px 0px 10px;   
-}
-
-.main-container-table{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    margin:30px 20px 0px 20px;
-    color: #A9A9A9;
-}
-
-.table-title{
-    padding-bottom: 10px;
-    border-bottom: 1px solid #A9A9A9;
+    padding-top:20px;
+    color: #00000080;
 }
