@@ -1,5 +1,3 @@
-
-
 function registrationDate(){
     const registration = new Date();
     const day = String(registration.getDate()).padStart(2, '0'); 

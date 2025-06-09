@@ -13,12 +13,12 @@ window.onload = function(){
 
 function shortUserList(){
     if(profiles.length >= 10){
-        var profilesFor = 10;
+        var profilesFor = (profiles.length - 11);
     }else{
-        var profilesFor = profiles.length;
+        var profilesFor = 0;
     }
     if(profiles != null){
-        for (let x = 0; x < profilesFor; x++){
+        for (let x = (profiles.length - 1); x >= profilesFor; x--){
             const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             table.appendChild(tableRow);
