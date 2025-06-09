@@ -142,7 +142,6 @@ function removeProfile(buttonRemove){
     const trToRemove = buttonRemove.closest("tr");
     const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
     let newProfiles = new Array;
-    console.log(emailToRemove);
     for(var x = 0; x < profiles.length; x++){
         if(emailToRemove != profiles[x].email){
             newProfiles.push(profiles[x]);
@@ -151,4 +150,129 @@ function removeProfile(buttonRemove){
     localStorage.removeItem("profiles");
     localStorage.setItem("profiles", JSON.stringify(newProfiles));
     location.reload();
+}
+
+var x = 0;
+function modalEditProfile(buttonEdit){
+    const trToEdit = buttonEdit.closest("tr");
+    const emailToEdit = trToEdit.querySelector(".tableEmail").textContent;
+    for(x = 0; x < profiles.length; x++){
+        if(emailToEdit == profiles[x].email){
+            const inputName = document.getElementById("profile-name");
+            const inputBirthday = document.getElementById("profile-birthday");
+            const inputEmail = document.getElementById("profile-email");
+            const inputPassword = document.getElementById("profile-password");
+            const inputAddress = document.getElementById("profile-address");
+            const inputMoreInformations = document.getElementById("profile-moreInformations");
+            const inputInterests = document.getElementById("profile-interests");
+            const inputFeelings = document.getElementById("profile-feelings"); 
+            const inputCoreValues = document.getElementById("profile-coreValues"); 
+            const inputActive = document.getElementById("modal-active-checkbox"); 
+
+            inputName.value = profiles[x].name;
+            inputBirthday.value = profiles[x].birthday;
+            inputEmail.value = profiles[x].email;
+            inputPassword.value = profiles[x].password;
+            inputAddress.value = profiles[x].address;
+            inputMoreInformations.value = profiles[x].moreInformations;
+            inputInterests.value = profiles[x].interests;
+            inputFeelings.value = profiles[x].feelings;
+            inputCoreValues.value = profiles[x].coreValues;
+            if(profiles[x].active == "Active"){
+                inputActive.checked = true;
+            }else{
+                inputActive.checked = false;
+            }
+            break;
+        }
+    }
+}
+
+function editProfiles(){
+    const index = x;
+    profiles = JSON.parse(localStorage.getItem("profiles"));
+
+    const nameInput = document.getElementById("profile-name");
+    const emailInput = document.getElementById("profile-email");
+    const passwordInput = document.getElementById("profile-password");
+    const email = emailInput.value;
+    const alertEmailRequirement = document.querySelector(".alert-email-requirements");
+    const alertEmailExist = document.querySelector(".alert-email-exist");
+    const passwordRequirement = document.querySelector(".password-requirements");
+    const alertPasswordRequirement = document.querySelector(".alert-password-requirements");
+    var emailExist = false;
+
+    profiles[index] = {
+        name: document.getElementById("profile-name").value,
+        birthday: document.getElementById("profile-birthday").value,
+        email: document.getElementById("profile-email").value,
+        password: document.getElementById("profile-password").value,
+        address: document.getElementById("profile-address").value,
+        moreInformations: document.getElementById("profile-moreInformations").value,
+        interests: document.getElementById("profile-interests").value,
+        feelings: document.getElementById("profile-feelings").value,
+        coreValues: document.getElementById("profile-coreValues").value,
+        active: document.getElementById("modal-active-checkbox").checked ? "Active" : "Inactive",
+        status: profiles[index].status,
+        createdAt: profiles[index].createdAt
+    }
+
+    if(profiles[index].name == 0){
+        nameInput.style.border = "2px solid red";
+        nameInput.nextElementSibling.style.display = "block";
+    }
+
+    if(profiles[index].email == 0){
+        emailInput.style.border = "2px solid red";
+        emailInput.nextElementSibling.style.display = "block";
+        alertEmailRequirement.style.display = "none";
+        alertEmailExist.style.display = "none"; 
+    }else if(emailValid(profiles[index].email) == false){
+        emailInput.style.border = "2px solid red";
+        emailInput.nextElementSibling.style.display = "none";
+        alertEmailRequirement.style.display = "block";
+        alertEmailExist.style.display = "none";
+    }else{
+        for (let i = 0; i < profiles.length; i++) {
+            if (i != index && email == profiles[i].email) {
+                emailExist = true;
+                emailInput.style.border = "2px solid red";
+                alertEmailExist.style.display = "block";
+                break;
+            }
+        }
+    }
+
+    if(profiles[index].password == ""){
+        passwordInput.style.border = "2px solid red";
+        passwordInput.nextElementSibling.style.display = "block";
+        passwordRequirement.style.display = "none"
+        alertPasswordRequirement.style.display = "none"
+    }else if(profiles[index].password.length < 6){
+        passwordInput.style.border = "2px solid red";
+        passwordInput.nextElementSibling.style.display = "none";
+        passwordRequirement.style.display = "none"
+        alertPasswordRequirement.style.display = "block";
+    }else{
+        passwordInput.nextElementSibling.style.display = "none";
+        passwordRequirement.style.display = "block"
+        alertPasswordRequirement.style.display = "none";
+    }
+
+    if(profiles[index].birthday == "" || profiles[index].address == "" || profiles[index].moreInformations == "" || profiles[index].interests == "" || profiles[index].feelings == "" || profiles[index].coreValues == ""){
+        profiles[index].status = "Incomplete"
+    }else{
+        profiles[index].status = "Complete"
+    }
+
+    if(profiles[index].name != 0 && emailValid(profiles[index].email) == true && emailExist == false && profiles[index].password.length >= 6){
+        localStorage.setItem("profiles", JSON.stringify(profiles));
+        toggleModal();
+        location.reload();
+    }else{
+        console.log(profiles[index].name);
+        console.log(emailValid(profiles[index].email));
+        console.log(profiles[index].email);
+        console.log(profiles[index].password.length);
+    }
 }

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/styles/sidebar.css">
     <link rel="stylesheet" href="src/styles/header-menu.css">
     <link rel="stylesheet" href="src/styles/main-container.css">
+    <link rel="stylesheet" href="src/styles/newProfile-page.css">
     <link rel="stylesheet" href="src/styles/profiles-page.css">
     <link rel="stylesheet" href="src/styles/user-list.css">
 
@@ -78,7 +79,7 @@
                     <div class="main-container-area">
                         <div class="main-container-top">
                             <div class="main-container-title">Profiles</div>
-                            <div class="profile-button">
+                            <div class="redirect-button">
                                 <button type="submit" onclick="createProfilePage()">CREATE PROFILE</button>
                             </div>
                         </div>
@@ -90,14 +91,87 @@
                                 <th id="table-center">ACTIONS</th>
                             </tr>
                         </table>
+                        <div id="fade" class="hide"></div>
+                        <div id="modal" class="hide">
+                            <div class="modal-header">
+                                <h2>Edit Profile</h2>
+                                <button id="close-modal">Close</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body-top">
+                                    <div class="modal-topic">
+                                        <h3>1º Facts and Figures</h3>
+                                    </div>
+                                    <div class="modal-active-profile">
+                                        <input id="modal-active-checkbox" type="checkbox" name="active" value="active">
+                                        <div class="modal-active-title">Active</div>
+                                    </div>
+                                </div>
+                                <div class="profile-name-birthday modal-profile-name-birthday">
+                                    <div class="profile-input">
+                                        <label for="name">Name:</label>
+                                        <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
+                                        <span class="alert-user">Enter your name</span>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label for="birthday date">Birthday date:</label> 
+                                        <input id="profile-birthday" type="datetime" name="Birthday">
+                                    </div>
+                                </div>
+                                <div class="profile-email-password">
+                                    <div class="profile-input">
+                                        <label for="email">Email:</label>
+                                        <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
+                                        <span class="alert-user">Enter your Email</span>
+                                        <span class="alert-email-requirements">Invalid email</span>
+                                        <span class="alert-email-exist">This Email already exists, try another one!</span>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label for="password">Password:</label>
+                                        <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
+                                        <span class="alert-user">Enter your Password</span>
+                                        <span class="password-requirements">Password must be at least 6 characters</span>
+                                        <span class="alert-password-requirements">Minimum 6 characters required</span>
+                                    </div>
+                                </div>
+                                <div class="profile-input modal-input-address">
+                                    <label for="address">Address:</label>
+                                    <input id="profile-address" type="text" name="Address">
+                                </div>
+                                <div class="profile-input">
+                                    <label for="more informations">More Informations:</label>
+                                    <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="500"></textarea>
+                                </div>
+                                <h3>2º Interests</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                        <textarea id="profile-interests" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <h3>3º Feelings</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                        <textarea id="profile-feelings" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <h3>4º Core Values</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                       <textarea id="profile-coreValues" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <div class="profile-button">
+                                    <input id="editProfile-submit" type="submit" value="EDIT PROFILE" onclick="editProfiles()">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
-    <footer>
-
-    </footer>
+    
+    <script src="src/script/email-valid.js"></script>
     <script src="src/script/redirect-page.js"></script>
     <script src="src/script/profile-actions.js"></script>
     <script src="src/script/profiles-page.js"></script>
