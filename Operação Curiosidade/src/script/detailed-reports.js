@@ -1,8 +1,8 @@
 window.onload = function(){
-    userList();
+    userListReports();
 };
 
-function userList(){
+function userListReports(){
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
     if(profiles != null){
