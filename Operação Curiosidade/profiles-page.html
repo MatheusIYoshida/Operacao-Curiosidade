@@ -82,22 +82,14 @@
                                 <button type="submit" onclick="createProfilePage()">CREATE PROFILE</button>
                             </div>
                         </div>
-                        <div class="main-container-table">
-                            <div class="table-title">NAME</div>
-                            <div class="table-title">E-MAIL</div>
-                            <div id="status-title" class="table-title">STATUS</div>
-                        </div>
-                        <div class="main-container-table main-table-users">
-                            <ul id="name-list">
-                                
-                            </ul>
-                            <ul id="email-list">
-                               
-                            </ul>
-                            <ul id="active-list">
-                                
-                            </ul>
-                        </div>
+                        <table id="table-area">
+                            <tr class="table-row-title">
+                                <th>NAME</th>
+                                <th>E-MAIL</th>
+                                <th id="table-center">STATUS</th>
+                                <th id="table-center">ACTIONS</th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </main>
@@ -107,6 +99,7 @@
 
     </footer>
     <script src="src/script/redirect-page.js"></script>
-    <script src="src/script/user-list.js"></script>
+    <script src="src/script/profile-actions.js"></script>
+    <script src="src/script/profiles-page.js"></script>
 </body>
 </html>

@@ -14,3 +14,26 @@
     border-style: none;
     cursor: pointer;
 }
+
+#table-area img{
+    max-width: 15px;
+    max-height: 15px;
+}
+
+.tableEditRemove{
+    text-align: center;
+    max-width: 100px;
+}
+
+.tableEditLink{
+    margin-right: 20px;
+}
+
+.tableRemoveLink{
+    margin-left: 20px;
+}
+
+.tableEditLink img,
+.tableEditRemove img{
+    cursor: pointer;
+}

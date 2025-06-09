@@ -105,7 +105,7 @@ function createProfile(refPage){
         }
 
         if(document.getElementById("profile-active") == null){
-            var active = "active";
+            var active = "Active";
         }else{
             if(document.getElementById("profile-active").checked == true){
                 var active = "Active";
@@ -126,7 +126,6 @@ function createProfile(refPage){
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
         if(refPage.split("/").pop() == "newProfile-page.html"){
-            console.log("Entrou")
             window.location.href = "profiles-page.html"
         }else if(refPage.split("/").pop() == "login-newProfile.html"){
             window.location.href = "login-page.html"
@@ -137,4 +136,19 @@ function createProfile(refPage){
 function removeRedBorder(input){
     input.style.borderColor = "#000";
     input.nextElementSibling.style.display = "none";
+}
+
+function removeProfile(buttonRemove){
+    const trToRemove = buttonRemove.closest("tr");
+    const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
+    let newProfiles = new Array;
+    console.log(emailToRemove);
+    for(var x = 0; x < profiles.length; x++){
+        if(emailToRemove != profiles[x].email){
+            newProfiles.push(profiles[x]);
+        }
+    }
+    localStorage.removeItem("profiles");
+    localStorage.setItem("profiles", JSON.stringify(newProfiles));
+    location.reload();
 }
