@@ -1,8 +1,14 @@
-let profiles = JSON.parse(localStorage.getItem("profiles"));
+let profiles = new Array();    
+if(localStorage.hasOwnProperty("profiles")){
+    profiles = JSON.parse(localStorage.getItem("profiles"));
+}
 
 window.onload = function(){
     shortUserList();
-    profilesTotal();
+    totalUsers();
+    pendingUsers();
+    recentUsers();
+    registrationDate();
 };
 
 function shortUserList(){
@@ -34,7 +40,20 @@ function shortUserList(){
     }
 }
 
-function profilesTotal(){
+function totalUsers(){
     document.getElementById("total-reg").innerHTML = profiles.length;
 }
 
+function recentUsers(){
+    document.getElementById("lastMonth-reg").innerHTML = lastThirtyDays(profiles)
+}
+
+function pendingUsers(){
+    var pending = 0;
+    for(var x = 0; x < profiles.length; x++){
+        if(profiles[x].status == "Incomplete"){
+            pending++;
+        }
+    }
+    document.getElementById("pending-reg").innerHTML = pending;
+}

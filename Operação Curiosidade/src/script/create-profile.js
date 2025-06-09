@@ -65,15 +65,14 @@ function createProfile(refPage){
 
     if(nameValue != 0 && emailValid(emailValue) == true && emailExist == false && passwordValue.length >= 6){
         var name = document.getElementById("profile-name").value;
+        var email = document.getElementById("profile-email").value;
+        var password = document.getElementById("profile-password").value;
 
         if(document.getElementById("profile-birthday") == null){
             var birthday = "";
         }else{
             var birthday = document.getElementById("profile-birthday").value;
         }
-
-        var email = document.getElementById("profile-email").value;
-        var password = document.getElementById("profile-password").value;
         
         if(document.getElementById("profile-address") == null){
             var address = "";
@@ -115,7 +114,15 @@ function createProfile(refPage){
             }
         }
 
-        profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active});
+        if(birthday == "" || address == "" || moreInformations == "" || interests == "" || feelings == "" || coreValues == ""){
+            var status = "Incomplete"
+        }else{
+            var status = "Complete"
+        }
+
+        createdAt = registrationDate();
+
+        profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
         if(refPage.split("/").pop() == "newProfile-page.html"){
