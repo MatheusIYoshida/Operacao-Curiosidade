@@ -15,6 +15,11 @@
     cursor: pointer;
 }
 
+.tableActive,
+.tableCreatedAt{
+    text-align: center;
+}
+
 
 
 @media print {

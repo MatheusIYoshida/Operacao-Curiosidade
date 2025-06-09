@@ -20,13 +20,17 @@ function userList(){
             tableRow.appendChild(tableEmail);
 
             const tableActive = document.createElement("td");
+            tableActive.className = "tableActive";
             tableActive.textContent = profiles[x].active;
             if(tableActive.textContent == "Inactive"){
                 tableActive.style.color = "#A9A9A9"
-            }else{
-                tableActive.style.paddingLeft = "5px"
             }
             tableRow.appendChild(tableActive);
+
+            const tableCreatedAt = document.createElement("td");
+            tableCreatedAt.className = "tableCreatedAt";
+            tableCreatedAt.textContent = profiles[x].createdAt;
+            tableRow.appendChild(tableCreatedAt);
         }
     }
 }
