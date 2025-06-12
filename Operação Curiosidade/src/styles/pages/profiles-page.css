@@ -1,18 +1,7 @@
-.redirect-button{
+.open-modal-createProfile{
     position: absolute;
     right: 0;
     margin-right: 20px;
-}
-
-.redirect-button button{
-    font-size: 16px;
-    border-radius: 8px;
-    margin-top: 15px;
-    padding: 10px 50px;
-    color: #FFF;
-    background-color: #61A057;
-    border-style: none;
-    cursor: pointer;
 }
 
 #table-area img{
@@ -38,22 +27,8 @@
     cursor: pointer;
 }
 
-#close-modal{
-    padding: .6rem 1.2rem;
-    background-color: #888;
-    border: none;
-    border-radius: .25rem;
-    cursor: pointer;
-    opacity: .7;
-    font-size: 1rem;
-    transition: 0.4s;
-}
-
-#close-modal:hover{
-    opacity: 1;
-}
-
-#fade{
+#fade,
+#fade-createProfile{
     position: fixed;
     top: 0;
     left: 0;
@@ -63,7 +38,8 @@
     z-index: 5;
 }
 
-#modal{
+#modal,
+#modal-createProfile{
     position: fixed;
     left: 50%;
     top: 50%;
@@ -78,8 +54,10 @@
     overflow-y: auto;
 }
 
-#fade, 
-#modal{
+#fade,
+#fade-createProfile, 
+#modal,
+#modal-createProfile{
     transition: 1s;
     opacity: 1;
     pointer-events: all;
@@ -95,12 +73,15 @@
 }
 
 #modal.hide,
-#fade.hide{
+#fade.hide,
+#modal-createProfile.hide,
+#fade-createProfile.hide{
     opacity: 0;
     pointer-events: none;
 }
 
-#modal.hide{
+#modal.hide,
+#modal-createProfile.hide{
     top: 0;
 }
 
@@ -117,27 +98,48 @@
     margin: 0px 10px;
 }
 
-.modal-profile-name-birthday{
-    grid-template-columns: 1fr 1fr;
-}
-
 .modal-input-address{
     margin-top: 0px;
 }
 
 #editProfile-submit{
-    font-size: 16px;
-    border-radius: 8px;
-    margin: 15px 0px;
-    padding: 10px 50px;
-    color: #FFF;
     background-color: #0056b3;
-    opacity: .7;
-    transition: 0.4s;
-    border-style: none;
-    cursor: pointer;
 }
 
-#editProfile-submit:hover{
-    opacity: 1;
+.facts-inputs{
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-input{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px;
+}
+
+.profile-name-birthday{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-email-password{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.profile-input textarea,
+.profile-input input{
+    font-size: 16px;
+    padding: 10px;    
+    background-color: #EEEBEB;
+    border: 2px solid #000;
+}
+
+.profile-input textarea{
+    resize: none;
+}
+
+.profile-button{
+    display: flex;
+    justify-content: center;
 }

@@ -1,0 +1,28 @@
+.submit-button{
+    font-size: 16px;
+    border-radius: 8px;
+    margin: 15px 0px;
+    padding: 10px 50px;
+    color: #FFF;
+    background-color: #429a35;
+    opacity: .7;
+    transition: 0.4s;
+    border-style: none;
+    cursor: pointer;
+}
+
+.close-button{
+    padding: .6rem 1.2rem;
+    background-color: #888;
+    border: none;
+    border-radius: .25rem;
+    cursor: pointer;
+    opacity: .7;
+    font-size: 1rem;
+    transition: 0.4s;
+}
+
+.submit-button:hover,
+.close-button:hover{
+    opacity: 1;
+}

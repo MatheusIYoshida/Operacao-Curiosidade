@@ -1,12 +1,12 @@
-function createProfile(refPage){
-    var nameValue = document.getElementById("profile-name").value;
-    var emailValue = document.getElementById("profile-email").value;
-    var passwordValue = document.getElementById("profile-password").value;
-    var email = document.getElementById("profile-email");
+function createProfile(){
+    var nameValue = document.getElementById("create-profile-name").value;
+    var emailValue = document.getElementById("create-profile-email").value;
+    var passwordValue = document.getElementById("create-profile-password").value;
+    var email = document.getElementById("create-profile-email");
     var alertEmailRequirement = document.querySelector(".alert-email-requirements");
     var alertEmailExist = document.querySelector(".alert-email-exist")
     var emailExist = false;
-    var password = document.getElementById("profile-password");
+    var password = document.getElementById("create-profile-password");
     var passwordRequirement = document.querySelector(".password-requirements");
     var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     let profiles = new Array();    
@@ -15,7 +15,7 @@ function createProfile(refPage){
     }
     
     if(nameValue == 0){
-        var name = document.getElementById("profile-name");
+        var name = document.getElementById("create-profile-name");
         name.style.border = "2px solid red";
         name.nextElementSibling.style.display = "block";
     }
@@ -64,50 +64,50 @@ function createProfile(refPage){
     }
 
     if(nameValue != 0 && emailValid(emailValue) == true && emailExist == false && passwordValue.length >= 6){
-        var name = document.getElementById("profile-name").value;
-        var email = document.getElementById("profile-email").value;
-        var password = document.getElementById("profile-password").value;
+        var name = document.getElementById("create-profile-name").value;
+        var email = document.getElementById("create-profile-email").value;
+        var password = document.getElementById("create-profile-password").value;
 
-        if(document.getElementById("profile-birthday") == null){
+        if(document.getElementById("create-profile-birthday") == null){
             var birthday = "";
         }else{
-            var birthday = document.getElementById("profile-birthday").value;
+            var birthday = document.getElementById("create-profile-birthday").value;
         }
         
-        if(document.getElementById("profile-address") == null){
+        if(document.getElementById("create-profile-address") == null){
             var address = "";
         }else{
-            var address = document.getElementById("profile-address").value;
+            var address = document.getElementById("create-profile-address").value;
         }
 
-        if(document.getElementById("profile-moreInformations") == null){
+        if(document.getElementById("create-profile-moreInformations") == null){
             var moreInformations = "";
         }else{
-            var moreInformations = document.getElementById("profile-moreInformations").value;
+            var moreInformations = document.getElementById("create-profile-moreInformations").value;
         }
 
-        if(document.getElementById("profile-interests") == null){
+        if(document.getElementById("create-profile-interests") == null){
             var interests = "";
         }else{
-            var interests = document.getElementById("profile-interests").value;
+            var interests = document.getElementById("create-profile-interests").value;
         }
 
-        if(document.getElementById("profile-feelings") == null){
+        if(document.getElementById("create-profile-feelings") == null){
             var feelings = "";
         }else{
-            var feelings = document.getElementById("profile-feelings").value;
+            var feelings = document.getElementById("create-profile-feelings").value;
         }
 
-        if(document.getElementById("profile-coreValues") == null){
+        if(document.getElementById("create-profile-coreValues") == null){
             var coreValues = "";
         }else{
-            var coreValues = document.getElementById("profile-coreValues").value;
+            var coreValues = document.getElementById("create-profile-coreValues").value;
         }
 
-        if(document.getElementById("profile-active") == null){
+        if(document.getElementById("create-modal-active-checkbox") == null){
             var active = "Active";
         }else{
-            if(document.getElementById("profile-active").checked == true){
+            if(document.getElementById("create-modal-active-checkbox").checked == true){
                 var active = "Active";
             }else{
                 var active = "Inactive"
@@ -125,11 +125,8 @@ function createProfile(refPage){
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
-        if(refPage.split("/").pop() == "newProfile-page.html"){
-            window.location.href = "profiles-page.html"
-        }else if(refPage.split("/").pop() == "login-newProfile.html"){
-            window.location.href = "login-page.html"
-        }
+        toggleModalCreate();
+        location.reload();
     }
 }
 

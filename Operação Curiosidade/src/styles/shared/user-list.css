@@ -3,6 +3,7 @@
     table-layout: fixed;
     margin-top: 30px;
     width: 100%;
+    overflow-wrap: break-word;
 }
 
 #table-center{

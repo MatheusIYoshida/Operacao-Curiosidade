@@ -16,9 +16,13 @@
 
 .main-container-area{
     background-color: #FFF;
-    min-height: 618px;
+    height: 618px;
     margin: 20px;
     padding: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 6px 25px rgba(0, 0, 0, 0.15);
+    overflow: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f1f1f1;
 }
 
 .main-container-top{

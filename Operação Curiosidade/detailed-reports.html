@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detailed Reports</title>
-    <link rel="stylesheet" href="src/styles/sidebar.css">
-    <link rel="stylesheet" href="src/styles/header-menu.css">
-    <link rel="stylesheet" href="src/styles/main-container.css">
-    <link rel="stylesheet" href="src/styles/detailed-reports.css">
-    <link rel="stylesheet" href="src/styles/user-list.css">
+    <link rel="stylesheet" href="src/styles/components/sidebar.css">
+    <link rel="stylesheet" href="src/styles/components/header-menu.css">
+    <link rel="stylesheet" href="src/styles/components/main-container.css">
+    <link rel="stylesheet" href="src/styles/shared/user-list.css">
+    <link rel="stylesheet" href="src/styles/shared/buttons.css">
+    <link rel="stylesheet" href="src/styles/pages/detailed-reports.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +81,7 @@
                             <div class="main-container-title">Reports > User List</div>
                             <div class="printOut-title">User List</div>
                             <div class="profile-printOut">
-                                <button type="submit" onclick="window.print()">PRINT OUT</button>
+                                <button class="submit-button" type="submit" onclick="window.print()">PRINT OUT</button>
                             </div>
                         </div>
                         <table id="table-area">

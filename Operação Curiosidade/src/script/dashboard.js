@@ -12,13 +12,15 @@ window.onload = function(){
 };
 
 function shortUserList(){
-    if(profiles.length >= 10){
-        var profilesFor = (profiles.length - 11);
+    if(profiles.length >= 15){
+        var profilesFor = (profiles.length - 16);
     }else{
         var profilesFor = 0;
     }
     if(profiles != null){
-        for (let x = (profiles.length - 1); x >= profilesFor; x--){
+        for (let x = (profiles.length - 1); x > profilesFor; x--){
+            console.log("x: " + x);
+            console.log(profilesFor);
             const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             table.appendChild(tableRow);
@@ -32,10 +34,16 @@ function shortUserList(){
             tableRow.appendChild(tableEmail);
 
             const tableActive = document.createElement("td");
-            tableActive.textContent = profiles[x].active;
-            tableActive.style.textAlign = "center"
-            if(tableActive.textContent == "Inactive"){
-                tableActive.style.color = "#A9A9A9"
+            if(profiles[x].status == "Incomplete"){
+                tableActive.textContent = "Pending Review"
+                tableActive.style.textAlign = "center"
+                tableActive.style.color = "#B22222"
+            }else{
+                tableActive.textContent = profiles[x].active;
+                tableActive.style.textAlign = "center"
+                if(tableActive.textContent == "Inactive"){
+                    tableActive.style.color = "#A9A9A9"
+                }
             }
             tableRow.appendChild(tableActive);
         }

@@ -6,6 +6,7 @@
     width: auto;
     height: 60px;
     background-color: #E0E0E0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 6px 25px rgba(0, 0, 0, 0.15);
 }
 
 .header-input{
