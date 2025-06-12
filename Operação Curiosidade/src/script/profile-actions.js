@@ -283,7 +283,7 @@ function editProfiles(){
 
     if(profiles[index].name != 0 && nameValid(profiles[index].name) && emailValid(profiles[index].email) && emailExist == false && profiles[index].password.length >= 6){
         localStorage.setItem("profiles", JSON.stringify(profiles));
-        toggleModal();
+        toggleModalEdit();
         location.reload();
     }
 }

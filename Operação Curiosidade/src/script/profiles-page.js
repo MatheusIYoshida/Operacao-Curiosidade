@@ -45,7 +45,7 @@ function userList(){
             tableEditImg.onclick = function(){
                 modalEditProfile(this);
             }
-            tableEditImg.addEventListener("click", toggleModal);
+            tableEditImg.addEventListener("click", toggleModalEdit);
             tableRow.appendChild(tableEditRemove);
             tableEditRemove.appendChild(tableEditImg);
             
@@ -62,29 +62,32 @@ function userList(){
     }
 }
 
-const closeModal = document.getElementById("close-modal");
-const modal = document.getElementById("modal");
-const fade = document.getElementById("fade");
-
-const toggleModal = () => {
-    modal.classList.toggle("hide");
-    fade.classList.toggle("hide")
-}
-
-closeModal.addEventListener("click", toggleModal);
-fade.addEventListener("click", toggleModal);
-
-
+const fade = document.querySelector(".fade");
+const closeModalEdit = document.getElementById("close-modal-editProfile");
+const modalEdit = document.getElementById("modal-editProfile");
 const openModalCreate = document.getElementById("button-createProfile");
 const closeModalCreate = document.getElementById("close-modal-createProfile");
 const modalCreate = document.getElementById("modal-createProfile");
-const fadeCreate = document.getElementById("fade-createProfile");
+
+const toggleModalEdit = () => {
+    modalEdit.classList.toggle("hide");
+    fade.classList.toggle("hide");
+}
 
 const toggleModalCreate = () => {
     modalCreate.classList.toggle("hide");
-    fadeCreate.classList.toggle("hide")
+    fade.classList.toggle("hide");
 }
 
+fade.addEventListener("click", () => {
+    if(!modalEdit.classList.contains("hide")){
+        toggleModalEdit();
+    }
+    if(!modalCreate.classList.contains("hide")){
+        toggleModalCreate();
+    }
+});
+
+closeModalEdit.addEventListener("click", toggleModalEdit);
 closeModalCreate.addEventListener("click", toggleModalCreate);
-fadeCreate.addEventListener("click", toggleModalCreate);
 openModalCreate.addEventListener("click", toggleModalCreate);

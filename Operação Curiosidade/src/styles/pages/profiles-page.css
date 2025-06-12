@@ -27,8 +27,7 @@
     cursor: pointer;
 }
 
-#fade,
-#fade-createProfile{
+.fade{
     position: fixed;
     top: 0;
     left: 0;
@@ -38,8 +37,7 @@
     z-index: 5;
 }
 
-#modal,
-#modal-createProfile{
+.modal{
     position: fixed;
     left: 50%;
     top: 50%;
@@ -54,10 +52,8 @@
     overflow-y: auto;
 }
 
-#fade,
-#fade-createProfile, 
-#modal,
-#modal-createProfile{
+.fade,
+.modal{
     transition: 1s;
     opacity: 1;
     pointer-events: all;
@@ -72,16 +68,13 @@
     padding-bottom: 1rem;
 }
 
-#modal.hide,
-#fade.hide,
-#modal-createProfile.hide,
-#fade-createProfile.hide{
+.modal.hide,
+.fade.hide{
     opacity: 0;
     pointer-events: none;
 }
 
-#modal.hide,
-#modal-createProfile.hide{
+.modal.hide{
     top: 0;
 }
 
