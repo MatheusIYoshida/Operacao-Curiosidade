@@ -1,72 +1,78 @@
 function createProfile(){
-    var nameValue = document.getElementById("create-profile-name").value;
-    var emailValue = document.getElementById("create-profile-email").value;
-    var passwordValue = document.getElementById("create-profile-password").value;
-    var email = document.getElementById("create-profile-email");
-    var alertEmailRequirement = document.querySelector(".alert-email-requirements");
-    var alertEmailExist = document.querySelector(".alert-email-exist")
+    var name = document.getElementById("create-profile-name").value;
+    var email = document.getElementById("create-profile-email").value;
+    var password = document.getElementById("create-profile-password").value;
+    var nameInput = document.getElementById("create-profile-name");
+    var alertNameRequirement = document.querySelector(".alert-name-requirements-create");
+    var emailInput = document.getElementById("create-profile-email");
+    var alertEmailRequirement = document.querySelector(".alert-email-requirements-create");
+    var alertEmailExist = document.querySelector(".alert-email-exist-create")
     var emailExist = false;
-    var password = document.getElementById("create-profile-password");
-    var passwordRequirement = document.querySelector(".password-requirements");
-    var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
+    var passwordInput = document.getElementById("create-profile-password");
+    var passwordRequirement = document.querySelector(".password-requirements-create");
+    var alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
     let profiles = new Array();    
     if(localStorage.hasOwnProperty("profiles")){
         profiles = JSON.parse(localStorage.getItem("profiles"));
     }
     
-    if(nameValue == 0){
-        var name = document.getElementById("create-profile-name");
-        name.style.border = "2px solid red";
-        name.nextElementSibling.style.display = "block";
+    if(name == 0){
+        nameInput.style.border = "2px solid red";
+        nameInput.nextElementSibling.style.display = "block";
+        alertNameRequirement.style.display = "none";
+    }else if(nameValid(name) == false){
+        nameInput.style.border = "2px solid red"
+        nameInput.nextElementSibling.style.display = "none";
+        alertNameRequirement.style.display = "block";
+    }else{
+        nameInput.nextElementSibling.style.display = "none";
+        alertNameRequirement.style.display = "none";
     }
 
-    if(emailValue == 0){
-        email.style.border = "2px solid red";
-        email.nextElementSibling.style.display = "block";
+    if(email == 0){
+        emailInput.style.border = "2px solid red";
+        emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
         alertEmailExist.style.display = "none"; 
-    }else if(emailValid(emailValue) == false){
-        email.style.border = "2px solid red";
-        email.nextElementSibling.style.display = "none";
+    }else if(emailValid(email) == false){
+        emailInput.style.border = "2px solid red";
+        emailInput.nextElementSibling.style.display = "none";
         alertEmailRequirement.style.display = "block";
         alertEmailExist.style.display = "none";
     }else{
         for(var x = 0; x < profiles.length; x++){
-            if(emailValue == profiles[x].email){
-                email.style.border = "2px solid red";
-                email.nextElementSibling.style.display = "none";
+            if(email == profiles[x].email){
+                emailInput.style.border = "2px solid red";
+                emailInput.nextElementSibling.style.display = "none";
                 alertEmailRequirement.style.display = "none";
                 alertEmailExist.style.display = "block";    
                 emailExist = true;
             }
             if(emailExist == false){
-                email.nextElementSibling.style.display = "none"
+                emailInput.nextElementSibling.style.display = "none"
                 alertEmailRequirement.style.display = "none"; 
                 alertEmailExist.style.display = "none";
             }
         }
     }
 
-    if(passwordValue == 0){
-        password.style.border = "2px solid red";
-        password.nextElementSibling.style.display = "block";
+    if(password == 0){
+        passwordInput.style.border = "2px solid red";
+        passwordInput.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "none"
-    }else if(passwordValue.length < 6){
-        password.style.border = "2px solid red";
-        password.nextElementSibling.style.display = "none";
+    }else if(password.length < 6){
+        passwordInput.style.border = "2px solid red";
+        passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "block";
     }else{
-        password.nextElementSibling.style.display = "none";
+        passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "none";
     }
 
-    if(nameValue != 0 && emailValid(emailValue) == true && emailExist == false && passwordValue.length >= 6){
-        var name = document.getElementById("create-profile-name").value;
-        var email = document.getElementById("create-profile-email").value;
-        var password = document.getElementById("create-profile-password").value;
+    if(name != 0 && nameValid(name) && emailValid(email) && emailExist == false && password.length >= 6){
 
         if(document.getElementById("create-profile-birthday") == null){
             var birthday = "";
@@ -125,8 +131,12 @@ function createProfile(){
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
-        toggleModalCreate();
-        location.reload();
+        if(window.location.href.split("/").pop() == "login-newProfile.html"){
+            window.location.href = "login-page.html"
+        }else if(window.location.href.split("/").pop() == "profiles-page.html"){
+            toggleModalCreate();
+            location.reload();
+        }
     }
 }
 
@@ -192,6 +202,7 @@ function editProfiles(){
     const nameInput = document.getElementById("profile-name");
     const emailInput = document.getElementById("profile-email");
     const passwordInput = document.getElementById("profile-password");
+    const alertNameRequirement = document.querySelector(".alert-name-requirements");
     const email = emailInput.value;
     const alertEmailRequirement = document.querySelector(".alert-email-requirements");
     const alertEmailExist = document.querySelector(".alert-email-exist");
@@ -217,6 +228,13 @@ function editProfiles(){
     if(profiles[index].name == 0){
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
+    }else if(nameValid(profiles[index].name) == false){
+        nameInput.style.border = "2px solid red"
+        nameInput.nextElementSibling.style.display = "none";
+        alertNameRequirement.style.display = "block";
+    }else{
+        nameInput.nextElementSibling.style.display = "none";
+        alertNameRequirement.style.display = "none";
     }
 
     if(profiles[index].email == 0){
@@ -234,6 +252,7 @@ function editProfiles(){
             if (i != index && email == profiles[i].email) {
                 emailExist = true;
                 emailInput.style.border = "2px solid red";
+                alertEmailRequirement.style.display = "none"
                 alertEmailExist.style.display = "block";
                 break;
             }
@@ -262,14 +281,9 @@ function editProfiles(){
         profiles[index].status = "Complete"
     }
 
-    if(profiles[index].name != 0 && emailValid(profiles[index].email) == true && emailExist == false && profiles[index].password.length >= 6){
+    if(profiles[index].name != 0 && nameValid(profiles[index].name) && emailValid(profiles[index].email) && emailExist == false && profiles[index].password.length >= 6){
         localStorage.setItem("profiles", JSON.stringify(profiles));
         toggleModal();
         location.reload();
-    }else{
-        console.log(profiles[index].name);
-        console.log(emailValid(profiles[index].email));
-        console.log(profiles[index].email);
-        console.log(profiles[index].password.length);
     }
 }

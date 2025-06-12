@@ -64,9 +64,10 @@
 .exit a{
     text-decoration: none;
     color: #000;
+    transition: 0.4s;
+    opacity: .4;
 }
 
 .exit a:hover{
-    color: #555;
-    transition: 0.2s;
+    opacity: 1;
 }

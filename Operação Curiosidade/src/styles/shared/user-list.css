@@ -21,6 +21,6 @@ td{
     border-bottom: 1px solid #A9A9A9;
 }
 
-#table-area tr:hover{
+#table-area .table-row-itens:hover{
     background-color: #f0f0f0;
 }

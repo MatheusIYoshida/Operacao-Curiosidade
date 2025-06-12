@@ -1,14 +1,12 @@
-.password-requirements{
+.password-requirements,
+.password-requirements-create{
     display: block;
     color: #0000ff;
     font-size: 11px;
     margin-top: 3px;
 }
 
-.alert-password-requirements,
-.alert-user,
-.alert-email-requirements,
-.alert-email-exist{
+.alert-user{
     display: none;
     color: #ba0933;
     font-size: 11px;

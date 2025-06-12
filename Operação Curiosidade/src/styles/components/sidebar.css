@@ -66,10 +66,12 @@
 .sidebar-menu-title{
     margin-left: 15px;
     color: #000;
+    transition: 0.4s;
+    opacity: .7;
 }
 
 .sidebar-menu-title:hover{
-    color: #555;
+    opacity: 1;
 }
 
 .sidebar-menu-line{

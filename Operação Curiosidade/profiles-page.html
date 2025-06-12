@@ -113,6 +113,7 @@
                                         <label for="name">Name:</label>
                                         <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
                                         <span class="alert-user">Enter your name</span>
+                                        <span class="alert-user alert-name-requirements">Invalid name</span>
                                     </div>
                                     <div class="profile-input">
                                         <label for="birthday date">Birthday date:</label> 
@@ -124,15 +125,15 @@
                                         <label for="email">Email:</label>
                                         <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Email</span>
-                                        <span class="alert-email-requirements">Invalid email</span>
-                                        <span class="alert-email-exist">This Email already exists, try another one!</span>
+                                        <span class="alert-user alert-email-requirements">Invalid email</span>
+                                        <span class="alert-user alert-email-exist">This Email already exists, try another one!</span>
                                     </div>
                                     <div class="profile-input">
                                         <label for="password">Password:</label>
                                         <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Password</span>
-                                        <span class="password-requirements">Password must be at least 6 characters</span>
-                                        <span class="alert-password-requirements">Minimum 6 characters required</span>
+                                        <span class="password-requirements">Minimum 6 characters required</span>
+                                        <span class="alert-user alert-password-requirements">Password must be at least 6 characters</span>
                                     </div>
                                 </div>
                                 <div class="profile-input modal-input-address">
@@ -166,6 +167,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div id="fade-createProfile" class="hide"></div>
                         <div id="modal-createProfile" class="hide">
                             <div class="modal-header">
@@ -187,6 +189,7 @@
                                         <label for="name">Name:</label>
                                         <input id="create-profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
                                         <span class="alert-user">Enter your name</span>
+                                        <span class="alert-user alert-name-requirements-create">Invalid name</span>
                                     </div>
                                     <div class="profile-input">
                                         <label for="birthday date">Birthday date:</label> 
@@ -198,15 +201,15 @@
                                         <label for="email">Email:</label>
                                         <input id="create-profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Email</span>
-                                        <span class="alert-email-requirements">Invalid email</span>
-                                        <span class="alert-email-exist">This Email already exists, try another one!</span>
+                                        <span class="alert-user alert-email-requirements-create">Invalid email</span>
+                                        <span class="alert-user alert-email-exist-create">This Email already exists, try another one!</span>
                                     </div>
                                     <div class="profile-input">
                                         <label for="password">Password:</label>
                                         <input id="create-profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Password</span>
-                                        <span class="password-requirements">Password must be at least 6 characters</span>
-                                        <span class="alert-password-requirements">Minimum 6 characters required</span>
+                                        <span class="password-requirements-create">Minimum 6 characters required</span>
+                                        <span class="alert-user alert-password-requirements-create">Password must be at least 6 characters</span>
                                     </div>
                                 </div>
                                 <div class="profile-input modal-input-address">
@@ -247,7 +250,7 @@
     </div>
     
     <script src="src/script/date-utils.js"></script>
-    <script src="src/script/email-valid.js"></script>
+    <script src="src/script/validations.js"></script>
     <script src="src/script/redirect-page.js"></script>
     <script src="src/script/profile-actions.js"></script>
     <script src="src/script/profiles-page.js"></script>

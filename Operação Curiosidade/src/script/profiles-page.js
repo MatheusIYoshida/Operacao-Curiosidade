@@ -9,6 +9,7 @@ function userList(){
         for (let x = 0; x < profiles.length; x++){
             const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
+            tableRow.className = "table-row-itens";
             table.appendChild(tableRow);
 
             const tableName = document.createElement("td");

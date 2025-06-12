@@ -19,10 +19,9 @@ function shortUserList(){
     }
     if(profiles != null){
         for (let x = (profiles.length - 1); x > profilesFor; x--){
-            console.log("x: " + x);
-            console.log(profilesFor);
             const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
+            tableRow.className = "table-row-itens";
             table.appendChild(tableRow);
 
             const tableName = document.createElement("td");
