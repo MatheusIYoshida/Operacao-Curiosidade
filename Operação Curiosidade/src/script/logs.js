@@ -1,0 +1,42 @@
+let logs = new Array();
+if(localStorage.hasOwnProperty("logs")){
+    logs = JSON.parse(localStorage.getItem("logs"));
+}
+
+window.onload = function(){
+    listLogs();
+};
+
+function addLog(name, email, action, timestamp){
+    logs.push({name, email, action, timestamp});
+    localStorage.setItem("logs", JSON.stringify(logs));
+}
+
+function listLogs(){
+    if(logs != null){
+        for(var x = (logs.length-1); x >= 0; x--){
+            const table = document.getElementById("table-area");
+            const tableRow = document.createElement("tr");
+            tableRow.className = "table-row-itens";
+            table.appendChild(tableRow);
+
+            const tableName = document.createElement("td");
+            tableName.textContent = logs[x].name;
+            tableRow.appendChild(tableName);
+
+            const tableEmail = document.createElement("td");
+            tableEmail.textContent = logs[x].email;
+            tableRow.appendChild(tableEmail);
+
+            const tableAction = document.createElement("td");
+            tableAction.textContent = logs[x].action;
+            tableAction.style.textAlign = "center";
+            tableRow.appendChild(tableAction);
+
+            const tableTimestamp = document.createElement("td");
+            tableTimestamp.textContent = logs[x].timestamp;
+            tableTimestamp.style.textAlign = "center"
+            tableRow.appendChild(tableTimestamp);
+        }
+    }
+}

@@ -131,6 +131,8 @@ function createProfile(){
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
+        addLog(name, email, "Create Profile", registrationFullDate(createdAt, registrationTime()));
+
         if(window.location.href.split("/").pop() == "login-newProfile.html"){
             window.location.href = "login-page.html"
         }else if(window.location.href.split("/").pop() == "profiles-page.html"){
@@ -152,6 +154,8 @@ function removeProfile(buttonRemove){
     for(var x = 0; x < profiles.length; x++){
         if(emailToRemove != profiles[x].email){
             newProfiles.push(profiles[x]);
+        }else{
+            addLog(profiles[x].name, profiles[x].email, "Remove Profile", registrationFullDate(registrationDate(), registrationTime()));
         }
     }
     localStorage.removeItem("profiles");
@@ -283,6 +287,7 @@ function editProfiles(){
 
     if(profiles[index].name != 0 && nameValid(profiles[index].name) && emailValid(profiles[index].email) && emailExist == false && profiles[index].password.length >= 6){
         localStorage.setItem("profiles", JSON.stringify(profiles));
+        addLog(profiles[index].name, profiles[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
         toggleModalEdit();
         location.reload();
     }

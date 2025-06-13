@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports</title>
+    <title>Detailed Reports</title>
     <link rel="stylesheet" href="src/styles/components/sidebar.css">
     <link rel="stylesheet" href="src/styles/components/header-menu.css">
     <link rel="stylesheet" href="src/styles/components/main-container.css">
-    <link rel="stylesheet" href="src/styles/pages/reports-page.css">
+    <link rel="stylesheet" href="src/styles/shared/user-list.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -75,23 +75,22 @@
             <main>
                 <div class="main-container">
                     <div class="main-container-area">
-                        <div class="main-container-title">Reports</div>
-                        <div class="reports-table">
-                            <div class="reports-table-title">OPTIONS</div>
+                        <div class="main-container-top">
+                            <div class="main-container-title">Reports > Logs</div>
                         </div>
-                        <div class="table-line"></div>
-                        <div class="reports-lists">
-                            <a href="detailed-reports.html">User list</a>
-                        </div>
-                        <div class="table-line"></div>
-                        <div class="reports-lists">
-                            <a href="logs.html">Logs</a>
-                        </div>
-                        <div class="table-line"></div>
+                        <table id="table-area">
+                            <tr class="table-row-title">
+                                <th>NAME</th>
+                                <th>E-MAIL</th>
+                                <th class="table-center">ACTION</th>
+                                <th class="table-center">TIMESTAMP</th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    <script src="src/script/logs.js"></script>
 </body>
 </html>

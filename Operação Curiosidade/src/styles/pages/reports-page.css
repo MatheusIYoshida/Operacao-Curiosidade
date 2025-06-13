@@ -1,15 +1,15 @@
-.user-list{
+.reports-lists{
     margin: 7px 5px;
 }
 
-.user-list a{
+.reports-lists a{
     color: #000;
     text-decoration: none;
     transition: 0.4s;
     opacity: .4;
 }
 
-.user-list a:hover{
+.reports-lists a:hover{
     opacity: 1;
 }
 
