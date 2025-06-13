@@ -61,5 +61,5 @@ function loginChangePage(){
 }
 
 function createProfileLogin(){
-    window.location.href = "login-newProfile.html"
+    window.location.href = "login-registration.html"
 }
