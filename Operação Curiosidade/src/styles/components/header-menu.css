@@ -32,10 +32,15 @@
     font-size: 16px;
 }
 
+.header-user{
+    margin-right: 20px;
+    border-right: 3px solid #A9A9A9;
+    padding-right: 20px;
+}
+
 .header-user a{
     display: flex;
     align-items: center;
-    margin-right: 15px;
     text-decoration: none;
 }
 
@@ -49,16 +54,6 @@
     height: 40px;
     border-radius: 50%;
     background-color: #A9A9A9;
-}
-
-.header-line{
-    font-size: 25px;
-    color: #A9A9A9;
-    cursor:default;
-}
-
-.exit{
-    margin-left: 15px;
 }
 
 .exit a{
