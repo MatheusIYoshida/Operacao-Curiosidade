@@ -31,19 +31,19 @@
                 <div class="input-area">
                     <input id="create-profile-name" class="input input-changes" type="text" name="Name" placeholder="Name:" oninput="removeRedBorder(this)">
                     <span class="alert-user alert-user-changes">Enter your name</span>
-                    <span class="alert-name-requirements">Invalid name</span>
+                    <span class="alert-user alert-name-requirements-create">Invalid name</span>
                 </div>
                 <div class="input-area">
                     <input id="create-profile-email" class="input input-changes" type="email" name="Email" placeholder="Email:" oninput="removeRedBorder(this)">
                     <span class="alert-user">Enter your email</span>
-                    <span class="alert-email-requirements">Invalid email</span>
-                    <span class="alert-email-exist">This Email already exists, try another one!</span>
+                    <span class="alert-user alert-email-requirements-create">Invalid email</span>
+                    <span class="alert-user alert-email-exist-create">This Email already exists, try another one!</span>
                 </div>
                 <div class="input-area">
                     <input id="create-profile-password" class="input input-changes" type="password" name="Password" placeholder="Password:" oninput="removeRedBorder(this)">
                     <span class="alert-user">Enter your password</span>
-                    <span class="password-requirements">Minimum 6 characters required</span>
-                    <span class="alert-password-requirements">Password must be at least 6 characters</span>                                    
+                    <span class="password-requirements-create">Minimum 6 characters required</span>
+                    <span class="alert-user alert-password-requirements-create">Password must be at least 6 characters</span>                                    
                 </div>
             </div>
             <div class="newProfile-input">
@@ -60,6 +60,7 @@
     <script src="src/script/date-utils.js"></script>
     <script src="src/script/profile-actions.js"></script>
     <script src="src/script/validations.js"></script>
+    <script src="src/script/logs.js"></script>
 
 </body>
 </html>

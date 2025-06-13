@@ -23,12 +23,12 @@
                 </div>
                 <div class="input-area">
                     <input id="email-input" type="email" class="input" name="email" placeholder="Email:" oninput="removeRedBorder(this)"> 
-                    <span class="alert-user alert-user-changes">Enter your email</span>
-                    <span class="alert-email-requirements">Invalid email</span>
+                    <span class="alert-user">Enter your email</span>
+                    <span class="alert-user" id="alert-email">Invalid email</span>
                     <input id="password-input" type="password" class="input" name="password" placeholder="Password:" oninput=" removeRedBorder(this)">
-                    <span class="alert-user alert-user-changes">Enter your password</span>
-                    <span class="password-requirements">Password must be at least 6 characters</span>
-                    <span class="alert-password-requirements">Minimum 6 characters required</span>
+                    <span class="alert-user">Enter your password</span>
+                    <span class="password-requirements">Minimum 6 characters required</span>
+                    <span class="alert-user" id="alert-password">Password must be at least 6 characters</span>
                 </div>
                 <div class="button-area">
                     <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
@@ -50,8 +50,8 @@
         </div>
     </footer>
 
+    <script src="src/script/validations.js"></script>
     <script src="src/script/redirect-page.js"></script>
     <script src="src/script/profile-actions.js"></script>
-    <script src="src/script/validations.js"></script>
 </body>
 </html>

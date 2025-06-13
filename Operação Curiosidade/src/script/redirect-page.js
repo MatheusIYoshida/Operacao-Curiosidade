@@ -1,17 +1,15 @@
 var email = document.getElementById("email-input");
-var alertEmailRequirement = document.querySelector(".alert-email-requirements");
+var alertEmail = document.getElementById("alert-email");
 var password = document.getElementById("password-input");
 var passwordRequirement = document.querySelector(".password-requirements");
-var alertPasswordRequirement = document.querySelector(".alert-password-requirements");
+var alertPassword = document.getElementById("alert-password");
 let profiles = new Array();    
 if(localStorage.hasOwnProperty("profiles")){
     profiles = JSON.parse(localStorage.getItem("profiles"));
 }
 
-function profileValidation(){
+function profileValidation(emailValue, passwordValue){
     var alertError = false;
-    var emailValue = document.getElementById("email-input").value;
-    var passwordValue = document.getElementById("password-input").value;
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
@@ -21,7 +19,6 @@ function profileValidation(){
     }
 
     if(alertError == false){
-        console.log("teste")
         alert("Incorrect email or password");
     }   
 }
@@ -32,36 +29,35 @@ function loginChangePage(){
      if(emailValue == 0){
         email.style.border = "2px solid red";
         email.nextElementSibling.style.display = "block";
-        alertEmailRequirement.style.display = "none";
+        alertEmail.style.display = "none";
     }else if(emailValid(emailValue) == false){
         email.style.border = "2px solid red";
         email.nextElementSibling.style.display = "none";
-        alertEmailRequirement.style.display = "block";
-    }    
+        alertEmail.style.display = "block";
+    }else{
+        email.nextElementSibling.style.display = "none";
+        alertEmail.style.display = "none";
+    }
 
     if(passwordValue == 0){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "none"
+        alertPassword.style.display = "none"
     }else if(passwordValue.length < 6){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "block";
+        alertPassword.style.display = "block";
     }else{
         password.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "none";
+        alertPassword.style.display = "none";
     }
 
     if(emailValue != 0 && passwordValue.length >= 6 && emailValid(emailValue) == true){
-        profileValidation();
+        profileValidation(emailValue, passwordValue);
     }
-}
-
-function createProfilePage(){
-    window.location.href = "newProfile-page.html";
 }
 
 function createProfileLogin(){
