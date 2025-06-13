@@ -29,6 +29,7 @@
     }
 
     .main-container-area{
+        overflow: visible;
         box-shadow: none;
         margin: 0px;
     }
@@ -37,12 +38,12 @@
     #table-area td {
         font-size: 12px; 
         padding: 8px 10px; 
+        height: 40px;
     }
 
     #table-area th:nth-child(3),   
     #table-area td:nth-child(3){  
         width: 60px;    
-        min-width: 60px; 
         padding-left: 5px; 
         padding-right: 5px;
     }
