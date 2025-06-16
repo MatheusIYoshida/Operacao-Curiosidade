@@ -63,10 +63,8 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="exit">
-                            <a href="login-page.html">
-                                EXIT
-                            </a>
+                        <div class="exit" onclick="removeAuth()">
+                            EXIT
                         </div>
                     </div>    
                 </div>
@@ -92,5 +90,12 @@
             </main>
         </div>
     </div>
+    <script src="src/script/authManager.js"></script>
+    <script src="src/script/authentication.js"></script>
+    <script>
+        if (checkAuth() == false) {
+            throw new Error("Redirecionando para login...");
+        }
+    </script>
 </body>
 </html>

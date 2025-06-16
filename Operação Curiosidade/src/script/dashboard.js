@@ -3,13 +3,17 @@ if(localStorage.hasOwnProperty("profiles")){
     profiles = JSON.parse(localStorage.getItem("profiles"));
 }
 
-window.onload = function(){
+if (checkAuth() == false) {
+    throw new Error("Redirecionando para login...");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
     shortUserList();
     totalUsers();
     pendingUsers();
     recentUsers();
     registrationDate();
-};
+});
 
 function shortUserList(){
     if(profiles.length >= 15){

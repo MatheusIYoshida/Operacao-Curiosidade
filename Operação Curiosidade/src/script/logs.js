@@ -3,14 +3,13 @@ if(localStorage.hasOwnProperty("logs")){
     logs = JSON.parse(localStorage.getItem("logs"));
 }
 
-window.onload = function(){
-    listLogs();
-};
-
-function addLog(name, email, action, timestamp){
-    logs.push({name, email, action, timestamp});
-    localStorage.setItem("logs", JSON.stringify(logs));
+if (checkAuth() == false) {
+    throw new Error("Redirecionando para login...");
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    listLogs();
+});
 
 function listLogs(){
     if(logs != null){

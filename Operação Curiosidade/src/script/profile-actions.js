@@ -1,3 +1,8 @@
+let profiles = new Array();    
+if(localStorage.hasOwnProperty("profiles")){
+    profiles = JSON.parse(localStorage.getItem("profiles"));
+}
+
 function createProfile(){
     var name = document.getElementById("create-profile-name").value;
     var email = document.getElementById("create-profile-email").value;
@@ -11,10 +16,6 @@ function createProfile(){
     var passwordInput = document.getElementById("create-profile-password");
     var passwordRequirement = document.querySelector(".password-requirements-create");
     var alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
-    let profiles = new Array();    
-    if(localStorage.hasOwnProperty("profiles")){
-        profiles = JSON.parse(localStorage.getItem("profiles"));
-    }
     
     if(name == 0){
         nameInput.style.border = "2px solid red";

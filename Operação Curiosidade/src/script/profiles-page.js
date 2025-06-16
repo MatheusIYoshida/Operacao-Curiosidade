@@ -1,6 +1,10 @@
-window.onload = function(){
+if (checkAuth() == false) {
+    throw new Error("Redirecionando para login...");
+}
+
+document.addEventListener("DOMContentLoaded", function() {
     userList();
-};
+});
 
 function userList(){
 

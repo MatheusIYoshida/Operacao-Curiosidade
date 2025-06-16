@@ -56,13 +56,12 @@
     background-color: #A9A9A9;
 }
 
-.exit a{
-    text-decoration: none;
-    color: #000;
+.exit{
     transition: 0.4s;
     opacity: .4;
+    cursor: pointer;
 }
 
-.exit a:hover{
+.exit:hover{
     opacity: 1;
 }

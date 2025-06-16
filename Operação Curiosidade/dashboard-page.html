@@ -63,10 +63,8 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="exit">
-                            <a href="login-page.html">
-                                EXIT
-                            </a>
+                        <div class="exit" onclick="removeAuth()">
+                            EXIT
                         </div>
                     </div>    
                 </div>
@@ -76,7 +74,7 @@
                     <div class="registrations-infos">
                         <div class="reg-info-box">
                             <div id="total-reg" class="info-box-count">
-                                
+                                0
                             </div>
                             <div class="info-box-title">
                                 Total Registrations
@@ -84,7 +82,7 @@
                         </div>
                         <div class="reg-info-box">
                             <div id="lastMonth-reg" class="info-box-count">
-                                
+                                0   
                             </div>
                             <div class="info-box-title">
                                 Last 30-Day Registrations
@@ -92,7 +90,7 @@
                         </div>
                         <div class="reg-info-box">
                             <div id="pending-reg" class="info-box-count">
-                                
+                                0
                             </div>
                             <div class="info-box-title">
                                 Pending Review
@@ -113,7 +111,8 @@
             </main>
         </div>
     </div>
-
+    <script src="src/script/authManager.js"></script>
+    <script src="src/script/authentication.js"></script>
     <script src="src/script/dashboard.js"></script>
     <script src="src/script/date-utils.js"></script>
 </body>

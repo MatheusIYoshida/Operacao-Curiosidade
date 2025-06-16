@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detailed Reports</title>
+    <title>User List</title>
     <link rel="stylesheet" href="src/styles/components/sidebar.css">
     <link rel="stylesheet" href="src/styles/components/header-menu.css">
     <link rel="stylesheet" href="src/styles/components/main-container.css">
@@ -65,10 +65,8 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="exit">
-                            <a href="login-page.html">
-                                EXIT
-                            </a>
+                        <div class="exit" onclick="removeAuth()">
+                            EXIT
                         </div>
                     </div>    
                 </div>
@@ -96,6 +94,8 @@
             </main>
         </div>
     </div>
+    <script src="src/script/authManager.js"></script>
+    <script src="src/script/authentication.js"></script>
     <script src="src/script/detailed-reports.js"></script>
 </body>
 </html>

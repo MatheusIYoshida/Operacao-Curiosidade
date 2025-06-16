@@ -2,8 +2,7 @@ var email = document.getElementById("email-input");
 var alertEmail = document.getElementById("alert-email");
 var password = document.getElementById("password-input");
 var passwordRequirement = document.querySelector(".password-requirements");
-var alertPassword = document.getElementById("alert-password");
-let profiles = new Array();    
+var alertPassword = document.getElementById("alert-password");   
 if(localStorage.hasOwnProperty("profiles")){
     profiles = JSON.parse(localStorage.getItem("profiles"));
 }
@@ -13,6 +12,7 @@ function profileValidation(emailValue, passwordValue){
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
+            giveAuth();
             window.location.href = "dashboard-page.html";
             alertError = true;
         }
