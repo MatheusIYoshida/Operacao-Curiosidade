@@ -136,3 +136,24 @@
     display: flex;
     justify-content: center;
 }
+
+
+/*Dark Mode*/
+body.dark .modal{
+    background-color: #1E1E1E;
+}
+
+body.dark label,
+body.dark .modal-topic,
+body.dark .modal-header h2,
+body.dark .modal-body h3,
+body.dark .modal-active-title,
+body.dark .profile-input input,
+body.dark .profile-input textarea{
+    color: #FFF;
+}
+
+body.dark .profile-input input,
+body.dark .profile-input textarea{
+    background-color: #121212;
+}

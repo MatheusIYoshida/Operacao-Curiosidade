@@ -133,8 +133,8 @@ function createProfile(){
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
         addLog(name, email, "Create Profile", registrationFullDate(createdAt, registrationTime()));
-
-        if(window.location.href.split("/").pop() == "login-newProfile.html"){
+        
+        if(window.location.href.split("/").pop() == "login-registration.html"){
             window.location.href = "login-page.html"
         }else if(window.location.href.split("/").pop() == "profiles-page.html"){
             toggleModalCreate();
@@ -214,7 +214,6 @@ function editProfiles(){
     const passwordRequirement = document.querySelector(".password-requirements");
     const alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     var emailExist = false;
-
     profiles[index] = {
         name: document.getElementById("profile-name").value,
         birthday: document.getElementById("profile-birthday").value,

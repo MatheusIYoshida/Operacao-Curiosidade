@@ -37,3 +37,13 @@
     bottom: 0;
     right: 0;
 }
+
+
+/*Dark Mode*/
+body.dark .reg-info-box{
+    background-color: #1E1E1E;
+}
+
+body.dark .info-box-title{
+    color: #FFF;
+}

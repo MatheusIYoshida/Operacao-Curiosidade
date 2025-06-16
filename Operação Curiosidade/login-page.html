@@ -6,16 +6,24 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="src/styles/components/footer.css">
     <link rel="stylesheet" href="src/styles/shared/validation.css">
+    <link rel="stylesheet" href="src/styles/shared/theme.css">
     <link rel="stylesheet" href="src/styles/pages/login-page.css">
-
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="src/script/themeSwap.js"></script>
     <main>
         <div class="container">
             <div class="login-container">
+                <div class="change-theme-container">
+                    <div class="change-theme-box">
+                        <img class="change-theme" id="day-theme" src="src/assets/icons/sun.png" alt="sun">
+                        <img class="change-theme hide" id="night-theme" src="src/assets/icons/moon.png" alt="moon">
+                    </div>
+                </div>
                 <div class="login-icon">
                     <div class="login-page-title">OC</div>
                     <div class="login-page-subtitle">Operação Curiosidade</div>
@@ -59,5 +67,6 @@
     <script src="src/script/profile-actions.js"></script>
     <script src="src/script/login-page.js"></script>
     <script src="src/script/validations.js"></script>
+    <script src="src/script/themeSimbols.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ function shortUserList(){
         var profilesFor = 0;
     }
     if(profiles != null){
-        for (let x = (profiles.length - 1); x > profilesFor; x--){
+        for (let x = (profiles.length - 1); x >= profilesFor; x--){
             const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";

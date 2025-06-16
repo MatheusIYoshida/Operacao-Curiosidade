@@ -79,3 +79,17 @@
     margin-left: 10px;
     max-width: 85%;
 }
+
+
+/*Dark Mode*/
+body.dark .sidebar{
+    background-color: #1E1E1E;
+}
+
+body.dark .box-logo{
+    background-color: #A0B0C0;
+}
+
+body.dark .sidebar-menu-title{
+    color: #fff;
+}

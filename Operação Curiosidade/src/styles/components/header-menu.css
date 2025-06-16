@@ -23,6 +23,11 @@
     border-color: transparent;
 }
 
+.change-theme-container{
+    margin-left: 15px;
+    cursor: pointer;
+}
+
 .header-options{
     display: flex;
     align-items: center;
@@ -45,7 +50,13 @@
 }
 
 .header-username{
-    color: #000;    
+    color: #000;
+    transition: 0.4s;
+    opacity: .4;    
+}
+
+.header-username:hover{
+    opacity: 1;
 }
 
 .header-user-img{
@@ -64,4 +75,27 @@
 
 .exit:hover{
     opacity: 1;
+}
+
+/*Dark mode*/
+body.dark .header-menu{
+    background-color: #1E1E1E;
+}
+
+body.dark .header-input-box{
+    background-color: #121212;
+}
+
+body.dark .header-input-box,
+body.dark .header-username,
+body.dark .exit{
+    color: #fff;
+}
+
+body.dark .header-user-img{
+    background-color: #fff;
+}
+
+body.dark .header-user{
+    border-color: #fff;
 }

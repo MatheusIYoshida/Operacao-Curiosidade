@@ -11,6 +11,7 @@ html,body{
     display: flex;
     flex-direction: column;
     background-color: #F5F7FA;
+    transition: .5s;
 }
 
 main {
@@ -33,6 +34,15 @@ main {
     border: 2px solid #000;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 6px 25px rgba(0, 0, 0, 0.25);
+}
+
+.change-theme-container{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    max-width: 30px;
+    max-height: 30px;
+    cursor: pointer;
 }
 
 .login-icon{
@@ -125,10 +135,38 @@ main {
     border-radius: 15px;
     cursor: pointer;
     opacity: .5;
-    transition: 0.4s;
+    transition: 0.5s;
 }
 
 .login-createProfile button:hover{
     opacity: 1;
     font-size: 0.9rem;
+}
+
+
+/*Dark Mode*/
+body.dark,
+body.dark .login-icon,
+body.dark .input{
+    background-color: #121212;
+}
+
+body.dark .login-container{
+    background-color: #1E1E1E;
+}
+
+body.dark .login-page-title,
+body.dark .login-page-subtitle,
+body.dark .input,
+body.dark .createProfile-text{
+    color: #fff;
+}
+
+body.dark .createProfile-bar{
+    border-color: #fff;
+}
+
+body.dark #login-submit{
+    background-color: #F5F5F5;
+    color: #000;
 }

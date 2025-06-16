@@ -39,6 +39,7 @@
         font-size: 12px; 
         padding: 8px 10px; 
         height: 40px;
+        color: #000;
     }
 
     #table-area th:nth-child(3),   

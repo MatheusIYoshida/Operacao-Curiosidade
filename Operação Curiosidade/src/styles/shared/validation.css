@@ -12,3 +12,12 @@
     font-size: 11px;
     margin-top: 3px;
 }
+
+body.dark .password-requirements,
+body.dark .password-requirements-create{
+    color: #fff;
+}
+
+body.dark .alert-user{
+    color: #FF4D6D;
+}

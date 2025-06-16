@@ -5,7 +5,6 @@
     z-index: 1;
 }
 
-
 .return-login img{
     max-width: 30px;
     max-height: 30px;
@@ -24,11 +23,17 @@
 }
 
 .input-changes{
-    margin:15px 0px 0px 0px; 
+    margin-top:15px; 
 }
 
 #createProfile-submit:hover{
     font-size: 17px;
     opacity: 1;
     transition: 0.2s;
+}
+
+
+/*Dark Mode*/
+body.dark .newProfile-title{
+    color: #fff;
 }

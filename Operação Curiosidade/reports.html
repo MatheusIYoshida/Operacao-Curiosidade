@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="src/styles/components/sidebar.css">
     <link rel="stylesheet" href="src/styles/components/header-menu.css">
     <link rel="stylesheet" href="src/styles/components/main-container.css">
+    <link rel="stylesheet" href="src/styles/shared/theme.css">
     <link rel="stylesheet" href="src/styles/pages/reports-page.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <script src="src/script/themeSwap.js"></script>
     <div class="full-page">
         <div class="sidebar"> 
             <nav>
@@ -51,6 +53,12 @@
                 <div class="header-menu">
                     <div class="header-input">
                         <input type="search" class="header-input-box" name="Search" placeholder="Search...">
+                    </div>
+                    <div class="change-theme-container">
+                        <div class="change-theme-box">
+                            <img class="change-theme" id="day-theme" src="src/assets/icons/sun.png" alt="sun">
+                            <img class="change-theme hide" id="night-theme" src="src/assets/icons/moon.png" alt="moon">
+                        </div>
                     </div>
                     <div class="header-options">   
                         <div class="header-user">
@@ -97,5 +105,6 @@
             throw new Error("Redirecting to login...");
         }
     </script>
+    <script src="src/script/themeSimbols.js"></script>
 </body>
 </html>
