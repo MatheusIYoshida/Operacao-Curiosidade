@@ -1,5 +1,5 @@
 if (checkAuth() == false) {
-    throw new Error("Redirecionando para login...");
+    throw new Error("Redirecting to login...");
 }
 
 document.addEventListener("DOMContentLoaded", function() {

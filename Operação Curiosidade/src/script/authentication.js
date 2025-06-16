@@ -1,7 +1,13 @@
 function checkAuth() {
-    if (!localStorage.getItem("authToken")) {
+    if(!localStorage.getItem("authToken")){
         window.location.href = "login-page.html";
         return false;
     }
-    return true;
+}
+
+function checkLogout(){
+    if (localStorage.getItem("authToken")) {
+        window.location.href = "dashboard-page.html";
+        return false;
+    }
 }

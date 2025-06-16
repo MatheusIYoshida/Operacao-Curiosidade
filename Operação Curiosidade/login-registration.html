@@ -57,10 +57,16 @@
         </div>
     </footer>
 
+    <script src="src/script/authentication.js"></script>
+    <script>
+        if (checkLogout() == false) {
+            throw new Error("Redirecting to Dashboard...");
+        }
+    </script>
     <script src="src/script/date-utils.js"></script>
     <script src="src/script/profile-actions.js"></script>
     <script src="src/script/validations.js"></script>
-    <script src="src/script/logs.js"></script>
+    <script src="src/script/logsManage.js"></script>
 
 </body>
 </html>
