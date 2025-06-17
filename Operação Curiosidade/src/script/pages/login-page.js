@@ -12,6 +12,12 @@ function profileValidation(emailValue, passwordValue){
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
+            const currentUser = new Array();
+            currentUser.push({
+                name: profiles[x].name, 
+                email: emailValue
+            });
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
             giveAuth();
             window.location.href = "dashboard-page.html";
             alertError = true;
@@ -61,5 +67,5 @@ function loginChangePage(){
 }
 
 function createProfileLogin(){
-    window.location.href = "login-registration.html"
+    window.location.href = "login-registration.html";
 }

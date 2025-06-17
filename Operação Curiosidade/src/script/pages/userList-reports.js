@@ -26,6 +26,7 @@ function userListReports(){
             
             const tableActive = document.createElement("td");
             if(profiles[x].status == "Incomplete"){
+                tableActive.className = "pending-row-itens";
                 tableActive.textContent = "Pending Review"
                 tableActive.style.textAlign = "center"
                 tableActive.style.color = "#B22222"

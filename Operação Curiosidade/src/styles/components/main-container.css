@@ -20,7 +20,7 @@ body{
 
 .main-container-area{
     background-color: #FFF;
-    height: 618px;
+    height: 609px;
     margin: 20px;
     padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 6px 25px rgba(0, 0, 0, 0.15);
@@ -39,6 +39,7 @@ body{
     font-size: 18px;
     padding-top:20px;
     color: #00000080;
+    font-weight: bold;
 }
 
 /*Dark Mode*/

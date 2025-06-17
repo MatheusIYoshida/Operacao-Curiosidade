@@ -38,14 +38,15 @@ function shortUserList(){
 
             const tableActive = document.createElement("td");
             if(profiles[x].status == "Incomplete"){
-                tableActive.textContent = "Pending Review"
-                tableActive.style.textAlign = "center"
-                tableActive.style.color = "#B22222"
+                tableActive.className = "pending-row-itens";
+                tableActive.textContent = "Pending Review";
+                tableActive.style.textAlign = "center";
+                tableActive.style.color = "#B22222";
             }else{
                 tableActive.textContent = profiles[x].active;
-                tableActive.style.textAlign = "center"
+                tableActive.style.textAlign = "center";
                 if(tableActive.textContent == "Inactive"){
-                    tableActive.style.color = "#A9A9A9"
+                    tableActive.style.color = "#A9A9A9";
                 }
             }
             tableRow.appendChild(tableActive);
@@ -58,7 +59,7 @@ function totalUsers(){
 }
 
 function recentUsers(){
-    document.getElementById("lastMonth-reg").innerHTML = lastThirtyDays(profiles)
+    document.getElementById("lastMonth-reg").innerHTML = lastThirtyDays(profiles);
 }
 
 function pendingUsers(){

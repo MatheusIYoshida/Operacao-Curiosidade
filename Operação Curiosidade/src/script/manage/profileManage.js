@@ -1,4 +1,3 @@
-let profiles = new Array();    
 if(localStorage.hasOwnProperty("profiles")){
     profiles = JSON.parse(localStorage.getItem("profiles"));
 }
@@ -168,6 +167,41 @@ var x = 0;
 function modalEditProfile(buttonEdit){
     const trToEdit = buttonEdit.closest("tr");
     const emailToEdit = trToEdit.querySelector(".tableEmail").textContent;
+    for(x = 0; x < profiles.length; x++){
+        if(emailToEdit == profiles[x].email){
+            const inputName = document.getElementById("profile-name");
+            const inputBirthday = document.getElementById("profile-birthday");
+            const inputEmail = document.getElementById("profile-email");
+            const inputPassword = document.getElementById("profile-password");
+            const inputAddress = document.getElementById("profile-address");
+            const inputMoreInformations = document.getElementById("profile-moreInformations");
+            const inputInterests = document.getElementById("profile-interests");
+            const inputFeelings = document.getElementById("profile-feelings"); 
+            const inputCoreValues = document.getElementById("profile-coreValues"); 
+            const inputActive = document.getElementById("modal-active-checkbox"); 
+
+            inputName.value = profiles[x].name;
+            inputBirthday.value = profiles[x].birthday;
+            inputEmail.value = profiles[x].email;
+            inputPassword.value = profiles[x].password;
+            inputAddress.value = profiles[x].address;
+            inputMoreInformations.value = profiles[x].moreInformations;
+            inputInterests.value = profiles[x].interests;
+            inputFeelings.value = profiles[x].feelings;
+            inputCoreValues.value = profiles[x].coreValues;
+            if(profiles[x].active == "Active"){
+                inputActive.checked = true;
+            }else{
+                inputActive.checked = false;
+            }
+            break;
+        }
+    }
+}
+
+function headerModalEditProfile(){
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const emailToEdit = currentUser[0].email;
     for(x = 0; x < profiles.length; x++){
         if(emailToEdit == profiles[x].email){
             const inputName = document.getElementById("profile-name");

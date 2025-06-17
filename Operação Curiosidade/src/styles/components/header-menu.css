@@ -43,28 +43,34 @@
     padding-right: 20px;
 }
 
-.header-user a{
+.header-user-box{
     display: flex;
     align-items: center;
-    text-decoration: none;
+    transition: 0.4s;
+    opacity: .4;   
+    cursor: pointer;
 }
 
 .header-username{
-    color: #000;
-    transition: 0.4s;
-    opacity: .4;    
+    color: #000;  
 }
 
-.header-username:hover{
+.header-user-box:hover{
     opacity: 1;
 }
 
 .header-user-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 17px;
     margin-right: 10px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     background-color: #A9A9A9;
+    color: #000;
 }
 
 .exit{

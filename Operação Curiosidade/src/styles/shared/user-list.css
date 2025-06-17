@@ -40,3 +40,7 @@ body.dark #table-area .table-row-itens:hover,
 body.dark .table-row-title th:hover{
     background-color: #3A3A3A;
 }
+
+body.dark .pending-row-itens{
+    color: #E57373 !important;
+}

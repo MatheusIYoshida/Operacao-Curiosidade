@@ -1,7 +1,6 @@
 .password-requirements,
 .password-requirements-create{
     display: block;
-    color: #0000ff;
     font-size: 11px;
     margin-top: 3px;
 }
@@ -13,6 +12,7 @@
     margin-top: 3px;
 }
 
+/*Dark Mode*/
 body.dark .password-requirements,
 body.dark .password-requirements-create{
     color: #fff;

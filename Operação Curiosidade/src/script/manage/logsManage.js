@@ -1,4 +1,3 @@
-let logs = new Array();
 if(localStorage.hasOwnProperty("logs")){
     logs = JSON.parse(localStorage.getItem("logs"));
 }
