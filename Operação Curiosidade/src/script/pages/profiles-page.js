@@ -46,7 +46,11 @@ function userList(){
             
             const tableEditImg = document.createElement("img");
             tableEditImg.className = "tableEditLink";
-            tableEditImg.src = "src/assets/icons/editing.png";
+            if(!localStorage.getItem("theme")){
+                tableEditImg.src = "src/assets/icons/editing.png";
+            }else{
+                tableEditImg.src = "src/assets/icons/editing-DM.png";
+            }
             tableEditImg.onclick = function(){
                 modalEditProfile(this);
             }
@@ -56,7 +60,11 @@ function userList(){
             
             const tableRemoveImg = document.createElement("img");
             tableRemoveImg.className = "tableRemoveLink";
-            tableRemoveImg.src = "src/assets/icons/trash.png";
+            if(!localStorage.getItem("theme")){
+                tableRemoveImg.src = "src/assets/icons/trash.png";
+            }else{
+                tableRemoveImg.src = "src/assets/icons/trash-DM.png";
+            }
             tableRemoveImg.onclick = function(){ 
                 removeProfile(this);
             };
