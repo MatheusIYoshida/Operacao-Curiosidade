@@ -20,10 +20,12 @@ function createProfile(){
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
         alertNameRequirement.style.display = "none";
+        nameInput.scrollIntoView({block: "center"});
     }else if(nameValid(name) == false){
         nameInput.style.border = "2px solid red"
         nameInput.nextElementSibling.style.display = "none";
         alertNameRequirement.style.display = "block";
+        nameInput.scrollIntoView({block: "center"});
     }else{
         nameInput.nextElementSibling.style.display = "none";
         alertNameRequirement.style.display = "none";
@@ -34,11 +36,13 @@ function createProfile(){
         emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
         alertEmailExist.style.display = "none"; 
+        emailInput.scrollIntoView({block: "center"});
     }else if(emailValid(email) == false){
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "none";
         alertEmailRequirement.style.display = "block";
         alertEmailExist.style.display = "none";
+        emailInput.scrollIntoView({block: "center"});
     }else{
         for(var x = 0; x < profiles.length; x++){
             if(email == profiles[x].email){
@@ -47,6 +51,7 @@ function createProfile(){
                 alertEmailRequirement.style.display = "none";
                 alertEmailExist.style.display = "block";    
                 emailExist = true;
+                emailInput.scrollIntoView({block: "center"});
             }
             if(emailExist == false){
                 emailInput.nextElementSibling.style.display = "none"
@@ -61,11 +66,13 @@ function createProfile(){
         passwordInput.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "none"
+        passwordInput.scrollIntoView({block: "center"});
     }else if(password.length < 6){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "block";
+        passwordInput.scrollIntoView({block: "center"});
     }else{
         passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
@@ -145,6 +152,8 @@ function createProfile(){
 function removeRedBorder(input){
     input.style.borderColor = "#000";
     input.nextElementSibling.style.display = "none";
+    input.nextElementSibling.nextElementSibling.style.display = "none";
+    input.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "none";
 }
 
 function removeProfile(buttonRemove){
@@ -266,10 +275,12 @@ function editProfiles(){
     if(profiles[index].name == 0){
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
+        nameInput.scrollIntoView({block: "center"});
     }else if(nameValid(profiles[index].name) == false){
         nameInput.style.border = "2px solid red"
         nameInput.nextElementSibling.style.display = "none";
         alertNameRequirement.style.display = "block";
+        nameInput.scrollIntoView({block: "center"});
     }else{
         nameInput.nextElementSibling.style.display = "none";
         alertNameRequirement.style.display = "none";
@@ -280,11 +291,13 @@ function editProfiles(){
         emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
         alertEmailExist.style.display = "none"; 
+        emailInput.scrollIntoView({block: "center"});
     }else if(emailValid(profiles[index].email) == false){
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "none";
         alertEmailRequirement.style.display = "block";
         alertEmailExist.style.display = "none";
+        emailInput.scrollIntoView({block: "center"});
     }else{
         for (let i = 0; i < profiles.length; i++) {
             if (i != index && email == profiles[i].email) {
@@ -292,6 +305,7 @@ function editProfiles(){
                 emailInput.style.border = "2px solid red";
                 alertEmailRequirement.style.display = "none"
                 alertEmailExist.style.display = "block";
+                emailInput.scrollIntoView({block: "center"});
                 break;
             }
         }
@@ -302,11 +316,13 @@ function editProfiles(){
         passwordInput.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "none"
+        passwordInput.scrollIntoView({block: "center"});
     }else if(profiles[index].password.length < 6){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "block";
+        passwordInput.scrollIntoView({block: "center"});
     }else{
         passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "block"
