@@ -51,23 +51,27 @@
 .sidebar-menu-item{
     display: flex;
     align-items: center;
-    margin: 7px 0px 7px 20px;
-    max-height: 21px;
+    max-height: 50px;
 }
 
-#cadastro-menu{
-    margin-left: 16px;
+.sidebar-menu-item a{
+    padding: 15px;
+    width: 100%;
+    background-color: #E0E0E0;
+    opacity: .5;
+    transition: .4s;
+    font-weight: bold;
 }
 
-#relatorios-menu{
-    margin-left: 17px;
+.sidebar-menu-item a:hover{
+    opacity: 1;
 }
 
 .sidebar-menu-title{
     margin-left: 15px;
     color: #000;
     transition: 0.4s;
-    opacity: .7;
+    opacity: .9;
 }
 
 .sidebar-menu-title:hover{
@@ -75,9 +79,7 @@
 }
 
 .sidebar-menu-line{
-    border-bottom: 2px solid #F0F0F0;
-    margin-left: 10px;
-    max-width: 85%;
+    border-bottom: 3px solid #E0E0E0;
 }
 
 
@@ -86,8 +88,9 @@ body.dark .sidebar{
     background-color: #1E1E1E;
 }
 
-body.dark .box-logo{
-    background-color: #A0B0C0;
+body.dark .box-logo,
+body.dark .sidebar-menu-item a{
+    background-color: #B0C0D0;
 }
 
 body.dark .sidebar-menu-title{

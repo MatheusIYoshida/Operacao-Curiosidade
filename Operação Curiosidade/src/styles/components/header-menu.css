@@ -47,7 +47,7 @@
     display: flex;
     align-items: center;
     transition: 0.4s;
-    opacity: .4;   
+    opacity: .6;   
     cursor: pointer;
 }
 
@@ -75,7 +75,7 @@
 
 .exit{
     transition: 0.4s;
-    opacity: .4;
+    opacity: .6;
     cursor: pointer;
 }
 

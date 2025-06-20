@@ -35,7 +35,7 @@ function userList(){
                 tableActive.textContent = profiles[x].active;
                 tableActive.style.textAlign = "center"
                 if(tableActive.textContent == "Inactive"){
-                    tableActive.style.color = "#A9A9A9"
+                    tableActive.style.color = "#898989"
                 }
             }
             tableRow.appendChild(tableActive);

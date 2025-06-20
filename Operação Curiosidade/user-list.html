@@ -29,27 +29,26 @@
                 </div>
                 <div class="sidebar-menu">
                     <div class="sidebar-menu-item">
-                        <a href="dashboard-page.html">
+                        <a href="dashboard-page.html" id="home-menu">
                             <img src="src/assets/icons/Home.png" alt="" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Home</div>
                         </a>
                     </div>
                     <div class="sidebar-menu-line"></div>
-                    <div id="cadastro-menu" class="sidebar-menu-item">
-                        <a href="profiles-page.html"> 
+                    <div class="sidebar-menu-item">
+                        <a href="profiles-page.html" id="profiles-menu"> 
                             <img src="src/assets/icons/Cadastro.png" alt="" id="cadastro-icon" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Profiles</div>
                         </a>
                     </div>
                     <div class="sidebar-menu-line"></div>
-                    <div id="relatorios-menu" class="sidebar-menu-item">    
-                        <a href="reports.html">
+                    <div class="sidebar-menu-item">    
+                        <a href="reports.html" id="reports-menu">
                             <img src="src/assets/icons/Relatórios.png" alt="" class="sidebar-menu-icon">
                             <div class="sidebar-menu-title">Reports</div>
                         </a>
                     </div>
                 </div>
-                
             </nav>
         </div>
         <div class="main-content">
@@ -182,6 +181,7 @@
     <script src="src/script/utils/currentUser.js"></script>
     <script src="src/script/utils/toggleModal.js"></script>
     <script src="src/script/utils/date-utils.js"></script>
+    <script src="src/script/utils/currentPage.js"></script>
     <script src="src/script/manage/currentUserManage.js"></script>
     <script src="src/script/manage/profileManage.js"></script>
     <script src="src/script/utils/validations.js"></script>
