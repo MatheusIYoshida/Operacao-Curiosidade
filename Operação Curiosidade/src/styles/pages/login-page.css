@@ -73,6 +73,29 @@ main {
     flex-direction: column;
 }
 
+#incorrect-infos{
+    background-color: rgba(255, 0, 0, 0.7);
+    color: #FFF;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-top: 5px;
+    animation: fadeIn 0.3s ease-in-out;
+    display: none;
+    justify-content: space-between;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#close-popUp{
+    cursor: pointer;
+    max-width: 20px;
+    max-height: 20px;
+}
+
 .input{
     padding: 10px;
     margin: 15px 0px 0px 0px;
@@ -166,7 +189,16 @@ body.dark .createProfile-bar{
     border-color: #fff;
 }
 
-body.dark #login-submit{
+body.dark #login-submit,
+body.dark .login-createProfile button{
     background-color: #F5F5F5;
     color: #000;
+}
+
+body.dark .login-createProfile button{
+    opacity: .8;
+}
+
+body.dark .login-createProfile button:hover{
+    opacity: 1;
 }

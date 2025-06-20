@@ -25,7 +25,9 @@ function profileValidation(emailValue, passwordValue){
     }
 
     if(alertError == false){
-        alert("Incorrect email or password");
+        const incorrectInfos = document.getElementById("incorrect-infos");
+        incorrectInfos.style.display = "flex";
+        password.value = "";
     }   
 }
 
@@ -48,16 +50,16 @@ function loginChangePage(){
     if(passwordValue == 0){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "block";
-        passwordRequirement.style.display = "none"
-        alertPassword.style.display = "none"
+        passwordRequirement.style.display = "none";
+        alertPassword.style.display = "none";
     }else if(passwordValue.length < 6){
         password.style.border = "2px solid red";
         password.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
         alertPassword.style.display = "block";
     }else{
         password.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
         alertPassword.style.display = "none";
     }
 
@@ -69,3 +71,21 @@ function loginChangePage(){
 function createProfileLogin(){
     window.location.href = "login-registration.html";
 }
+
+document.getElementById("close-popUp").addEventListener("click", () => {
+    const incorrectInfos = document.getElementById("incorrect-infos");
+    incorrectInfos.style.display = "none";
+})
+
+email.addEventListener("input", function() {
+    this.style.borderColor = "#000";
+    document.querySelector("#enter-email").style.display = "none";
+    document.querySelector("#alert-email").style.display = "none";
+});
+
+password.addEventListener("input", function() {
+    this.style.borderColor = "#000"; 
+    document.querySelector("#enter-password").style.display = "none";
+    document.querySelector("#alert-password").style.display = "none";
+    document.querySelector(".password-requirements").style.display = "block";
+});
