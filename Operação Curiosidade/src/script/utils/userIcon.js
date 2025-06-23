@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
-    currentUser();
+    userIcon();
 });
 
-function currentUser(){
+function userIcon(){
     const headerUser = document.querySelector(".header-username");
     const headerUserImg = document.querySelector(".header-user-img");    
     const user = JSON.parse(localStorage.getItem("currentUser"));

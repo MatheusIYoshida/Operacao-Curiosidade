@@ -149,11 +149,21 @@ function createProfile(){
     }
 }
 
-function removeRedBorder(input){
-    input.style.borderColor = "#000";
-    input.nextElementSibling.style.display = "none";
-    input.nextElementSibling.nextElementSibling.style.display = "none";
-    input.nextElementSibling.nextElementSibling.nextElementSibling.style.display = "none";
+function removeRedBorder(input) {
+    input.style.borderColor = "";
+    input.style.border = "";
+    
+    if (input.nextElementSibling) {
+        input.nextElementSibling.style.display = 'none';
+        
+        if (input.nextElementSibling.nextElementSibling) {
+            input.nextElementSibling.nextElementSibling.style.display = 'none';
+            
+            if (input.nextElementSibling.nextElementSibling.nextElementSibling) {
+                input.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none';
+            }
+        }
+    }
 }
 
 function removeProfile(buttonRemove){
@@ -172,12 +182,11 @@ function removeProfile(buttonRemove){
     location.reload();
 }
 
-var x = 0;
-function modalEditProfile(buttonEdit){
-    const trToEdit = buttonEdit.closest("tr");
-    const emailToEdit = trToEdit.querySelector(".tableEmail").textContent;
-    for(x = 0; x < profiles.length; x++){
-        if(emailToEdit == profiles[x].email){
+let currentEditIndex = null;
+function fillProfileForm(emailToEdit) {
+    const checkProfiles = profiles = JSON.parse(localStorage.getItem("profiles"));
+    for(x = 0; x < checkProfiles.length; x++){
+        if(emailToEdit == checkProfiles[x].email){
             const inputName = document.getElementById("profile-name");
             const inputBirthday = document.getElementById("profile-birthday");
             const inputEmail = document.getElementById("profile-email");
@@ -189,63 +198,41 @@ function modalEditProfile(buttonEdit){
             const inputCoreValues = document.getElementById("profile-coreValues"); 
             const inputActive = document.getElementById("modal-active-checkbox"); 
 
-            inputName.value = profiles[x].name;
-            inputBirthday.value = profiles[x].birthday;
-            inputEmail.value = profiles[x].email;
-            inputPassword.value = profiles[x].password;
-            inputAddress.value = profiles[x].address;
-            inputMoreInformations.value = profiles[x].moreInformations;
-            inputInterests.value = profiles[x].interests;
-            inputFeelings.value = profiles[x].feelings;
-            inputCoreValues.value = profiles[x].coreValues;
-            if(profiles[x].active == "Active"){
+            inputName.value = checkProfiles[x].name;
+            inputBirthday.value = checkProfiles[x].birthday;
+            inputEmail.value = checkProfiles[x].email;
+            inputPassword.value = checkProfiles[x].password;
+            inputAddress.value = checkProfiles[x].address;
+            inputMoreInformations.value = checkProfiles[x].moreInformations;
+            inputInterests.value = checkProfiles[x].interests;
+            inputFeelings.value = checkProfiles[x].feelings;
+            inputCoreValues.value = checkProfiles[x].coreValues;
+            if(checkProfiles[x].active == "Active"){
                 inputActive.checked = true;
             }else{
                 inputActive.checked = false;
             }
+            currentEditIndex = x;
             break;
         }
     }
+}
+
+function modalEditProfile(buttonEdit){
+    const trToEdit = buttonEdit.closest("tr");
+    const currentEditEmail = trToEdit.querySelector(".tableEmail").textContent;
+    fillProfileForm(currentEditEmail);
 }
 
 function headerModalEditProfile(){
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const emailToEdit = currentUser[0].email;
-    for(x = 0; x < profiles.length; x++){
-        if(emailToEdit == profiles[x].email){
-            const inputName = document.getElementById("profile-name");
-            const inputBirthday = document.getElementById("profile-birthday");
-            const inputEmail = document.getElementById("profile-email");
-            const inputPassword = document.getElementById("profile-password");
-            const inputAddress = document.getElementById("profile-address");
-            const inputMoreInformations = document.getElementById("profile-moreInformations");
-            const inputInterests = document.getElementById("profile-interests");
-            const inputFeelings = document.getElementById("profile-feelings"); 
-            const inputCoreValues = document.getElementById("profile-coreValues"); 
-            const inputActive = document.getElementById("modal-active-checkbox"); 
-
-            inputName.value = profiles[x].name;
-            inputBirthday.value = profiles[x].birthday;
-            inputEmail.value = profiles[x].email;
-            inputPassword.value = profiles[x].password;
-            inputAddress.value = profiles[x].address;
-            inputMoreInformations.value = profiles[x].moreInformations;
-            inputInterests.value = profiles[x].interests;
-            inputFeelings.value = profiles[x].feelings;
-            inputCoreValues.value = profiles[x].coreValues;
-            if(profiles[x].active == "Active"){
-                inputActive.checked = true;
-            }else{
-                inputActive.checked = false;
-            }
-            break;
-        }
-    }
+    const currentEditEmail = currentUser[0].email;
+    fillProfileForm(currentEditEmail);
 }
 
 function editProfiles(){
-    const index = x;
-    profiles = JSON.parse(localStorage.getItem("profiles"));
+    const index = currentEditIndex;
+    const currentEmail = profiles = JSON.parse(localStorage.getItem("profiles"));
 
     const nameInput = document.getElementById("profile-name");
     const emailInput = document.getElementById("profile-email");
@@ -257,7 +244,7 @@ function editProfiles(){
     const passwordRequirement = document.querySelector(".password-requirements");
     const alertPasswordRequirement = document.querySelector(".alert-password-requirements");
     var emailExist = false;
-    profiles[index] = {
+    currentEmail[index] = {
         name: document.getElementById("profile-name").value,
         birthday: document.getElementById("profile-birthday").value,
         email: document.getElementById("profile-email").value,
@@ -268,15 +255,15 @@ function editProfiles(){
         feelings: document.getElementById("profile-feelings").value,
         coreValues: document.getElementById("profile-coreValues").value,
         active: document.getElementById("modal-active-checkbox").checked ? "Active" : "Inactive",
-        status: profiles[index].status,
-        createdAt: profiles[index].createdAt
+        status: currentEmail[index].status,
+        createdAt: currentEmail[index].createdAt
     }
 
-    if(profiles[index].name == 0){
+    if(currentEmail[index].name == 0){
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
         nameInput.scrollIntoView({block: "center"});
-    }else if(nameValid(profiles[index].name) == false){
+    }else if(nameValid(currentEmail[index].name) == false){
         nameInput.style.border = "2px solid red"
         nameInput.nextElementSibling.style.display = "none";
         alertNameRequirement.style.display = "block";
@@ -286,21 +273,21 @@ function editProfiles(){
         alertNameRequirement.style.display = "none";
     }
 
-    if(profiles[index].email == 0){
+    if(currentEmail[index].email == 0){
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
         alertEmailExist.style.display = "none"; 
         emailInput.scrollIntoView({block: "center"});
-    }else if(emailValid(profiles[index].email) == false){
+    }else if(emailValid(currentEmail[index].email) == false){
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "none";
         alertEmailRequirement.style.display = "block";
         alertEmailExist.style.display = "none";
         emailInput.scrollIntoView({block: "center"});
     }else{
-        for (let i = 0; i < profiles.length; i++) {
-            if (i != index && email == profiles[i].email) {
+        for (let i = 0; i < currentEmail.length; i++) {
+            if (i != index && email == currentEmail[i].email) {
                 emailExist = true;
                 emailInput.style.border = "2px solid red";
                 alertEmailRequirement.style.display = "none"
@@ -311,13 +298,13 @@ function editProfiles(){
         }
     }
 
-    if(profiles[index].password == ""){
+    if(currentEmail[index].password == ""){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none"
         alertPasswordRequirement.style.display = "none"
         passwordInput.scrollIntoView({block: "center"});
-    }else if(profiles[index].password.length < 6){
+    }else if(currentEmail[index].password.length < 6){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "none";
         passwordRequirement.style.display = "none"
@@ -329,15 +316,15 @@ function editProfiles(){
         alertPasswordRequirement.style.display = "none";
     }
 
-    if(profiles[index].birthday == "" || profiles[index].address == "" || profiles[index].moreInformations == "" || profiles[index].interests == "" || profiles[index].feelings == "" || profiles[index].coreValues == ""){
-        profiles[index].status = "Incomplete"
+    if(currentEmail[index].birthday == "" || currentEmail[index].address == "" || currentEmail[index].moreInformations == "" || currentEmail[index].interests == "" || currentEmail[index].feelings == "" || currentEmail[index].coreValues == ""){
+        currentEmail[index].status = "Incomplete"
     }else{
-        profiles[index].status = "Complete"
+        currentEmail[index].status = "Complete"
     }
 
-    if(profiles[index].name != 0 && nameValid(profiles[index].name) && emailValid(profiles[index].email) && emailExist == false && profiles[index].password.length >= 6){
+    if(currentEmail[index].name != 0 && nameValid(currentEmail[index].name) && emailValid(currentEmail[index].email) && emailExist == false && currentEmail[index].password.length >= 6){
         localStorage.setItem("profiles", JSON.stringify(profiles));
-        addLog(profiles[index].name, profiles[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
+        addLog(currentEmail[index].name, currentEmail[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
         toggleModalEdit();
         location.reload();
     }

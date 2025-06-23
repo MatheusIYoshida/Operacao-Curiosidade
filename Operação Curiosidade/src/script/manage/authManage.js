@@ -1,8 +1,19 @@
-function giveAuth(){
+function giveAuth(userName, userEmail){
     localStorage.setItem("authToken", "token");
+    const currentUser = new Array();
+    currentUser.push({
+        name: userName, 
+        email: userEmail
+    });
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 
-function removeAuth(){
-    localStorage.removeItem("authToken", "token");
-    window.location.href = "login-page.html";
+
+const exitButton = document.querySelector(".exit");
+if (exitButton) { 
+    exitButton.addEventListener("click", () => {
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("authToken", "token");
+        window.location.href = "login-page.html";
+    });
 }

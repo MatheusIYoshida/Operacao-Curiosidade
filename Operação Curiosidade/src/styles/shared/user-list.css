@@ -33,16 +33,13 @@ td,
     background-color: #E9E9E9; 
 }
 
-.table-row-itens:nth-child(even):hover {
-    background-color: #D0D0D0; 
-}
-
 .table-row-itens:nth-child(odd) {
     background-color: #FFF; 
 }
 
+.table-row-itens:nth-child(even):hover,
 .table-row-itens:nth-child(odd):hover {
-    background-color: #EDEDED;
+    background-color: #D0D0D0;
 }
 
 /*Dark Mode*/

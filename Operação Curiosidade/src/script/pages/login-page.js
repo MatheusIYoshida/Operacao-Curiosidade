@@ -12,13 +12,7 @@ function profileValidation(emailValue, passwordValue){
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
-            const currentUser = new Array();
-            currentUser.push({
-                name: profiles[x].name, 
-                email: emailValue
-            });
-            localStorage.setItem("currentUser", JSON.stringify(currentUser));
-            giveAuth();
+            giveAuth(profiles[x].name, emailValue);
             window.location.href = "dashboard-page.html";
             alertError = true;
         }

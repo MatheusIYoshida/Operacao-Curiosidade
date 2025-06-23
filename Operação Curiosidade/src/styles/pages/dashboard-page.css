@@ -20,15 +20,15 @@
 }
 
 #total-reg{
-    color: #0000ff;
+    color: #415996;
 }
 
 #lastMonth-reg{
-    color: #00ff00;
+    color: #3F9D2F;
 }
 
 #pending-reg{
-    color: #ff0000;
+    color: #C15959;
 }
 
 .info-box-title{
@@ -46,4 +46,16 @@ body.dark .reg-info-box{
 
 body.dark .info-box-title{
     color: #FFF;
+}
+
+body.dark #total-reg{
+    color: #3D6EFF;
+}
+
+#lastMonth-reg{
+    color: #2EFF2E;
+}
+
+#pending-reg{
+    color: #FF5555;
 }

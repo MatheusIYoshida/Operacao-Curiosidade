@@ -18,7 +18,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="src/script/utils/themeSwap.js"></script>
     <div class="full-page">
         <div class="sidebar"> 
             <nav>
@@ -69,7 +68,7 @@
                                 <div class="header-username"></div>
                             </div>
                         </div>
-                        <div class="exit" onclick="removeAuth()">
+                        <div class="exit">
                             EXIT
                         </div>
                     </div>    
@@ -171,18 +170,21 @@
             </main>
         </div>
     </div>
-    <script src="src/script/manage/authManage.js"></script>
     <script src="src/script/utils/authentication.js"></script>
-    <script src="src/script/manage/authManage.js"></script>
-    <script src="src/script/utils/authentication.js"></script>
+    <script>
+        if (checkAuth() == false) {
+            throw new Error("Redirecting to login...");
+        }
+    </script>
+    <script src="src/script/utils/themeSwap.js"></script>
     <script src="src/script/utils/themeSimbols.js"></script>
-    <script src="src/script/utils/currentUser.js"></script>
+    <script src="src/script/utils/userIcon.js"></script>
     <script src="src/script/utils/toggleModal.js"></script>
     <script src="src/script/utils/date-utils.js"></script>
     <script src="src/script/utils/currentPage.js"></script>
-    <script src="src/script/manage/currentUserManage.js"></script>
-    <script src="src/script/manage/profileManage.js"></script>
     <script src="src/script/utils/validations.js"></script>
+    <script src="src/script/manage/profileManage.js"></script>
     <script src="src/script/manage/logsManage.js"></script>
+    <script src="src/script/manage/authManage.js"></script>
 </body>
 </html>
