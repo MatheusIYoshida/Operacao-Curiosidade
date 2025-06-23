@@ -202,3 +202,7 @@ body.dark .login-createProfile button{
 body.dark .login-createProfile button:hover{
     opacity: 1;
 }
+
+body.dark ::-ms-reveal {
+    filter: invert(100%);
+}

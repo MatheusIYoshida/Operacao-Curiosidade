@@ -20,7 +20,6 @@ const toggleModalEdit = () => {
             input.style.border = "";
         });
 
-        fillProfileForm(currentEditEmail);
     }
 }
 
@@ -44,8 +43,10 @@ fade.addEventListener("click", () => {
     if(!modalEdit.classList.contains("hide")){
         toggleModalEdit();
     }
-    if(!modalCreate.classList.contains("hide")){
-        toggleModalCreate();
+    if(modalCreate){
+        if(!modalCreate.classList.contains("hide")){
+            toggleModalCreate();
+        }
     }
 });
 

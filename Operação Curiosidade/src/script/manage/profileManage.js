@@ -193,7 +193,7 @@ function removeProfile(buttonRemove){
 
 let currentEditIndex = null;
 function fillProfileForm(emailToEdit) {
-    const checkProfiles = profiles = JSON.parse(localStorage.getItem("profiles"));
+    const checkProfiles = JSON.parse(localStorage.getItem("profiles"));
     for(x = 0; x < checkProfiles.length; x++){
         if(emailToEdit == checkProfiles[x].email){
             const inputName = document.getElementById("profile-name");
@@ -242,6 +242,7 @@ function headerModalEditProfile(){
 function editProfiles(){
     const index = currentEditIndex;
     const currentEmail = JSON.parse(localStorage.getItem("profiles"));
+    const oldEmail = currentEmail[index].email;
 
     const nameInput = document.getElementById("profile-name");
     const emailInput = document.getElementById("profile-email");
@@ -282,7 +283,7 @@ function editProfiles(){
         alertNameRequirement.style.display = "none";
     }
 
-    if(currentEmail[index].email == 0){
+    if(currentEmail[index].email == ""){
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
@@ -332,8 +333,20 @@ function editProfiles(){
     }
 
     if(currentEmail[index].name != 0 && nameValid(currentEmail[index].name) && emailValid(currentEmail[index].email) && emailExist == false && currentEmail[index].password.length >= 6){
-        localStorage.setItem("profiles", JSON.stringify(profiles));
+        localStorage.setItem("profiles", JSON.stringify(currentEmail));
         addLog(currentEmail[index].name, currentEmail[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
+        
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        console.log(oldEmail)
+        console.log(currentUser[index].email)
+        if (oldEmail == currentUser[index].email) {
+            currentUser[0].email = currentEmail[index].email;
+            currentUser[0].name = currentEmail[index].name;
+            console.log(currentUser);
+            localStorage.removeItem("currentUser"); 
+            localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        }
+
         toggleModalEdit();
         location.reload();
     }
