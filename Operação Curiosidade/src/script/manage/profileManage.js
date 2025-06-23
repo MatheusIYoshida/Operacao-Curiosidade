@@ -1,3 +1,4 @@
+let profiles = new Array();
 if(localStorage.hasOwnProperty("profiles")){
     profiles = JSON.parse(localStorage.getItem("profiles"));
 }
@@ -44,7 +45,11 @@ function createProfile(){
         alertEmailExist.style.display = "none";
         emailInput.scrollIntoView({block: "center"});
     }else{
-        for(var x = 0; x < profiles.length; x++){
+        let countProfiles = 0;
+        if(profiles.length){
+            countProfiles = profiles.length;
+        }
+        for(var x = 0; x < countProfiles; x++){
             if(email == profiles[x].email){
                 emailInput.style.border = "2px solid red";
                 emailInput.nextElementSibling.style.display = "none";

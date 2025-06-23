@@ -28,11 +28,9 @@ function userListReports(){
             if(profiles[x].status == "Incomplete"){
                 tableActive.className = "pending-row-itens";
                 tableActive.textContent = "Pending Review"
-                tableActive.style.textAlign = "center"
                 tableActive.style.color = "#B22222"
             }else{
                 tableActive.textContent = profiles[x].active;
-                tableActive.style.textAlign = "center"
                 if(tableActive.textContent == "Inactive"){
                     tableActive.style.color = "#898989"
                 }

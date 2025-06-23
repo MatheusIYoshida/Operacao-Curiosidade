@@ -27,6 +27,17 @@ const toggleModalEdit = () => {
 const toggleModalCreate = () => {
     modalCreate.classList.toggle("hide");
     fade.classList.toggle("hide");
+
+    if(!modalCreate.classList.contains("hide")){
+
+        document.querySelectorAll(".alert-user").forEach(alert => {
+            alert.style.display = "none";
+        });
+        document.querySelectorAll(".profile-input input").forEach(input => {
+            input.style.border = "";
+            input.value = "";
+        });
+    }
 }
 
 fade.addEventListener("click", () => {

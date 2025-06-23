@@ -84,6 +84,10 @@
 
 
 /*Dark Mode*/
+body.dark .box-logo{
+    box-shadow: 0 4px 12px rgba(255, 255, 255, .2), 0 6px 25px rgba(255, 255, 255, .2);
+}
+
 body.dark .sidebar{
     background-color: #1E1E1E;
 }
@@ -91,6 +95,10 @@ body.dark .sidebar{
 body.dark .box-logo,
 body.dark .sidebar-menu-item a{
     background-color: #B0C0D0;
+}
+
+body.dark .sidebar-menu-item a{
+    opacity: .7;
 }
 
 body.dark .sidebar-menu-title{

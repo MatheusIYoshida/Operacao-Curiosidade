@@ -29,12 +29,10 @@ function listLogs(){
 
             const tableAction = document.createElement("td");
             tableAction.textContent = logs[x].action;
-            tableAction.style.textAlign = "center";
             tableRow.appendChild(tableAction);
 
             const tableTimestamp = document.createElement("td");
             tableTimestamp.textContent = logs[x].timestamp;
-            tableTimestamp.style.textAlign = "center"
             tableRow.appendChild(tableTimestamp);
         }
     }
