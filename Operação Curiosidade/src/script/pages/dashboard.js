@@ -12,12 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     totalUsers();
     pendingUsers();
     recentUsers();
-    registrationDate();
 });
 
 function shortUserList(){
-    if(profiles.length >= 15){
-        var profilesFor = (profiles.length - 16);
+    if(profiles.length > 15){
+        var profilesFor = (profiles.length - 15);
     }else{
         var profilesFor = 0;
     }

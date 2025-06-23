@@ -32,7 +32,7 @@
     display: flex;
     align-items: center;
     margin-left: 5px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .sidebar-menu{
@@ -43,6 +43,7 @@
 }
 
 .sidebar-menu-item a{
+    font-size: 16px;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -65,6 +66,10 @@
 
 .sidebar-menu-item a:hover{
     opacity: 1;
+}
+
+#home-menu{
+    padding-left: 20px;
 }
 
 .sidebar-menu-title{
@@ -99,6 +104,10 @@ body.dark .sidebar-menu-item a{
 
 body.dark .sidebar-menu-item a{
     opacity: .7;
+}
+
+body.dark .sidebar-menu-item a:hover{
+    opacity: 1;
 }
 
 body.dark .sidebar-menu-title{

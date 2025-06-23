@@ -13,6 +13,7 @@
     background-color: #A0B0C0;
     opacity: .7;
     transition: .4s;
+    font-size: 18px;
 }
 
 .table-row-title th:hover{
@@ -27,6 +28,10 @@ td,
 .table-row-title th{
     padding: 5px 0px 5px 5px;
     border-bottom: 1px solid #A9A9A9;
+}
+
+.table-row-itens{
+    font-size: 17px;
 }
 
 .table-row-itens:nth-child(even) {

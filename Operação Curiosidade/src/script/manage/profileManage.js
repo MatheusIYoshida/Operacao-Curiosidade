@@ -1,9 +1,9 @@
-let profiles = new Array();
-if(localStorage.hasOwnProperty("profiles")){
-    profiles = JSON.parse(localStorage.getItem("profiles"));
-}
-
 function createProfile(){
+    let profiles = new Array();
+    if(localStorage.hasOwnProperty("profiles")){
+        profiles = JSON.parse(localStorage.getItem("profiles"));
+    }
+
     var name = document.getElementById("create-profile-name").value;
     var email = document.getElementById("create-profile-email").value;
     var password = document.getElementById("create-profile-password").value;
@@ -172,6 +172,10 @@ function removeRedBorder(input) {
 }
 
 function removeProfile(buttonRemove){
+    let profiles = new Array();
+    if(localStorage.hasOwnProperty("profiles")){
+        profiles = JSON.parse(localStorage.getItem("profiles"));
+    }
     const trToRemove = buttonRemove.closest("tr");
     const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
     let newProfiles = new Array;
@@ -237,7 +241,7 @@ function headerModalEditProfile(){
 
 function editProfiles(){
     const index = currentEditIndex;
-    const currentEmail = profiles = JSON.parse(localStorage.getItem("profiles"));
+    const currentEmail = JSON.parse(localStorage.getItem("profiles"));
 
     const nameInput = document.getElementById("profile-name");
     const emailInput = document.getElementById("profile-email");
