@@ -11,7 +11,7 @@ function createProfile(){
     var alertNameRequirement = document.querySelector(".alert-name-requirements-create");
     var emailInput = document.getElementById("create-profile-email");
     var alertEmailRequirement = document.querySelector(".alert-email-requirements-create");
-    var alertEmailExist = document.querySelector(".alert-email-exist-create")
+    var alertEmailExist = document.querySelector(".alert-email-exist-create");
     var emailExist = false;
     var passwordInput = document.getElementById("create-profile-password");
     var passwordRequirement = document.querySelector(".password-requirements-create");
@@ -59,7 +59,7 @@ function createProfile(){
                 emailInput.scrollIntoView({block: "center"});
             }
             if(emailExist == false){
-                emailInput.nextElementSibling.style.display = "none"
+                emailInput.nextElementSibling.style.display = "none";
                 alertEmailRequirement.style.display = "none"; 
                 alertEmailExist.style.display = "none";
             }
@@ -69,18 +69,18 @@ function createProfile(){
     if(password == 0){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "block";
-        passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
+        alertPasswordRequirement.style.display = "none";
         passwordInput.scrollIntoView({block: "center"});
     }else if(password.length < 6){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
         alertPasswordRequirement.style.display = "block";
         passwordInput.scrollIntoView({block: "center"});
     }else{
         passwordInput.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
         alertPasswordRequirement.style.display = "none";
     }
 
@@ -128,14 +128,14 @@ function createProfile(){
             if(document.getElementById("create-modal-active-checkbox").checked == true){
                 var active = "Active";
             }else{
-                var active = "Inactive"
+                var active = "Inactive";
             }
         }
 
         if(birthday == "" || address == "" || moreInformations == "" || interests == "" || feelings == "" || coreValues == ""){
-            var status = "Incomplete"
+            var status = "Incomplete";
         }else{
-            var status = "Complete"
+            var status = "Complete";
         }
 
         createdAt = registrationDate();
@@ -146,7 +146,7 @@ function createProfile(){
         addLog(name, email, "Create Profile", registrationFullDate(createdAt, registrationTime()));
         
         if(window.location.href.split("/").pop() == "login-registration.html"){
-            window.location.href = "login-page.html"
+            window.location.href = "login-page.html";
         }else if(window.location.href.split("/").pop() == "profiles-page.html"){
             toggleModalCreate();
             location.reload();
@@ -184,8 +184,15 @@ function removeProfile(buttonRemove){
             newProfiles.push(profiles[x]);
         }else{
             addLog(profiles[x].name, profiles[x].email, "Remove Profile", registrationFullDate(registrationDate(), registrationTime()));
+            
+            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if(currentUser[0].email == profiles[x].email){
+                localStorage.removeItem("currentUser");
+                checkUser(); 
+            }
         }
     }
+
     localStorage.removeItem("profiles");
     localStorage.setItem("profiles", JSON.stringify(newProfiles));
     location.reload();
@@ -300,7 +307,7 @@ function editProfiles(){
             if (i != index && email == currentEmail[i].email) {
                 emailExist = true;
                 emailInput.style.border = "2px solid red";
-                alertEmailRequirement.style.display = "none"
+                alertEmailRequirement.style.display = "none";
                 alertEmailExist.style.display = "block";
                 emailInput.scrollIntoView({block: "center"});
                 break;
@@ -311,25 +318,25 @@ function editProfiles(){
     if(currentEmail[index].password == ""){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "block";
-        passwordRequirement.style.display = "none"
-        alertPasswordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
+        alertPasswordRequirement.style.display = "none";
         passwordInput.scrollIntoView({block: "center"});
     }else if(currentEmail[index].password.length < 6){
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none"
+        passwordRequirement.style.display = "none";
         alertPasswordRequirement.style.display = "block";
         passwordInput.scrollIntoView({block: "center"});
     }else{
         passwordInput.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "block"
+        passwordRequirement.style.display = "block";
         alertPasswordRequirement.style.display = "none";
     }
 
     if(currentEmail[index].birthday == "" || currentEmail[index].address == "" || currentEmail[index].moreInformations == "" || currentEmail[index].interests == "" || currentEmail[index].feelings == "" || currentEmail[index].coreValues == ""){
-        currentEmail[index].status = "Incomplete"
+        currentEmail[index].status = "Incomplete";
     }else{
-        currentEmail[index].status = "Complete"
+        currentEmail[index].status = "Complete";
     }
 
     if(currentEmail[index].name != 0 && nameValid(currentEmail[index].name) && emailValid(currentEmail[index].email) && emailExist == false && currentEmail[index].password.length >= 6){
@@ -337,12 +344,9 @@ function editProfiles(){
         addLog(currentEmail[index].name, currentEmail[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
         
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        console.log(oldEmail)
-        console.log(currentUser[index].email)
         if (oldEmail == currentUser[index].email) {
             currentUser[0].email = currentEmail[index].email;
             currentUser[0].name = currentEmail[index].name;
-            console.log(currentUser);
             localStorage.removeItem("currentUser"); 
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
         }
@@ -350,4 +354,4 @@ function editProfiles(){
         toggleModalEdit();
         location.reload();
     }
-}
+    }

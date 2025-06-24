@@ -41,7 +41,7 @@
                     <span class="alert-user" id="alert-password">Password must be at least 6 characters</span>
                 </div>
                 <div class="button-area">
-                    <input id="login-submit" type="submit" value="Sign In" onclick="loginChangePage()">
+                    <input id="login-submit" type="submit" value="Sign In">
                 </div>
                 <div class="login-createProfile">
                     <div class="login-createProfile-title">
@@ -62,8 +62,8 @@
     
     <script src="src/script/utils/authentication.js"></script>
     <script>
-        if (checkLogout() == false) {
-            throw new Error("Redirecting to Dashboard...");
+        if(checkLogout() == false){
+            window.location.href = "dashboard-page.html";
         }
     </script>
     <script src="src/script/utils/themeSwap.js"></script>

@@ -13,7 +13,7 @@ const exitButton = document.querySelector(".exit");
 if (exitButton) { 
     exitButton.addEventListener("click", () => {
         localStorage.removeItem("currentUser");
-        localStorage.removeItem("authToken", "token");
+        localStorage.removeItem("authToken");
         window.location.href = "login-page.html";
     });
 }

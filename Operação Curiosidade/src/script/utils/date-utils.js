@@ -13,11 +13,11 @@ function registrationTime(){
     const minutes = String(time.getMinutes()).padStart(2, '0');
     const seconds = String(time.getSeconds()).padStart(2, '0');
 
-    return `${hours}:${minutes}:${seconds}`
+    return `${hours}:${minutes}:${seconds}`;
 }
 
 function registrationFullDate(day, hour){
-    return `${day} - ${hour}`
+    return `${day} - ${hour}`;
 }
 
 function parseDMY(dateStr){

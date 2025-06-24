@@ -27,12 +27,12 @@ function userListReports(){
             const tableActive = document.createElement("td");
             if(profiles[x].status == "Incomplete"){
                 tableActive.className = "pending-row-itens";
-                tableActive.textContent = "Pending Review"
-                tableActive.style.color = "#B22222"
+                tableActive.textContent = "Pending Review";
+                tableActive.style.color = "#B22222";
             }else{
                 tableActive.textContent = profiles[x].active;
                 if(tableActive.textContent == "Inactive"){
-                    tableActive.style.color = "#898989"
+                    tableActive.style.color = "#898989";
                 }
             }
             tableRow.appendChild(tableActive);

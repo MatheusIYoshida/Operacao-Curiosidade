@@ -7,7 +7,6 @@ function checkAuth() {
 
 function checkLogout(){
     if (localStorage.getItem("authToken")) {
-        window.location.href = "dashboard-page.html";
         return false;
     }
 }

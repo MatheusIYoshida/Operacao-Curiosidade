@@ -1,20 +1,22 @@
-var email = document.getElementById("email-input");
-var alertEmail = document.getElementById("alert-email");
-var password = document.getElementById("password-input");
-var passwordRequirement = document.querySelector(".password-requirements");
-var alertPassword = document.getElementById("alert-password");   
-if(localStorage.hasOwnProperty("profiles")){
-    profiles = JSON.parse(localStorage.getItem("profiles"));
-}
+const email = document.getElementById("email-input");
+const alertEmail = document.getElementById("alert-email");
+const password = document.getElementById("password-input");
+const passwordRequirement = document.querySelector(".password-requirements");
+const alertPassword = document.getElementById("alert-password");   
 
 function profileValidation(emailValue, passwordValue){
-    var alertError = false;
+    let profiles = new Array();
+    if(localStorage.hasOwnProperty("profiles")){
+        profiles = JSON.parse(localStorage.getItem("profiles"));
+    }
+    let alertError = false;
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
             giveAuth(profiles[x].name, emailValue);
             window.location.href = "dashboard-page.html";
             alertError = true;
+            break;
         }
     }
 
@@ -25,42 +27,46 @@ function profileValidation(emailValue, passwordValue){
     }   
 }
 
-function loginChangePage(){
+document.getElementById("login-submit").addEventListener("click", () =>{
+
     var emailValue = document.getElementById("email-input").value;
     var passwordValue = document.getElementById("password-input").value;
-     if(emailValue == 0){
+    
+    if(!emailValue){
         email.style.border = "2px solid red";
-        email.nextElementSibling.style.display = "block";
+        document.querySelector("#enter-email").style.display = "block";
         alertEmail.style.display = "none";
     }else if(emailValid(emailValue) == false){
         email.style.border = "2px solid red";
-        email.nextElementSibling.style.display = "none";
+        document.querySelector("#enter-email").style.display = "none";
         alertEmail.style.display = "block";
     }else{
-        email.nextElementSibling.style.display = "none";
+        email.style.borderColor = "#000";
+        document.querySelector("#enter-email").style.display = "none";
         alertEmail.style.display = "none";
     }
 
-    if(passwordValue == 0){
+    if(!passwordValue){
         password.style.border = "2px solid red";
-        password.nextElementSibling.style.display = "block";
+        document.querySelector("#enter-password").style.display = "block";
         passwordRequirement.style.display = "none";
         alertPassword.style.display = "none";
     }else if(passwordValue.length < 6){
         password.style.border = "2px solid red";
-        password.nextElementSibling.style.display = "none";
+        document.querySelector("#enter-password").style.display = "none";
         passwordRequirement.style.display = "none";
         alertPassword.style.display = "block";
     }else{
-        password.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none";
+        password.style.borderColor = "#000";
+        document.querySelector("#enter-password").style.display = "none";
+        passwordRequirement.style.display = "block";
         alertPassword.style.display = "none";
     }
 
-    if(emailValue != 0 && passwordValue.length >= 6 && emailValid(emailValue) == true){
+    if(emailValue && passwordValue.length >= 6 && emailValid(emailValue)){
         profileValidation(emailValue, passwordValue);
     }
-}
+});
 
 function createProfileLogin(){
     window.location.href = "login-registration.html";
