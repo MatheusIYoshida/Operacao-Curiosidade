@@ -80,7 +80,7 @@ function createProfile(){
         passwordInput.scrollIntoView({block: "center"});
     }else{
         passwordInput.nextElementSibling.style.display = "none";
-        passwordRequirement.style.display = "none";
+        passwordRequirement.style.display = "block";
         alertPasswordRequirement.style.display = "none";
     }
 
@@ -168,6 +168,13 @@ function removeRedBorder(input) {
                 input.nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none';
             }
         }
+    }
+
+    if(document.querySelector(".password-requirements-create")){
+        document.querySelector(".password-requirements-create").style.display = "block"
+    }
+    if(document.querySelector(".password-requirements")){
+        document.querySelector(".password-requirements").style.display = "block"
     }
 }
 
@@ -344,7 +351,7 @@ function editProfiles(){
         addLog(currentEmail[index].name, currentEmail[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
         
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (oldEmail == currentUser[index].email) {
+        if (oldEmail == currentUser[0].email) {
             currentUser[0].email = currentEmail[index].email;
             currentUser[0].name = currentEmail[index].name;
             localStorage.removeItem("currentUser"); 
@@ -354,4 +361,4 @@ function editProfiles(){
         toggleModalEdit();
         location.reload();
     }
-    }
+}

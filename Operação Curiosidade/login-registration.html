@@ -67,7 +67,7 @@
     <script src="src/script/utils/authentication.js"></script>
     <script>
         if (checkLogout() == false) {
-            throw new Error("Redirecting to Dashboard...");
+            window.location.href = "dashboard-page.html";
         }
     </script>
     <script src="src/script/utils/themeSwap.js"></script>

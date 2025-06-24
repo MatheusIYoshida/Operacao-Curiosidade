@@ -1,5 +1,5 @@
 if (checkAuth() == false) {
-    throw new Error("Redirecting to login...");
+    window.location.href = "login-page.html";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
