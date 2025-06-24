@@ -1,0 +1,39 @@
+.return-login{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1;
+}
+
+.return-login img{
+    max-width: 30px;
+    max-height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.return-login img:hover{
+    background-color: #fafafa;
+    transform: scale(1.1);
+}
+
+.newProfile-title{
+    font-size: 20px;
+}
+
+.input-changes{
+    margin-top:15px; 
+}
+
+#createProfile-submit:hover{
+    font-size: 17px;
+    opacity: 1;
+    transition: 0.2s;
+}
+
+
+/*Dark Mode*/
+body.dark .newProfile-title{
+    color: #fff;
+}

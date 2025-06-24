@@ -1,0 +1,62 @@
+.registrations-infos{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 20px;
+    margin: 0px 20px;
+}
+
+.reg-info-box{
+    position: relative;
+    background-color: #FFF;
+    padding: 50px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.info-box-count{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+}
+
+#total-reg{
+    color: #415996;
+}
+
+#lastMonth-reg{
+    color: #3F9D2F;
+}
+
+#pending-reg{
+    color: #C15959;
+}
+
+.info-box-title{
+    position: absolute;
+    margin: 0px 10px 10px 0px;
+    bottom: 0;
+    right: 0;
+    font-size: 17px;
+}
+
+
+/*Dark Mode*/
+body.dark .reg-info-box{
+    background-color: #1E1E1E;
+}
+
+body.dark .info-box-title{
+    color: #FFF;
+}
+
+body.dark #total-reg{
+    color: #3D6EFF;
+}
+
+#lastMonth-reg{
+    color: #2EFF2E;
+}
+
+#pending-reg{
+    color: #FF5555;
+}

@@ -1,0 +1,39 @@
+.reports-lists{
+    margin: 7px 5px;
+}
+
+.reports-lists a{
+    font-size: 17px;
+    color: #000;
+    text-decoration: none;
+    transition: 0.4s;
+    opacity: .5;
+}
+
+.reports-lists a:hover{
+    opacity: 1;
+}
+
+.reports-table-title{
+    padding-bottom: 5px;
+    font-weight: bold;
+    border-bottom: none;
+}
+
+.table-line{
+    margin: 0px 5px;
+    border-bottom: 1px solid #A9A9A9;
+}
+
+.reports-table{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin:30px 5px 0px 5px;
+    color: #A9A9A9;
+}
+
+
+/*Dark Mode*/
+body.dark .reports-lists a{
+    color: #A9A9A9;
+} 
