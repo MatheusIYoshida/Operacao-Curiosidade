@@ -169,13 +169,18 @@ function removeRedBorder(input) {
             }
         }
     }
+}
 
-    if(document.querySelector(".password-requirements-create")){
-        document.querySelector(".password-requirements-create").style.display = "block"
-    }
-    if(document.querySelector(".password-requirements")){
-        document.querySelector(".password-requirements").style.display = "block"
-    }
+if(document.getElementById("create-profile-password")){
+    document.getElementById("create-profile-password").addEventListener("input", () => {
+        document.querySelector(".password-requirements-create").style.display = "block";
+    });
+}
+
+if(document.getElementById("profile-password")){
+    document.getElementById("profile-password").addEventListener("input", () => {
+        document.querySelector(".password-requirements").style.display = "block";
+    });
 }
 
 function removeProfile(buttonRemove){
