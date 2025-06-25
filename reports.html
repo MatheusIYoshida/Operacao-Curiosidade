@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link rel="stylesheet" href="src/styles/components/sidebar.css">
+    <link rel="stylesheet" href="src/styles/components/header-menu.css">
+    <link rel="stylesheet" href="src/styles/components/main-container.css">
+    <link rel="stylesheet" href="src/styles/shared/theme.css">
+    <link rel="stylesheet" href="src/styles/shared/validation.css">
+    <link rel="stylesheet" href="src/styles/shared/buttons.css">
+    <link rel="stylesheet" href="src/styles/pages/profiles-page.css">
+    <link rel="stylesheet" href="src/styles/pages/reports-page.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="full-page">
+        <div class="sidebar"> 
+            <nav>
+                <div class="box-logo">
+                    <div class="logo-img">OC</div>
+                    <div class="logo-title">Operação Curiosidade</div>
+                </div>
+                <div class="sidebar-menu">
+                    <div class="sidebar-menu-item">
+                        <a href="dashboard-page.html" id="home-menu">
+                            <img src="src/assets/icons/Home.png" alt="" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Home</div>
+                        </a>
+                    </div>
+                    <div class="sidebar-menu-line"></div>
+                    <div class="sidebar-menu-item">
+                        <a href="profiles-page.html" id="profiles-menu"> 
+                            <img src="src/assets/icons/Cadastro.png" alt="" id="cadastro-icon" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Profiles</div>
+                        </a>
+                    </div>
+                    <div class="sidebar-menu-line"></div>
+                    <div class="sidebar-menu-item">    
+                        <a href="reports.html" id="reports-menu">
+                            <img src="src/assets/icons/Relatórios.png" alt="" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Reports</div>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+            <header>
+                <div class="header-menu">
+                    <div class="header-input">
+                        <input type="search" class="header-input-box" name="Search" placeholder="Search...">
+                    </div>
+                    <div class="change-theme-container">
+                        <div class="change-theme-box">
+                            <img class="change-theme" id="day-theme" src="src/assets/icons/sun.png" alt="sun">
+                            <img class="change-theme hide" id="night-theme" src="src/assets/icons/moon.png" alt="moon">
+                        </div>
+                    </div>
+                    <div class="header-options">   
+                        <div class="header-user">
+                            <div class="header-user-box" onclick="headerModalEditProfile()">
+                                <div class="header-user-img"></div>
+                                <div class="header-username"></div>
+                            </div>
+                        </div>
+                        <div class="exit">
+                            EXIT
+                        </div>
+                    </div>    
+                </div>
+            </header>
+            <main>
+                <div class="main-container">
+                    <div class="main-container-area">
+                        <div class="main-container-title">Reports</div>
+                        <div class="reports-table">
+                            <div class="reports-table-title">OPTIONS</div>
+                        </div>
+                        <div class="table-line"></div>
+                        <div class="reports-lists">
+                            <a href="user-list.html">User list</a>
+                        </div>
+                        <div class="table-line"></div>
+                        <div class="reports-lists">
+                            <a href="logs.html">Logs</a>
+                        </div>
+                        <div class="table-line"></div>
+                    </div>
+                    <div class="fade hide"></div>
+                        <div id="modal-editProfile" class="modal hide">
+                            <div class="modal-header">
+                                <h2>Edit Profile</h2>
+                                <button class="close-button" id="close-modal-editProfile">Close</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="modal-body-top">
+                                    <div class="modal-topic">
+                                        <h3>1º Facts and Figures</h3>
+                                    </div>
+                                    <div class="modal-active-profile">
+                                        <input id="modal-active-checkbox" type="checkbox" name="active" value="active">
+                                        <div class="modal-active-title">Active</div>
+                                    </div>
+                                </div>
+                                <div class="profile-name-birthday">
+                                    <div class="profile-input">
+                                        <label for="name">Name:</label>
+                                        <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
+                                        <span class="alert-user">Enter your name</span>
+                                        <span class="alert-user alert-name-requirements">Invalid name</span>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label for="birthday date">Birthday date:</label> 
+                                        <input id="profile-birthday" type="date" name="Birthday">
+                                    </div>
+                                </div>
+                                <div class="profile-email-password">
+                                    <div class="profile-input">
+                                        <label for="email">Email:</label>
+                                        <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
+                                        <span class="alert-user">Enter your Email</span>
+                                        <span class="alert-user alert-email-requirements">Invalid email</span>
+                                        <span class="alert-user alert-email-exist">This Email already exists, try another one!</span>
+                                    </div>
+                                    <div class="profile-input">
+                                        <label for="password">Password:</label>
+                                        <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
+                                        <span class="alert-user">Enter your Password</span>
+                                        <span class="password-requirements">Minimum 6 characters required</span>
+                                        <span class="alert-user alert-password-requirements">Password must be at least 6 characters</span>
+                                    </div>
+                                </div>
+                                <div class="profile-input modal-input-address">
+                                    <label for="address">Address:</label>
+                                    <input id="profile-address" type="text" name="Address">
+                                </div>
+                                <div class="profile-input">
+                                    <label for="more informations">More Informations:</label>
+                                    <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="500"></textarea>
+                                </div>
+                                <h3>2º Interests</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                        <textarea id="profile-interests" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <h3>3º Feelings</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                        <textarea id="profile-feelings" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <h3>4º Core Values</h3>
+                                <div class="facts-inputs">
+                                    <div class="profile-input">
+                                       <textarea id="profile-coreValues" name="Interests" rows="4" maxlength="500"></textarea>
+                                    </div>
+                                </div>
+                                <div class="profile-button">
+                                    <input class="submit-button" id="editProfile-submit" type="submit" value="EDIT PROFILE" onclick="editProfiles()">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="src/script/utils/authentication.js"></script>
+    <script>
+        if (checkAuth() == false) {
+            window.location.href = "login-page.html";
+        }
+    </script>
+    <script src="src/script/utils/themeSwap.js"></script>
+    <script src="src/script/utils/themeSimbols.js"></script>
+    <script src="src/script/utils/userIcon.js"></script>
+    <script src="src/script/utils/toggleModal.js"></script>
+    <script src="src/script/utils/date-utils.js"></script>
+    <script src="src/script/utils/currentPage.js"></script>
+    <script src="src/script/utils/validations.js"></script>
+    <script src="src/script/utils/checkUser.js"></script>
+    <script src="src/script/manage/profileManage.js"></script>
+    <script src="src/script/manage/logsManage.js"></script>
+    <script src="src/script/manage/authManage.js"></script>
+</body>
+</html>

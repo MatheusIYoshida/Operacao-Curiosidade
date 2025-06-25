@@ -1,0 +1,107 @@
+.header-menu{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 20px 20px;
+    width: auto;
+    height: 60px;
+    background-color: #E0E0E0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+.header-input{
+    height: 65%;
+    width: 400px;
+    margin: 10px 0px 10px 15px;
+}
+
+.header-input-box{
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    background-color: #F0F0F0;
+    border-color: transparent;
+}
+
+.change-theme-container{
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.header-options{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    margin-right: 40px;
+    font-size: 17px;
+}
+
+.header-user{
+    margin-right: 20px;
+    border-right: 3px solid #A9A9A9;
+    padding-right: 20px;
+}
+
+.header-user-box{
+    display: flex;
+    align-items: center;
+    transition: 0.4s;
+    opacity: .6;   
+    cursor: pointer;
+}
+
+.header-username{
+    color: #000;
+}
+
+.header-user-box:hover{
+    opacity: 1;
+}
+
+.header-user-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 17px;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #A9A9A9;
+    color: #000;
+}
+
+.exit{
+    transition: 0.4s;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.exit:hover{
+    opacity: 1;
+}
+
+/*Dark mode*/
+body.dark .header-menu{
+    background-color: #1E1E1E;
+}
+
+body.dark .header-input-box{
+    background-color: #121212;
+}
+
+body.dark .header-input-box,
+body.dark .header-username,
+body.dark .exit{
+    color: #fff;
+}
+
+body.dark .header-user-img{
+    background-color: #fff;
+}
+
+body.dark .header-user{
+    border-color: #fff;
+}

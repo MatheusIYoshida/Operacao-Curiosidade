@@ -1,0 +1,60 @@
+.profile-printOut{
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.profile-printOut button{
+    background-color: #5763A0;
+}
+
+.printOut-title{
+    display: none;
+    font-size: 20px;
+    padding-top:20px;
+    color: #00000080;
+}
+
+
+@media print {
+    .sidebar, 
+    header,
+    .profile-printOut button{
+        display: none;
+    }
+
+    .main-container-area{
+        overflow: visible;
+        box-shadow: none;
+        margin: 0px;
+    }
+
+    #table-area th, 
+    #table-area td {
+        font-size: 12px; 
+        padding: 8px 10px; 
+        height: 40px;
+        color: #000;
+    }
+
+    #table-area th:nth-child(3),   
+    #table-area td:nth-child(3){  
+        width: 60px;    
+        padding-left: 5px; 
+        padding-right: 5px;
+    }
+
+    #table-area th:nth-child(4),   
+    #table-area td:nth-child(4){      
+        padding-left: 100px; 
+    }
+
+    .main-container-title{
+        display: none;
+    }
+
+    .printOut-title{
+        display: block;
+    }
+
+}
