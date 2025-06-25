@@ -14,6 +14,6 @@ if (exitButton) {
     exitButton.addEventListener("click", () => {
         localStorage.removeItem("currentUser");
         localStorage.removeItem("authToken");
-        window.location.href = "login-page.html";
+        window.location.href = "index.html";
     });
 }
