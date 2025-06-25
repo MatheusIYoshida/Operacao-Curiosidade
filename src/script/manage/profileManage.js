@@ -146,7 +146,7 @@ function createProfile(){
         addLog(name, email, "Create Profile", registrationFullDate(createdAt, registrationTime()));
         
         if(window.location.href.split("/").pop() == "login-registration.html"){
-            window.location.href = "login-page.html";
+            window.location.href = "index.html";
         }else if(window.location.href.split("/").pop() == "profiles-page.html"){
             toggleModalCreate();
             location.reload();
