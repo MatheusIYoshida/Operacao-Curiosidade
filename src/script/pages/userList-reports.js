@@ -1,5 +1,5 @@
 if (checkAuth() == false) {
-    window.location.href = "login-page.html";
+    window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
