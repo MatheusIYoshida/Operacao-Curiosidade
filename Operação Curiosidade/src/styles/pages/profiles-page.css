@@ -111,6 +111,10 @@
     margin: 10px 10px;
 }
 
+.profile-input label{
+    display: flex;
+}
+
 .profile-name-birthday{
     display: grid;
     grid-template-columns: 1fr 1fr;

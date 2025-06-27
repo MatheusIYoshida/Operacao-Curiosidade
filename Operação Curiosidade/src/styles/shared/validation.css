@@ -12,6 +12,11 @@
     margin-top: 3px;
 }
 
+.required-input{
+    font-size: 11px;
+    margin-left: 2px;
+}
+
 /*Dark Mode*/
 body.dark .password-requirements,
 body.dark .password-requirements-create{
