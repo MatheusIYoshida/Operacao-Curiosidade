@@ -143,7 +143,12 @@ function createProfile(){
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
-        addLog(name, email, "Create Profile", registrationFullDate(createdAt, registrationTime()));
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if(currentUser){
+            addLog(currentUser[0].name, currentUser[0].email, `Created the profile ${email}`, registrationFullDate(createdAt, registrationTime()));
+        }else{
+            addLog(name, email, "Created their own profile", registrationFullDate(createdAt, registrationTime()));
+        }
         
         if(window.location.href.split("/").pop() == "login-registration.html"){
             window.location.href = "login-page.html";
@@ -195,12 +200,14 @@ function removeProfile(buttonRemove){
         if(emailToRemove != profiles[x].email){
             newProfiles.push(profiles[x]);
         }else{
-            addLog(profiles[x].name, profiles[x].email, "Remove Profile", registrationFullDate(registrationDate(), registrationTime()));
-            
             const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            
             if(currentUser[0].email == profiles[x].email){
+                addLog(currentUser[0].name, currentUser[0].email, "Removed their own profile", registrationFullDate(registrationDate(), registrationTime()));
                 localStorage.removeItem("currentUser");
                 checkUser(); 
+            }else{
+                addLog(currentUser[0].name, currentUser[0].email, `Removed the profile ${emailToRemove}`, registrationFullDate(registrationDate(), registrationTime()));
             }
         }
     }
@@ -353,14 +360,17 @@ function editProfiles(){
 
     if(currentEmail[index].name != 0 && nameValid(currentEmail[index].name) && emailValid(currentEmail[index].email) && emailExist == false && currentEmail[index].password.length >= 6){
         localStorage.setItem("profiles", JSON.stringify(currentEmail));
-        addLog(currentEmail[index].name, currentEmail[index].email, "Edit Profile", registrationFullDate(registrationDate(), registrationTime()));
+        
         
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if (oldEmail == currentUser[0].email) {
+            addLog(currentUser[0].name, currentUser[0].email, "Edited their own profile", registrationFullDate(registrationDate(), registrationTime()));
             currentUser[0].email = currentEmail[index].email;
             currentUser[0].name = currentEmail[index].name;
             localStorage.removeItem("currentUser"); 
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
+        }else{
+            addLog(currentUser[0].name, currentUser[0].email, `Edited the profile ${currentEmail[index].email}`, registrationFullDate(registrationDate(), registrationTime()));
         }
 
         toggleModalEdit();
