@@ -9,9 +9,13 @@ document.addEventListener("DOMContentLoaded", function() {
 function userList(){
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
+    const table = document.getElementById("table-area");
+    
+    const rows = table.querySelectorAll(".table-row-itens");
+    rows.forEach(row => row.remove());
+
     if(profiles != null){
         for (let x = 0; x < profiles.length; x++){
-            const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";
             table.appendChild(tableRow);

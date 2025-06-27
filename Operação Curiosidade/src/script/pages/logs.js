@@ -1,20 +1,23 @@
-let logs = new Array();
-if(localStorage.hasOwnProperty("logs")){
-    logs = JSON.parse(localStorage.getItem("logs"));
-}
-
 if (checkAuth() == false) {
     window.location.href = "login-page.html";
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    listLogs();
+    logsList();
 });
 
-function listLogs(){
+function logsList(){
+    let logs = new Array();
+        if(localStorage.hasOwnProperty("logs")){
+        logs = JSON.parse(localStorage.getItem("logs"));
+    }
+
+    const table = document.getElementById("table-area");
+    const rows = table.querySelectorAll(".table-row-itens");
+    rows.forEach(row => row.remove());
+
     if(logs != null){
         for(var x = (logs.length-1); x >= 0; x--){
-            const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";
             table.appendChild(tableRow);

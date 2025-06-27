@@ -154,7 +154,7 @@ function createProfile(){
             window.location.href = "login-page.html";
         }else if(window.location.href.split("/").pop() == "profiles-page.html"){
             toggleModalCreate();
-            location.reload();
+            userList();
         }
     }
 }
@@ -214,7 +214,7 @@ function removeProfile(buttonRemove){
 
     localStorage.removeItem("profiles");
     localStorage.setItem("profiles", JSON.stringify(newProfiles));
-    location.reload();
+    trToRemove.remove();
 }
 
 let currentEditIndex = null;
@@ -374,6 +374,20 @@ function editProfiles(){
         }
 
         toggleModalEdit();
-        location.reload();
+        const currentPage = window.location.href.split("/").pop();
+
+        switch(currentPage){
+            case "dashboard-page.html":
+                shortUserList();
+                pendingUsers();
+                break;
+            case "profiles-page.html":
+                userList();
+                break;
+            case "logs.html":
+                logsList();
+                break;
+            default:
+        }
     }
 }
