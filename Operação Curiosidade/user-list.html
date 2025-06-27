@@ -47,6 +47,13 @@
                             <div class="sidebar-menu-title">Reports</div>
                         </a>
                     </div>
+                    <div class="sidebar-menu-line"></div>
+                    <div class="sidebar-menu-item">    
+                        <a href="logs.html" id="logs-menu">
+                            <img src="src/assets/icons/file.png" alt="" class="sidebar-menu-icon">
+                            <div class="sidebar-menu-title">Logs</div>
+                        </a>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -111,26 +118,35 @@
                                 </div>
                                 <div class="profile-name-birthday">
                                     <div class="profile-input">
-                                        <label for="name">Name:</label>
+                                        <label for="name">
+                                            Name
+                                            <div class="required-input">*</div>
+                                        </label>
                                         <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
                                         <span class="alert-user">Enter your name</span>
                                         <span class="alert-user alert-name-requirements">Invalid name</span>
                                     </div>
                                     <div class="profile-input">
-                                        <label for="birthday date">Birthday date:</label> 
+                                        <label for="birthday date">Birthday date</label> 
                                         <input id="profile-birthday" type="date" name="Birthday">
                                     </div>
                                 </div>
                                 <div class="profile-email-password">
                                     <div class="profile-input">
-                                        <label for="email">Email:</label>
+                                        <label for="email">
+                                            Email
+                                            <div class="required-input">*</div>
+                                        </label>
                                         <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Email</span>
                                         <span class="alert-user alert-email-requirements">Invalid email</span>
                                         <span class="alert-user alert-email-exist">This Email already exists, try another one!</span>
                                     </div>
                                     <div class="profile-input">
-                                        <label for="password">Password:</label>
+                                        <label for="password">
+                                            Password
+                                            <div class="required-input">*</div>
+                                        </label>
                                         <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Password</span>
                                         <span class="password-requirements">Minimum 6 characters required</span>
@@ -138,11 +154,11 @@
                                     </div>
                                 </div>
                                 <div class="profile-input modal-input-address">
-                                    <label for="address">Address:</label>
+                                    <label for="address">Address</label>
                                     <input id="profile-address" type="text" name="Address">
                                 </div>
                                 <div class="profile-input">
-                                    <label for="more informations">More Informations:</label>
+                                    <label for="more informations">More Informations</label>
                                     <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="500"></textarea>
                                 </div>
                                 <h3>2º Interests</h3>
