@@ -149,6 +149,14 @@ function createProfile(){
         profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, admin, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
+        if(document.getElementById("creation-alert")){
+            const creationAlert = document.getElementById("creation-alert");
+            creationAlert.classList.remove("hide");
+            setTimeout(() => {
+                creationAlert.classList.add("hide");
+            }, 5000);
+        }
+
         if(currentUser){
             addLog(currentUser[0].name, currentUser[0].email, `Created the profile ${email}`, registrationFullDate(createdAt, registrationTime()));
         }else{
@@ -202,6 +210,12 @@ function removeProfile(){
     const newProfiles = profiles.filter(profile => profile.email != emailToRemove);
 
     localStorage.setItem("profiles", JSON.stringify(newProfiles));
+    
+    const removalAlert = document.getElementById("removal-alert");
+    removalAlert.classList.remove("hide");
+    setTimeout(() => {
+        removalAlert.classList.add("hide");
+    }, 5000);
 
     if(removedProfile){
         if(currentUser[0].email == emailToRemove){
@@ -410,6 +424,12 @@ function editProfiles(){
         }else{
             addLog(currentUser[0].name, currentUser[0].email, `Edited the profile ${currentEmail[index].email}`, registrationFullDate(registrationDate(), registrationTime()));
         }
+
+        const editionAlert = document.getElementById("edition-alert");
+        editionAlert.classList.remove("hide");
+        setTimeout(() => {
+            editionAlert.classList.add("hide");
+        }, 5000);
 
         toggleModalEdit();
         const currentPage = window.location.href.split("/").pop();
