@@ -67,8 +67,11 @@ function userList(){
             }else{
                 tableRemoveImg.src = "src/assets/icons/trash-DM.png";
             }
-            tableRemoveImg.onclick = function(){ 
-                removeProfile(this);
+            tableRemoveImg.onclick = function(){
+                const trToRemove = this.closest("tr");
+                const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
+                localStorage.setItem("removeProfile", emailToRemove); 
+                toggleModalRemove();
             };
 
             tableRow.appendChild(tableEditRemove);
@@ -76,3 +79,5 @@ function userList(){
         }
     }
 }
+
+document.getElementById("confirm-removeProfile").addEventListener("click", removeProfile);

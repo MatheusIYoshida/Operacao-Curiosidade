@@ -5,6 +5,8 @@ const modalEdit = document.getElementById("modal-editProfile");
 const openModalCreate = document.getElementById("button-createProfile");
 const closeModalCreate = document.getElementById("close-modal-createProfile");
 const modalCreate = document.getElementById("modal-createProfile");
+const closeModalRemove = document.getElementById("cancel-removeProfile");
+const modalRemove = document.getElementById("modal-removeProfile");
 
 let currentEditEmail = null;
 const toggleModalEdit = () => {
@@ -39,6 +41,11 @@ const toggleModalCreate = () => {
     }
 }
 
+const toggleModalRemove = () => {
+    modalRemove.classList.toggle("hide");
+    fade.classList.toggle("hide");
+}
+
 fade.addEventListener("click", () => {
     if(!modalEdit.classList.contains("hide")){
         toggleModalEdit();
@@ -64,4 +71,9 @@ if (closeModalCreate) {
 
 if (openModalCreate) {
     openModalCreate.addEventListener("click", toggleModalCreate);
+}
+
+if (closeModalRemove){
+    closeModalRemove.addEventListener("click", toggleModalRemove);
+    localStorage.removeItem("removeProfile");
 }

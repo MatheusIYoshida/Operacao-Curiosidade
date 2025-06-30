@@ -142,6 +142,27 @@
     justify-content: center;
 }
 
+.buttons-removeProfile{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#cancel-removeProfile,
+#confirm-removeProfile{
+    text-align: center;
+    margin: 5px;
+    width: 245px;
+}
+
+#cancel-removeProfile{
+    opacity: 1;
+}
+
+#confirm-removeProfile{
+    background-color: #E53935;
+}
+
 
 /*Dark Mode*/
 body.dark .modal{
@@ -161,4 +182,9 @@ body.dark .profile-input textarea{
 body.dark .profile-input input,
 body.dark .profile-input textarea{
     background-color: #121212;
+}
+
+body.dark .alert-removeProfile,
+body.dark .question-removeProfile{
+    color: #FFF;
 }

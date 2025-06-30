@@ -185,11 +185,10 @@ if(document.getElementById("profile-password")){
     });
 }
 
-function removeProfile(buttonRemove){
+function removeProfile(){
     let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
     const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
-    const trToRemove = buttonRemove.closest("tr");
-    const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
+    const emailToRemove = localStorage.getItem("removeProfile");
 
     const removedProfile = profiles.find(profile => profile.email == emailToRemove);
     const newProfiles = profiles.filter(profile => profile.email != emailToRemove);
@@ -205,8 +204,8 @@ function removeProfile(buttonRemove){
             addLog(currentUser[0].name, currentUser[0].email, `Removed the profile ${emailToRemove}`, registrationFullDate(registrationDate(), registrationTime()));
         }
     }
-
-    trToRemove.remove();
+    toggleModalRemove();
+    userList();
 }
 
 let currentEditIndex = null;
