@@ -1,5 +1,6 @@
 function createProfile(){
     let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     var name = document.getElementById("create-profile-name").value;
     var email = document.getElementById("create-profile-email").value;
@@ -129,6 +130,14 @@ function createProfile(){
             }
         }
 
+        if(profiles.length == 0){
+            var admin = "Admin";
+        }else if(document.getElementById("modal-admin-checkbox") && document.getElementById("modal-admin-checkbox").checked == true){
+            var admin = "Admin";
+        }else{
+            var admin = "";
+        }
+
         if(birthday == "" || address == "" || moreInformations == "" || interests == "" || feelings == "" || coreValues == ""){
             var status = "Incomplete";
         }else{
@@ -137,10 +146,9 @@ function createProfile(){
 
         createdAt = registrationDate();
 
-        profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, createdAt});
+        profiles.push({name, birthday, email, password, address, moreInformations, interests, feelings, coreValues, active, status, admin, createdAt});
         localStorage.setItem("profiles", JSON.stringify(profiles));
 
-        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         if(currentUser){
             addLog(currentUser[0].name, currentUser[0].email, `Created the profile ${email}`, registrationFullDate(createdAt, registrationTime()));
         }else{
@@ -211,6 +219,7 @@ function removeProfile(){
 let currentEditIndex = null;
 function fillProfileForm(emailToEdit) {
     const checkProfiles = JSON.parse(localStorage.getItem("profiles"));
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     for(x = 0; x < checkProfiles.length; x++){
         if(emailToEdit == checkProfiles[x].email){
             const inputName = document.getElementById("profile-name");
@@ -223,6 +232,7 @@ function fillProfileForm(emailToEdit) {
             const inputFeelings = document.getElementById("profile-feelings"); 
             const inputCoreValues = document.getElementById("profile-coreValues"); 
             const inputActive = document.getElementById("modal-active-checkbox"); 
+            const inputAdmin = document.getElementById("modal-admin-checkbox");
 
             inputName.value = checkProfiles[x].name;
             inputBirthday.value = checkProfiles[x].birthday;
@@ -233,11 +243,45 @@ function fillProfileForm(emailToEdit) {
             inputInterests.value = checkProfiles[x].interests;
             inputFeelings.value = checkProfiles[x].feelings;
             inputCoreValues.value = checkProfiles[x].coreValues;
+
             if(checkProfiles[x].active == "Active"){
                 inputActive.checked = true;
             }else{
                 inputActive.checked = false;
             }
+
+            if(checkProfiles[x].admin == "Admin"){
+                inputAdmin.checked = true;
+            }else{
+                inputAdmin.checked = false;
+            }
+
+            if(emailToEdit != currentUser[0].email && currentUser[0].admin == ""){
+                document.getElementById("modal-admin-checkbox").style.opacity = ".4";
+                document.getElementById("modal-admin-checkbox").disabled = true;
+                document.getElementById("modal-admin-title").style.opacity = ".4";
+                document.getElementById("profile-password").disabled = true;
+                document.getElementById("profile-password").style.opacity = ".4";
+                document.getElementById("profile-password").previousElementSibling.style.opacity =  ".4";
+                document.querySelector(".password-requirements").style.opacity = ".4";
+            }else if(emailToEdit == currentUser[0].email && currentUser[0].admin == ""){
+                document.getElementById("modal-admin-checkbox").style.opacity = ".4";
+                document.getElementById("modal-admin-checkbox").disabled = true;
+                document.getElementById("modal-admin-title").style.opacity = ".4";
+                document.getElementById("profile-password").disabled = false;
+                document.getElementById("profile-password").style.opacity = "1";
+                document.getElementById("profile-password").previousElementSibling.style.opacity =  "1";
+                document.querySelector(".password-requirements").style.opacity = "1";
+            }else{
+                document.getElementById("modal-admin-checkbox").style.opacity = "1";
+                document.getElementById("modal-admin-checkbox").disabled = false;
+                document.getElementById("modal-admin-title").style.opacity = "1";
+                document.getElementById("profile-password").disabled = false;
+                document.getElementById("profile-password").style.opacity = "1";
+                document.getElementById("profile-password").previousElementSibling.style.opacity =  "1";
+                document.querySelector(".password-requirements").style.opacity = "1";
+            }
+
             currentEditIndex = x;
             break;
         }
@@ -284,6 +328,7 @@ function editProfiles(){
         feelings: document.getElementById("profile-feelings").value,
         coreValues: document.getElementById("profile-coreValues").value,
         active: document.getElementById("modal-active-checkbox").checked ? "Active" : "Inactive",
+        admin: document.getElementById("modal-admin-checkbox").checked ? "Admin" : "",
         status: currentEmail[index].status,
         createdAt: currentEmail[index].createdAt
     }

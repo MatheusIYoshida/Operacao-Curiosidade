@@ -26,6 +26,7 @@ const toggleModalEdit = () => {
 }
 
 const toggleModalCreate = () => {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     modalCreate.classList.toggle("hide");
     fade.classList.toggle("hide");
 
@@ -38,6 +39,12 @@ const toggleModalCreate = () => {
             input.style.border = "";
             input.value = "";
         });
+
+        if(currentUser[0].admin == ""){
+            document.getElementById("create-modal-admin-checkbox").style.opacity = ".4";
+            document.getElementById("create-modal-admin-checkbox").disabled = true;
+            document.getElementById("create-modal-admin-title").style.opacity = ".4";
+        }
     }
 }
 

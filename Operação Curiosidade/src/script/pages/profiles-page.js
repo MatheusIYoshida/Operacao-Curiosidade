@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function userList(){
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const table = document.getElementById("table-area");
     
     const rows = table.querySelectorAll(".table-row-itens");
@@ -67,12 +68,18 @@ function userList(){
             }else{
                 tableRemoveImg.src = "src/assets/icons/trash-DM.png";
             }
-            tableRemoveImg.onclick = function(){
-                const trToRemove = this.closest("tr");
-                const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
-                localStorage.setItem("removeProfile", emailToRemove); 
-                toggleModalRemove();
-            };
+
+            if(currentUser[0].admin == "" && currentUser[0].email != profiles[x].email){
+                tableRemoveImg.style.opacity = ".3";
+                tableRemoveImg.style.cursor = "default";
+            }else{
+                tableRemoveImg.onclick = function(){
+                    const trToRemove = this.closest("tr");
+                    const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
+                    localStorage.setItem("removeProfile", emailToRemove); 
+                    toggleModalRemove();
+                };
+            }
 
             tableRow.appendChild(tableEditRemove);
             tableEditRemove.appendChild(tableRemoveImg);

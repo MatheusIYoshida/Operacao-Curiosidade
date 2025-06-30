@@ -13,7 +13,7 @@ function profileValidation(emailValue, passwordValue){
     
     for(var x = 0; x < profiles.length; x++){
         if(emailValue == profiles[x].email && passwordValue == profiles[x].password){
-            giveAuth(profiles[x].name, emailValue);
+            giveAuth(profiles[x].name, emailValue, profiles[x].admin);
             window.location.href = "dashboard-page.html";
             alertError = true;
             break;
