@@ -1,8 +1,5 @@
 function createProfile(){
-    let profiles = new Array();
-    if(localStorage.hasOwnProperty("profiles")){
-        profiles = JSON.parse(localStorage.getItem("profiles"));
-    }
+    let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
 
     var name = document.getElementById("create-profile-name").value;
     var email = document.getElementById("create-profile-email").value;
@@ -189,31 +186,26 @@ if(document.getElementById("profile-password")){
 }
 
 function removeProfile(buttonRemove){
-    let profiles = new Array();
-    if(localStorage.hasOwnProperty("profiles")){
-        profiles = JSON.parse(localStorage.getItem("profiles"));
-    }
+    let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
     const trToRemove = buttonRemove.closest("tr");
     const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
-    let newProfiles = new Array;
-    for(var x = 0; x < profiles.length; x++){
-        if(emailToRemove != profiles[x].email){
-            newProfiles.push(profiles[x]);
+
+    const removedProfile = profiles.find(profile => profile.email == emailToRemove);
+    const newProfiles = profiles.filter(profile => profile.email != emailToRemove);
+
+    localStorage.setItem("profiles", JSON.stringify(newProfiles));
+
+    if(removedProfile){
+        if(currentUser[0] == emailToRemove){
+            addLog(currentUser[0].name, currentUser[0].email, "Removed their own profile", registrationFullDate(registrationDate(), registrationTime()));
+            localStorage.removeItem("currentUser");
+            checkUser(); 
         }else{
-            const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-            
-            if(currentUser[0].email == profiles[x].email){
-                addLog(currentUser[0].name, currentUser[0].email, "Removed their own profile", registrationFullDate(registrationDate(), registrationTime()));
-                localStorage.removeItem("currentUser");
-                checkUser(); 
-            }else{
-                addLog(currentUser[0].name, currentUser[0].email, `Removed the profile ${emailToRemove}`, registrationFullDate(registrationDate(), registrationTime()));
-            }
+            addLog(currentUser[0].name, currentUser[0].email, `Removed the profile ${emailToRemove}`, registrationFullDate(registrationDate(), registrationTime()));
         }
     }
 
-    localStorage.removeItem("profiles");
-    localStorage.setItem("profiles", JSON.stringify(newProfiles));
     trToRemove.remove();
 }
 
