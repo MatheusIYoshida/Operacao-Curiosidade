@@ -204,7 +204,7 @@ function removeProfile(){
     localStorage.setItem("profiles", JSON.stringify(newProfiles));
 
     if(removedProfile){
-        if(currentUser[0] == emailToRemove){
+        if(currentUser[0].email == emailToRemove){
             addLog(currentUser[0].name, currentUser[0].email, "Removed their own profile", registrationFullDate(registrationDate(), registrationTime()));
             localStorage.removeItem("currentUser");
             checkUser(); 
