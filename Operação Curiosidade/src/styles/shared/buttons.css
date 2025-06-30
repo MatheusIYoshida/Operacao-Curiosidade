@@ -12,19 +12,25 @@
     cursor: pointer;
 }
 
-.close-button{
-    padding: .6rem 1.2rem;
-    background-color: #888;
-    border: none;
-    border-radius: .25rem;
+.close-icon{
+    width: 25px;
+    height: 25px;
+    opacity: .5;
     cursor: pointer;
-    opacity: .7;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: 0.4s;
+    transition: .4s;
 }
 
 .submit-button:hover,
-.close-button:hover{
+.close-icon:hover{
+    opacity: 1;
+}
+
+/*Dark Mode*/
+
+body.dark .close-icon{
+    opacity: .8;
+}
+
+body.dark .close-icon:hover{
     opacity: 1;
 }

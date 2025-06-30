@@ -246,12 +246,14 @@ function fillProfileForm(emailToEdit) {
 }
 
 function modalEditProfile(buttonEdit){
+    swapCloseButton();
     const trToEdit = buttonEdit.closest("tr");
     const currentEditEmail = trToEdit.querySelector(".tableEmail").textContent;
     fillProfileForm(currentEditEmail);
 }
 
 function headerModalEditProfile(){
+    swapCloseButton();
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const currentEditEmail = currentUser[0].email;
     fillProfileForm(currentEditEmail);
