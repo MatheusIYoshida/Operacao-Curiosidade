@@ -15,14 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function shortUserList(){
+    profiles = JSON.parse(localStorage.getItem("profiles"));
+    const table = document.getElementById("table-area");
+
+    const rows = table.querySelectorAll(".table-row-itens");
+    rows.forEach(row => row.remove());
+
     if(profiles.length > 15){
         var profilesFor = (profiles.length - 15);
     }else{
         var profilesFor = 0;
     }
+
     if(profiles != null){
         for (let x = (profiles.length - 1); x >= profilesFor; x--){
-            const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";
             table.appendChild(tableRow);
@@ -60,6 +66,7 @@ function recentUsers(){
 }
 
 function pendingUsers(){
+    profiles = JSON.parse(localStorage.getItem("profiles"));
     var pending = 0;
     for(var x = 0; x < profiles.length; x++){
         if(profiles[x].status == "Incomplete"){

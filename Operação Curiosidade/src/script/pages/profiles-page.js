@@ -9,9 +9,14 @@ document.addEventListener("DOMContentLoaded", function() {
 function userList(){
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const table = document.getElementById("table-area");
+    
+    const rows = table.querySelectorAll(".table-row-itens");
+    rows.forEach(row => row.remove());
+
     if(profiles != null){
         for (let x = 0; x < profiles.length; x++){
-            const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";
             table.appendChild(tableRow);
@@ -63,12 +68,23 @@ function userList(){
             }else{
                 tableRemoveImg.src = "src/assets/icons/trash-DM.png";
             }
-            tableRemoveImg.onclick = function(){ 
-                removeProfile(this);
-            };
+
+            if(currentUser[0].admin == "" && currentUser[0].email != profiles[x].email){
+                tableRemoveImg.style.opacity = ".3";
+                tableRemoveImg.style.cursor = "default";
+            }else{
+                tableRemoveImg.onclick = function(){
+                    const trToRemove = this.closest("tr");
+                    const emailToRemove = trToRemove.querySelector(".tableEmail").textContent;
+                    localStorage.setItem("removeProfile", emailToRemove); 
+                    toggleModalRemove();
+                };
+            }
 
             tableRow.appendChild(tableEditRemove);
             tableEditRemove.appendChild(tableRemoveImg);
         }
     }
 }
+
+document.getElementById("confirm-removeProfile").addEventListener("click", removeProfile);

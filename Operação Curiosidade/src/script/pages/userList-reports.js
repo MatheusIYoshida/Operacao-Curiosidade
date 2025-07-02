@@ -7,11 +7,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function userListReports(){
+    const table = document.getElementById("table-area");
 
     let profiles = JSON.parse(localStorage.getItem("profiles"));
     if(profiles != null){
         for (let x = 0; x < profiles.length; x++){
-            const table = document.getElementById("table-area");
             const tableRow = document.createElement("tr");
             tableRow.className = "table-row-itens";
             table.appendChild(tableRow);

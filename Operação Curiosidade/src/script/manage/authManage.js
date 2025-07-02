@@ -1,9 +1,10 @@
-function giveAuth(userName, userEmail){
+function giveAuth(userName, userEmail, userAdmin){
     localStorage.setItem("authToken", "token");
     const currentUser = new Array();
     currentUser.push({
         name: userName, 
-        email: userEmail
+        email: userEmail,
+        admin: userAdmin
     });
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
