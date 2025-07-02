@@ -320,6 +320,7 @@ function editProfiles(){
     const index = currentEditIndex;
     const currentEmail = JSON.parse(localStorage.getItem("profiles"));
     const oldEmail = currentEmail[index].email;
+    const oldAdmin = currentEmail[index].admin;
 
     const nameInput = document.getElementById("profile-name");
     const emailInput = document.getElementById("profile-email");
@@ -419,6 +420,7 @@ function editProfiles(){
             addLog(currentUser[0].name, currentUser[0].email, "Edited their own profile", registrationFullDate(registrationDate(), registrationTime()));
             currentUser[0].email = currentEmail[index].email;
             currentUser[0].name = currentEmail[index].name;
+            currentUser[0].admin = currentEmail[index].admin;
             localStorage.removeItem("currentUser"); 
             localStorage.setItem("currentUser", JSON.stringify(currentUser));
         }else{

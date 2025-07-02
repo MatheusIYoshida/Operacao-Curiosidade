@@ -4,7 +4,9 @@ document.querySelector(".header-input-box").addEventListener("keyup", function()
 
     tableRows.forEach((row, index) => {
 
-        if (index == 0) return;
+        if (index == 0){
+            return;
+        }
 
         let found = false;
         const cells = row.querySelectorAll("td");

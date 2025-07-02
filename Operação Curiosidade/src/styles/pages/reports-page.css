@@ -2,16 +2,10 @@
     margin: 7px 5px;
 }
 
-.reports-lists a{
+.reports-lists-text{
     font-size: 17px;
     color: #000;
-    text-decoration: none;
-    transition: 0.4s;
-    opacity: .5;
-}
-
-.reports-lists a:hover{
-    opacity: 1;
+    cursor: pointer;
 }
 
 .reports-table-title{
@@ -32,8 +26,63 @@
     color: #A9A9A9;
 }
 
+.hide-list{
+   display: none; 
+}
+
+@media print {
+    .sidebar, 
+    header,
+    .main-container-title,
+    .reports-table,
+    .table-line,
+    .reports-lists{
+        display: none;
+    }
+
+    .main-container-area{
+        overflow: visible;
+        box-shadow: none;
+        margin: 0px;
+    }
+
+    .hide-list{
+        display: block;
+    }
+
+    #table-area th, 
+    #table-area td {
+        font-size: 15px; 
+        padding: 8px 10px; 
+        height: 40px;
+        color: #000;
+    }
+
+    #table-area th:nth-child(1),   
+    #table-area td:nth-child(1){
+        width: 325px;
+    }
+
+    #table-area th:nth-child(2),   
+    #table-area td:nth-child(2){
+        width: 325px;
+    }
+
+    #table-area th:nth-child(3),   
+    #table-area td:nth-child(3){  
+        width: 175px;    
+        padding-left: 5px; 
+        padding-right: 5px;
+    }
+
+    #table-area th:nth-child(4),   
+    #table-area td:nth-child(4){      
+        padding-left: 50px;
+    }
+}
+
 
 /*Dark Mode*/
-body.dark .reports-lists a{
+body.dark .reports-lists-text{
     color: #A9A9A9;
 } 

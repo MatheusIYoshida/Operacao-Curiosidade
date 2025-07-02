@@ -179,6 +179,7 @@ body.dark .modal-topic,
 body.dark .modal-header h2,
 body.dark .modal-body h3,
 body.dark .modal-active-title,
+body.dark .modal-admin-title,
 body.dark .profile-input input,
 body.dark .profile-input textarea{
     color: #FFF;
