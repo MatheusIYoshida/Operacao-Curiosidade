@@ -39,6 +39,7 @@ const toggleModalCreate = () => {
             input.style.border = "";
             input.value = "";
         });
+        document.getElementById("create-modal-admin-checkbox").checked = false;
 
         if(currentUser[0].admin == ""){
             document.getElementById("create-modal-admin-checkbox").style.opacity = ".4";
