@@ -18,6 +18,7 @@ builder.Services.AddScoped<ILogRepository, LogRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IEmailValidation, EmailValidation>();
 builder.Services.AddScoped<IProfileStatusValidation, ProfileStatusValidation>();
+builder.Services.AddScoped<IDataService, DataService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) //O parâmetro define que por padrão o sistema usará a autenticação baseada em tokens jwt 
     .AddJwtBearer(options =>

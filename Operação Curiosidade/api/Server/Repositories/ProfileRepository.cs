@@ -9,13 +9,18 @@ namespace Server.Repositories
     {
         private static List<Profile> _profiles = new List<Profile>();
         private static int _profileId = 1;
+        private const string FilePath = "Data/profiles.json";
         private readonly IEmailValidation _emailValidation;
         private readonly IProfileStatusValidation _statusValidation;
+        private readonly IDataService _profileData;
 
-        public ProfileRepository(IEmailValidation emailValidation, IProfileStatusValidation statusValidation)
+        public ProfileRepository(IEmailValidation emailValidation, IProfileStatusValidation statusValidation, IDataService profileData)
         {
             _emailValidation = emailValidation;
             _statusValidation = statusValidation;
+            _profileData = profileData;
+            _profiles = _profileData.LoadData<Profile>(FilePath) ?? new List<Profile>();
+            _profileId = _profiles.Count > 0 ? _profiles.Max(p => p.Id) + 1 : 1;
         }
 
         public IEnumerable<Profile> GetProfiles()
@@ -44,6 +49,7 @@ namespace Server.Repositories
             profile.Status = _statusValidation.StatusValid(profile) ? "Complete" : "Incomplete";
 
             _profiles.Add(profile);
+            _profileData.SaveData(FilePath, _profiles);
             return profile;
         }
 
@@ -70,6 +76,7 @@ namespace Server.Repositories
             existingProfile.Admin = profile.Admin;
             existingProfile.Status = _statusValidation.StatusValid(profile) ? "Complete" : "Incomplete";
 
+            _profileData.SaveData(FilePath, _profiles);
             return existingProfile;
         }
 
@@ -79,6 +86,7 @@ namespace Server.Repositories
             if (profile == null) return false;
 
             profile.Deleted = true;
+            _profileData.SaveData(FilePath, _profiles);
             return true;
         }
 

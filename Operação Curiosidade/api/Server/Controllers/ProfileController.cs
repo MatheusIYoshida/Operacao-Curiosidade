@@ -17,7 +17,7 @@ namespace Server.Controllers
 
         public ProfileController(IProfileRepository repository)
         {
-            _repository = repository; //injeção de dependencia
+            _repository = repository;
         }
 
         [HttpGet]
