@@ -12,22 +12,7 @@ async function userList(){
     const table = document.getElementById("table-area");
 
     try{
-        const response = await fetch('https://localhost:7160/api/Profile', {
-            method: 'Get',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-type': 'application/json',
-            },
-        });
-
-        if(!response.ok){
-            throw{
-                status: response.status,
-                message: 'Get Profiles error'
-            }
-        }
-
-        const profiles = await response.json();
+        const profiles = await getProfiles(token);
         const rows = table.querySelectorAll(".table-row-itens");
         rows.forEach(row => row.remove());
 

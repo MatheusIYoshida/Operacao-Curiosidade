@@ -24,7 +24,8 @@ public static class ProfileDTOMappingExtension
             CoreValues = profile.CoreValues,
             Active = profile.Active,
             Status = profile.Status,
-            Admin = profile.Admin
+            Admin = profile.Admin,
+            CreatedAt = profile.CreatedAt
         }; 
     }
 
@@ -47,7 +48,8 @@ public static class ProfileDTOMappingExtension
             CoreValues = profileDTO.CoreValues,
             Active = profileDTO.Active,
             Status = profileDTO.Status,
-            Admin = profileDTO.Admin
+            Admin = profileDTO.Admin,
+            CreatedAt = profileDTO.CreatedAt
         };
     }
 
@@ -70,7 +72,8 @@ public static class ProfileDTOMappingExtension
             CoreValues = profile.CoreValues,
             Active = profile.Active,
             Status = profile.Status,
-            Admin = profile.Admin
+            Admin = profile.Admin,
+            CreatedAt = profile.CreatedAt
         }).ToList();
     }
 }

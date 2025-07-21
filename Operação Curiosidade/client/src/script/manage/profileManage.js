@@ -7,11 +7,11 @@ async function createProfile(){
     var emailInput = document.getElementById("create-profile-email");
     var alertEmailRequirement = document.querySelector(".alert-email-requirements-create");
     var alertEmailExist = document.querySelector(".alert-email-exist-create");
-    var emailExist = false;
     var passwordInput = document.getElementById("create-profile-password");
     var passwordRequirement = document.querySelector(".password-requirements-create");
     var alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
-    
+    const currentProfile = JSON.parse(localStorage.getItem("currentProfile"));
+
     if(name == 0){
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
@@ -113,8 +113,6 @@ async function createProfile(){
             var admin = false;
         }
 
-        console.log(admin)
-
         const newProfile = {
             Name: name,
             Birthday: birthday || null,
@@ -154,7 +152,6 @@ async function createProfile(){
             }
             
             const responseData = await response.json();
-            console.log('Received data', responseData);
             
             if(document.getElementById("creation-alert")){
                 const creationAlert = document.getElementById("creation-alert");
@@ -162,6 +159,22 @@ async function createProfile(){
                 setTimeout(() => {
                     creationAlert.classList.add("hide");
                 }, 5000);
+            }
+
+            if(currentProfile){
+                var log = {
+                    name: currentProfile.name,
+                    email: currentProfile.email,
+                    action: `Created the profile ${newProfile.Email}`
+                };
+                createLogs(log);
+            }else{
+                var log = {
+                    name: newProfile.Name,
+                    email: newProfile.Email,
+                    action: `Created their own profile`
+                };
+                createLogs(log);
             }
 
             if(window.location.href.split("/").pop() == "login-registration.html"){
@@ -181,14 +194,6 @@ async function createProfile(){
                 console.error('Create profile error', error);
             }
         }    
-
-        /*
-        if(currentUser){
-            addLog(currentUser[0].name, currentUser[0].email, `Created the profile ${email}`, registrationFullDate(createdAt, registrationTime()));
-        }else{
-            addLog(name, email, "Created their own profile", registrationFullDate(createdAt, registrationTime()));
-        }
-        */
     }
 }
 
@@ -221,33 +226,52 @@ if(document.getElementById("profile-password")){
     });
 }
 
-function removeProfile(){
-    let profiles = JSON.parse(localStorage.getItem("profiles")) || [];
-    const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+async function removeProfile(){
+    const currentProfile = JSON.parse(localStorage.getItem("currentProfile")) || [];
+    const token = localStorage.getItem("Token");
     const emailToRemove = localStorage.getItem("removeProfile");
 
-    const removedProfile = profiles.find(profile => profile.email == emailToRemove);
-    const newProfiles = profiles.filter(profile => profile.email != emailToRemove);
+    try{
+        const response = await fetch(`https://localhost:7160/api/Profile/by-email/${emailToRemove}`,{
+            method: 'Delete',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
 
-    localStorage.setItem("profiles", JSON.stringify(newProfiles));
-    
-    const removalAlert = document.getElementById("removal-alert");
-    removalAlert.classList.remove("hide");
-    setTimeout(() => {
-        removalAlert.classList.add("hide");
-    }, 5000);
+        const removalAlert = document.getElementById("removal-alert");
+        removalAlert.classList.remove("hide");
+        setTimeout(() => {
+            removalAlert.classList.add("hide");
+        }, 5000);
 
-    if(removedProfile){
-        if(currentUser[0].email == emailToRemove){
-            addLog(currentUser[0].name, currentUser[0].email, "Removed their own profile", registrationFullDate(registrationDate(), registrationTime()));
+        localStorage.removeItem("removeProfile");
+
+        if(emailToRemove == currentProfile.Email){
+            var log = {
+                name: currentProfile.name,
+                email: currentProfile.email,
+                action: "Removed their own profile"
+            };
+            createLogs(log);
             localStorage.removeItem("currentUser");
             checkUser(); 
         }else{
-            addLog(currentUser[0].name, currentUser[0].email, `Removed the profile ${emailToRemove}`, registrationFullDate(registrationDate(), registrationTime()));
+            var log = {
+                name: currentProfile.name,
+                email: currentProfile.email,
+                action: `Removed the profile ${emailToRemove}`
+            };
+            createLogs(log);
         }
+
+        toggleModalRemove();
+        userList();
     }
-    toggleModalRemove();
-    userList();
+    catch(error){
+        console.error('Remove profile error', error);
+    }    
 }
 
 let currentEditIndex = null;

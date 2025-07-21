@@ -17,6 +17,5 @@ public class BaseEntity
     [EmailAddress(ErrorMessage = "Invalid Email")]
     public string? Email { get; set; }
 
-    [JsonIgnore]
     public DateTime? CreatedAt { get; set; }
 }

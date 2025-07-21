@@ -31,5 +31,6 @@ namespace Server.DTOs
         public bool Active { get; set; }
         public string? Status { get; set; }
         public bool Admin { get; set; }
+        public DateTime? CreatedAt { get; set; }
     }
 }
