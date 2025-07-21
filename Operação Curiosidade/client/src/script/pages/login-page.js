@@ -35,8 +35,11 @@ async function profileValidation(emailValue, passwordValue){
         }
 
         const responseData = await response.json();
-        console.log('Received data', responseData);
         localStorage.setItem("Token", responseData.token);
+    
+        const profile = await getProfile(emailValue, responseData.token);
+        localStorage.setItem("currentProfile", JSON.stringify(profile));
+        window.location.href = "dashboard-page.html";
     }
     catch (error){
         if(error.alertError){
@@ -47,32 +50,6 @@ async function profileValidation(emailValue, passwordValue){
             console.error("Login error", error);
         }
     }
-    
-    try{
-        const token = localStorage.getItem("Token");
-        const response = await fetch(`https://localhost:7160/api/Profile/by-email/${emailValue}`,{
-            method: 'Get',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if(!response.ok){
-            throw{
-                status: response.status,
-                message: 'Get profile error'
-            }
-        }
-
-        const profile = await response.json();
-        console.log(profile);
-        localStorage.setItem("currentProfile", JSON.stringify(profile));
-        window.location.href = "dashboard-page.html";
-    }
-    catch (error){
-        console.error("Get profile error", error);
-    } 
 }
 
 document.getElementById("login-submit").addEventListener("click", () =>{

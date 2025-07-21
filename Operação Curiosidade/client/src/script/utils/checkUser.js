@@ -1,11 +1,11 @@
 function checkUser(){
-    const currentUser = localStorage.getItem("currentUser");
-    if(!currentUser){
-        localStorage.removeItem("authToken");
+    const currentProfile = localStorage.getItem("currentProfile");
+    if(!currentProfile){
+        localStorage.removeItem("Token");
         window.location.href = "login-page.html";
     }
 }
 
 window.onload = function(){
-    //checkUser();
+    checkUser();
 }
