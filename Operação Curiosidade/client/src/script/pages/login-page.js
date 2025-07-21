@@ -37,7 +37,14 @@ async function profileValidation(emailValue, passwordValue){
         const responseData = await response.json();
         localStorage.setItem("Token", responseData.token);
     
-        const profile = await getProfile(emailValue, responseData.token);
+        const responseProfile = await fetch(`https://localhost:7160/api/Profile/current-profile/${emailValue}`,{
+            method: 'Get',
+            headers: {
+                'Authorization': `Bearer ${responseData.token}`,
+                'Content-Type': 'application/json',
+            }
+        })
+        const profile = await responseProfile.json()
         localStorage.setItem("currentProfile", JSON.stringify(profile));
         window.location.href = "dashboard-page.html";
     }
