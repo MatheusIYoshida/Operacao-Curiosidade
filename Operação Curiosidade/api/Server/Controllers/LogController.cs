@@ -9,7 +9,6 @@ namespace Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class LogController : ControllerBase
 {
     private readonly ILogRepository _log;
@@ -20,6 +19,7 @@ public class LogController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult<IEnumerable<Log>> GetAll()
     {
         var logs = _log.GetLogs();
@@ -31,6 +31,7 @@ public class LogController : ControllerBase
     }
 
     [HttpGet("by-id/{id}", Name = "GetLog")]
+    [Authorize]
     public ActionResult<Log> GetLog(int id) 
     {
         var log = _log.GetLog(id);
@@ -45,15 +46,12 @@ public class LogController : ControllerBase
     public ActionResult<Log> Post([FromBody] Log log)
     {
 
-        try
+        if (log == null || !ModelState.IsValid)
         {
-            var createdLog = _log.CreateLog(log);
+            return BadRequest(ModelState);
+        }
 
-            return new CreatedAtRouteResult("GetLog", new { id = createdLog.Id }, createdLog);
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        var createdLog = _log.CreateLog(log);
+        return new CreatedAtRouteResult("GetLog", new { id = createdLog.Id }, createdLog);
     }
 }

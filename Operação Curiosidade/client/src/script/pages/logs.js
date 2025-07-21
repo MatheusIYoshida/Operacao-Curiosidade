@@ -49,7 +49,8 @@ async function logsList(){
                 tableRow.appendChild(tableAction);
 
                 const tableTimestamp = document.createElement("td");
-                tableTimestamp.textContent = log.createdAt;
+                var timeStamp = formatDateTime(log.createdAt);
+                tableTimestamp.textContent = timeStamp;
                 tableRow.appendChild(tableTimestamp);
             })
         }
