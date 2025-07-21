@@ -22,7 +22,7 @@ public class LogController : ControllerBase
     [Authorize]
     public ActionResult<IEnumerable<Log>> GetAll()
     {
-        var logs = _log.GetLogs();
+        var logs = _log.GetLogs().OrderByDescending(l => l.CreatedAt);
 
         if (logs is null)
             return NotFound("Logs not found");
