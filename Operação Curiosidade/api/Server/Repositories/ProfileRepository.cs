@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Server.Models;
-using Server.Services;
+using Server.Services.Interfaces;
 using System.Net;
 
 namespace Server.Repositories
@@ -19,7 +19,7 @@ namespace Server.Repositories
             _emailValidation = emailValidation;
             _statusValidation = statusValidation;
             _profileData = profileData;
-            _profiles = _profileData.LoadData<Profile>(FilePath) ?? new List<Profile>();
+            _profiles = _profileData.LoadData<Profile>(FilePath);
             _profileId = _profiles.Count > 0 ? _profiles.Max(p => p.Id) + 1 : 1;
         }
 
@@ -33,13 +33,13 @@ namespace Server.Repositories
             return _profiles.FirstOrDefault(p => p.Email == email && !p.Deleted);
         }
 
-        public Profile CreateProfile(Profile profile)
+        public (Profile? Profile, string? Error) CreateProfile(Profile profile)
         {
             if (profile is null)
-                throw new InvalidOperationException("Profile is null");
+                return(null, "Profile is null");
 
             if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles))
-                throw new InvalidOperationException("Email already exists");
+                return (null, "Email already exists");
 
             if (_profiles.Count == 0)
                 profile.Admin = true;
@@ -50,7 +50,7 @@ namespace Server.Repositories
 
             _profiles.Add(profile);
             _profileData.SaveData(FilePath, _profiles);
-            return profile;
+            return (profile, null);
         }
 
         public Profile UpdateProfile(Profile profile)
@@ -83,7 +83,8 @@ namespace Server.Repositories
         public bool DeleteProfile(string email)
         {
             var profile = _profiles.FirstOrDefault(p => p.Email == email && !p.Deleted);
-            if (profile == null) return false;
+            if (profile == null) 
+                return false;
 
             profile.Deleted = true;
             _profileData.SaveData(FilePath, _profiles);

@@ -6,7 +6,7 @@ namespace Server.Repositories
     {
         IEnumerable<Profile> GetProfiles();
         Profile? GetProfile(string email);
-        Profile CreateProfile(Profile profile);
+        (Profile? Profile, string? Error) CreateProfile(Profile profile);
         Profile UpdateProfile(Profile profile);
         bool DeleteProfile(string email);
     }

@@ -26,30 +26,24 @@ namespace Server.Controllers
         {
             var profiles = _repository.GetProfiles();
 
-            if (profiles == null)
-                return NotFound("No profile found");
-
-            var profilesDTO = profiles.ToProfileDTOList();
-            return Ok(profilesDTO);
+            return Ok(profiles.ToProfileDTOList());
         }
 
         [HttpGet("by-email/{email}", Name = "GetProfile")]
-        [Authorize]
-        public ActionResult<ProfileDTO> Get(string email)
+
+        public ActionResult<ProfileDTO> GetByEmail(string email)
         {
             var profile = _repository.GetProfile(email);
 
             if (profile == null)
                 return NotFound("profile not found");
 
-            var profileDTO = profile.ToProfileDTO();
-
-            return Ok(profileDTO);
+            return Ok(profile.ToProfileDTO());
         }
 
-        [HttpGet("current-profile/{email}")]
+        [HttpGet("current/{email}")]
         [Authorize]
-        public ActionResult<CurrentProfileDTO> GetCurrentProfile(string email) 
+        public ActionResult<CurrentProfileDTO> GetCurrent(string email)
         {
             var profile = _repository.GetProfile(email);
 
@@ -59,27 +53,19 @@ namespace Server.Controllers
             return Ok(profile.ToCurrentProfileDTO());
         }
 
-
         [HttpPost]
         public ActionResult<ProfileDTO> Post([FromBody] ProfileDTO profileDTO)
         {
-            try
-            {
-                var profile = profileDTO.ToProfile();
-                var createdProfile = _repository.CreateProfile(profile);
-                var createdProfileDTO = createdProfile.ToProfileDTO();
+            var (createdProfile, error) = _repository.CreateProfile(profileDTO.ToProfile());
 
-                return new CreatedAtRouteResult("GetProfile", new { email = createdProfileDTO.Email }, createdProfileDTO);
-            }
-            catch (InvalidOperationException ioe) when (ioe.Message == "Email already exists")
+            if (error != null)
             {
-                return Conflict("Email Already Exist");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                if (error == "Email already exists")
+                    return Conflict(error);
 
+                return BadRequest(error);
+            }
+            return new CreatedAtRouteResult("GetProfile", new { email = createdProfile.Email }, createdProfile.ToProfileDTO());
         }
 
         [HttpPut("by-email/{email}")]
@@ -94,10 +80,9 @@ namespace Server.Controllers
                 return NotFound();
 
             var profile = profileDTO.ToProfile();
-            _repository.UpdateProfile(profile);
-            var updatedProfileDTO = profile.ToProfileDTO();
+            _repository.UpdateProfile(profileDTO.ToProfile());
 
-            return Ok(updatedProfileDTO);
+            return Ok(profile.ToProfileDTO());
         }
 
         [HttpDelete("by-email/{email}")]
@@ -105,15 +90,7 @@ namespace Server.Controllers
         public ActionResult<ProfileDTO> Delete(string email)
         {
             bool deletado = _repository.DeleteProfile(email);
-
-            if (deletado)
-            {
-                return Ok($"Profile email: {email} deleted succesfully!");
-            }
-            else
-            {
-                return StatusCode(500, $"Failed to delete profile email: {email}");
-            }
+            return deletado ? Ok($"Profile email: {email} deleted succesfully!") : StatusCode(500, $"Failed to delete profile email: {email}");
         }
     }
 }
