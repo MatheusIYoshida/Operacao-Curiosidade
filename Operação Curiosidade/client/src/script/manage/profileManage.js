@@ -256,7 +256,7 @@ async function removeProfile() {
             };
             createLogs(log);
             localStorage.removeItem("currentProfile");
-            checkUser();
+            checkAuth();
         } else {
             var log = {
                 name: currentProfile.name,

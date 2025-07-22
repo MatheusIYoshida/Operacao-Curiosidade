@@ -1,5 +1,6 @@
 function checkAuth() {
     if(!localStorage.getItem("Token")){
+        localStorage.removeItem("currentProfile");
         return false;
     }
 }
