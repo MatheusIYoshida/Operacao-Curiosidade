@@ -37,7 +37,7 @@ async function profileValidation(emailValue, passwordValue){
         const responseData = await response.json();
         localStorage.setItem("Token", responseData.token);
     
-        const responseProfile = await fetch(`https://localhost:7160/api/Profile/current-profile/${emailValue}`,{
+        const responseProfile = await fetch(`https://localhost:7160/api/Profile/current/${emailValue}`,{
             method: 'Get',
             headers: {
                 'Authorization': `Bearer ${responseData.token}`,

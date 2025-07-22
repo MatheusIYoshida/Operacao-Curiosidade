@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Server.DTOs;
 using Server.Models;
 using Server.Repositories;
-using Server.Services;
+using Server.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

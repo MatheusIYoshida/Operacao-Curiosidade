@@ -1,4 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Server.Services.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -29,7 +30,7 @@ namespace Server.Services
                 issuer: _config["Jwt:ValidIssuer"],
                 audience: _config["Jwt:ValidAudience"],
                 claims: claims,
-                expires: DateTime.Now.AddHours(1), // Token expira em 1 hora
+                expires: DateTime.Now.AddHours(3), // Token expira em 1 hora
                 signingCredentials: credentials
             );
 
