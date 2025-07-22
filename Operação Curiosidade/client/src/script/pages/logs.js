@@ -1,7 +1,4 @@
-if (checkAuth() == false) {
-    window.location.href = "login-page.html";
-}
-
+checkAuth();
 document.addEventListener("DOMContentLoaded", function() {
     logsList();
 });

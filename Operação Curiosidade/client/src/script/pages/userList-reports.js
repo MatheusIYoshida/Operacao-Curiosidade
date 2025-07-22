@@ -1,7 +1,4 @@
-if (checkAuth() == false) {
-    window.location.href = "login-page.html";
-}
-
+checkAuth();
 document.addEventListener("DOMContentLoaded", function() {
     userListReports();
 });
@@ -46,7 +43,6 @@ async function userListReports(){
 
                 const tableCreatedAt = document.createElement("td");
                 tableCreatedAt.className = "tableCreatedAt";
-                console.log(profile.createdAt)
                 tableCreatedAt.textContent = formatDate(profile.createdAt);
                 tableRow.appendChild(tableCreatedAt);
             })

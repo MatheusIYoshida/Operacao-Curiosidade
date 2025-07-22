@@ -1,12 +1,12 @@
 function checkAuth() {
     if(!localStorage.getItem("Token")){
         localStorage.removeItem("currentProfile");
-        return false;
+        window.location.href = "login-page.html";
     }
 }
 
 function checkLogout(){
     if (localStorage.getItem("Token")) {
-        return false;
+        window.location.href = "dashboard-page.html";
     }
 }

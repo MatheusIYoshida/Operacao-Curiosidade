@@ -255,7 +255,7 @@ async function removeProfile() {
                 action: "Removed their own profile"
             };
             createLogs(log);
-            localStorage.removeItem("currentProfile");
+            localStorage.removeItem("Token");
             checkAuth();
         } else {
             var log = {
@@ -280,7 +280,6 @@ async function fillProfileForm(emailToEdit) {
     const token = localStorage.getItem("Token");
     try {
         const profile = await getProfile(emailToEdit, token)
-
         document.getElementById("profile-name").value = profile.name;
         document.getElementById("profile-birthday").value = (profile.birthday != null) ? formatDateInput(formatDate(profile.birthday)) : "";
         document.getElementById("profile-email").value = profile.email;
@@ -352,7 +351,7 @@ async function editProfiles() {
 
     var profile = {
         name: document.getElementById("profile-name").value,
-        birthday: document.getElementById("profile-birthday").value,
+        birthday: document.getElementById("profile-birthday").value || null,
         email: document.getElementById("profile-email").value,
         password: document.getElementById("profile-password").value,
         address: document.getElementById("profile-address").value,
@@ -416,7 +415,7 @@ async function editProfiles() {
 
     if (profile.name != 0 && nameValid(profile.name) && emailValid(profile.email) && profile.password.length >= 6) {
         try {
-            const response = await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
+            await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
                 method: 'Put',
                 headers: {
                     'Authorization': `Bearer ${token}`,

@@ -2,5 +2,4 @@
 .vscode/
 **/bin/
 **/obj/
-**/logs.json
-**/profiles.json
+/api/Server/Data/
