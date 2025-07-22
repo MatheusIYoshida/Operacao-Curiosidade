@@ -1,5 +1,5 @@
 ﻿using Server.Models;
-using Server.Services;
+using Server.Services.Interfaces;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Server.Repositories;
@@ -39,5 +39,4 @@ public class LogRepository : ILogRepository
         _logData.SaveData(FilePath, _logs);
         return log;
     }
-
 }

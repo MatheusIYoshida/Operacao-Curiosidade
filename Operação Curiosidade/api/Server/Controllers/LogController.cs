@@ -22,12 +22,7 @@ public class LogController : ControllerBase
     [Authorize]
     public ActionResult<IEnumerable<Log>> GetAll()
     {
-        var logs = _log.GetLogs().OrderByDescending(l => l.CreatedAt);
-
-        if (logs is null)
-            return NotFound("Logs not found");
-
-        return Ok(logs);
+        return Ok(_log.GetLogs().OrderByDescending(l => l.CreatedAt));
     }
 
     [HttpGet("by-id/{id}", Name = "GetLog")]
@@ -46,7 +41,7 @@ public class LogController : ControllerBase
     public ActionResult<Log> Post([FromBody] Log log)
     {
 
-        if (log == null || !ModelState.IsValid)
+        if (log == null)
         {
             return BadRequest(ModelState);
         }
