@@ -23,9 +23,7 @@ public class DashboardController : ControllerBase
     [HttpGet("recent-profiles")]
     public ActionResult<IEnumerable<ProfileDTO>> GetRecentProfiles()
     {
-        var recent = _repository.GetProfiles().OrderByDescending(p => p.CreatedAt).Take(15).ToProfileDTOList();
-
-        return Ok(recent);
+        return Ok(_repository.GetProfiles().OrderByDescending(p => p.CreatedAt).Take(15).ToProfileDTOList());
     }
 
     [HttpGet("total-profiles")]
