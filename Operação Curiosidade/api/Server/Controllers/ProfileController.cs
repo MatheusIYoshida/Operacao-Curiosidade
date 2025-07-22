@@ -72,7 +72,7 @@ namespace Server.Controllers
         [Authorize]
         public ActionResult<ProfileDTO> Put(string email, [FromBody] ProfileDTO profileDTO)
         {
-            if (profileDTO == null || email != profileDTO.Email)
+            if (email != profileDTO.Email)
                 return BadRequest("Invalid data");
 
             var existing = _repository.GetProfile(email);

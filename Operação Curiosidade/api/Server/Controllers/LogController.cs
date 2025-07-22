@@ -40,12 +40,6 @@ public class LogController : ControllerBase
     [HttpPost]
     public ActionResult<Log> Post([FromBody] Log log)
     {
-
-        if (log == null)
-        {
-            return BadRequest(ModelState);
-        }
-
         var createdLog = _log.CreateLog(log);
         return new CreatedAtRouteResult("GetLog", new { id = createdLog.Id }, createdLog);
     }
