@@ -80,7 +80,7 @@ namespace Server.Controllers
                 return NotFound();
 
             var profile = profileDTO.ToProfile();
-            _repository.UpdateProfile(profileDTO.ToProfile());
+            _repository.UpdateProfile(profile);
 
             return Ok(profile.ToProfileDTO());
         }

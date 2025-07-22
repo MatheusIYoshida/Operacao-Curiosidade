@@ -1,7 +1,7 @@
 const url = "https://localhost:7160/api/";
 
 async function getProfiles(token){
-    const response = await fetch('https://localhost:7160/api/Profile', {
+    const response = await fetch(`${url}Profile`, {
         method: 'Get',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -54,5 +54,5 @@ async function createLogs(log){
         }
     }
 
-    return await response.json;
+    return await response.json();
 }

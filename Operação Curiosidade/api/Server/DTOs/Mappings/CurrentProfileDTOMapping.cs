@@ -12,7 +12,8 @@ public static class CurrentProfileDTOMapping
         return new CurrentProfileDTO
         {
             Name = profile.Name,
-            Email = profile.Email
+            Email = profile.Email,
+            Admin = profile.Admin
         };
     }
 }

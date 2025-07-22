@@ -12,4 +12,6 @@ public class CurrentProfileDTO
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Name must be between 2 and 100 characters")]
     [RegularExpression(@"^[A-Za-zÀ-ÖØ-öø-ÿ]+(?:[ '\-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$", ErrorMessage = "Invalid Name")]
     public string? Name { get; set; }
+
+    public bool Admin { get; set; }
 }
