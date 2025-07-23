@@ -30,6 +30,7 @@ namespace Server.Controllers
         }
 
         [HttpGet("by-email/{email}", Name = "GetProfile")]
+        [Authorize]
 
         public ActionResult<ProfileDTO> GetByEmail(string email)
         {
@@ -39,18 +40,6 @@ namespace Server.Controllers
                 return NotFound("profile not found");
 
             return Ok(profile.ToProfileDTO());
-        }
-
-        [HttpGet("current/{email}")]
-        [Authorize]
-        public ActionResult<CurrentProfileDTO> GetCurrent(string email)
-        {
-            var profile = _repository.GetProfile(email);
-
-            if (profile == null)
-                return NotFound("Profile not found");
-
-            return Ok(profile.ToCurrentProfileDTO());
         }
 
         [HttpPost]

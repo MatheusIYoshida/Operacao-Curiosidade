@@ -25,19 +25,13 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login([FromBody] ProfileLoginDTO login)
+    public IActionResult Login([FromBody] ProfileLoginDTO profileLoginDTO)
     {
-        var profile = _repository.GetProfile(login.Email);
+        var token = _tokenService.GenerateTokenJWT(profileLoginDTO);
 
-        if (profile is null || profile.Password != login.Password)
-        {
+        if(token == "")
             return Unauthorized("Incorrect email or password");
-        }
-        else
-        {
-            var token = _tokenService.GenerateTokenJWT(login.Email);
 
-            return Ok(new { token });
-        }
+        return Ok(new { token });
     }
 }
