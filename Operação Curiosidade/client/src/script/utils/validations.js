@@ -13,3 +13,7 @@ function nameValid(name){
     }
     return validateName(name);
 }
+
+function adminValid(admin){
+    return admin == "True" ? true : false;
+}
