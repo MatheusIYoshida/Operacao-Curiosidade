@@ -10,9 +10,6 @@ function parseJwt(token) {
         );
 
         const payload = JSON.parse(payloadJson);
-        console.log(payload.Admin)
-        console.log(payload.Name)
-        console.log(payload.Email)
         currentProfile = {
             name: payload.Name,
             email: payload.Email,
