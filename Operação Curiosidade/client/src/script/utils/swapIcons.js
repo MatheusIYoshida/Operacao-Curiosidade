@@ -28,6 +28,23 @@ function swapCloseButton(){
     }
 }
 
+function swapArrows(){
+    if(localStorage.getItem("theme")){
+        document.querySelector(".pagination-number").style.color = "#FFF"
+        document.getElementById("back-pag").src = "src/assets/icons/back-DM.png";
+        document.getElementById("backAll-pag").src = "src/assets/icons/left-arrows-DM.png";
+        document.getElementById("next-pag").src = "src/assets/icons/next-DM.png";
+        document.getElementById("nextAll-pag").src = "src/assets/icons/right-arrows-DM.png";
+    }else{
+        document.querySelector(".pagination-number").style.color = "#000"
+        document.getElementById("back-pag").src = "src/assets/icons/back.png";
+        document.getElementById("backAll-pag").src = "src/assets/icons/left-arrows.png";
+        document.getElementById("next-pag").src = "src/assets/icons/next.png";
+        document.getElementById("nextAll-pag").src = "src/assets/icons/right-arrows.png";
+    }
+}
+
 window.onload = function(){
     swapCloseButton();
+    swapArrows();
 }
