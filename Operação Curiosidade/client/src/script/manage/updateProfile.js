@@ -182,10 +182,12 @@ async function editProfiles() {
                     pendingUsers();
                     break;
                 case "profiles-page.html":
-                    userList();
+                    var profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
+                    userList(profilePag.currentPage, 15);
                     break;
                 case "logs.html":
-                    logsList();
+                    var logsPag = JSON.parse(localStorage.getItem("LogsPagination"));
+                    logsList(logsPag.currentPage, 15);
                     break;
                 default:
             }

@@ -39,7 +39,8 @@ async function removeProfile() {
         }
 
         toggleModalRemove();
-        userList();
+        var profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
+        userList(profilePag.currentPage, 15);
     }
     catch (error) {
         console.error('Remove profile error', error);
