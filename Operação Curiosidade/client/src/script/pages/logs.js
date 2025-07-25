@@ -1,6 +1,7 @@
 checkAuth();
 document.addEventListener("DOMContentLoaded", function() {
     logsList(1, 15);
+    swapArrows();
 });
 
 async function logsList(currentPage, pageSize){

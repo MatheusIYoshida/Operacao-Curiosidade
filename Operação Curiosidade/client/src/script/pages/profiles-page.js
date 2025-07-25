@@ -2,6 +2,7 @@ checkAuth();
 
 document.addEventListener("DOMContentLoaded", function() {
     userList(1, 15);
+    swapArrows();
 });
 
 async function userList(currentPage, pageSize){

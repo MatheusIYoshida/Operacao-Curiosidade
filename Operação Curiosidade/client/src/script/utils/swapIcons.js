@@ -46,5 +46,4 @@ function swapArrows(){
 
 window.onload = function(){
     swapCloseButton();
-    swapArrows();
 }

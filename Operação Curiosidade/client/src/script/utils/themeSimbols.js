@@ -12,7 +12,10 @@ document.querySelector(".change-theme-box").addEventListener("click", () =>{
         night.classList.remove("hide");
         localStorage.setItem("theme", "dark");
     }
-    swapArrows();
+
+    if(document.querySelector(".pagination-container")){
+        swapArrows();
+    }
     body.classList.toggle("dark");
 
 })
