@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="src/styles/shared/validation.css">
     <link rel="stylesheet" href="src/styles/shared/alerts.css">
     <link rel="stylesheet" href="src/styles/shared/buttons.css">
+    <link rel="stylesheet" href="src/styles/shared/pagination.css">
     <link rel="stylesheet" href="src/styles/pages/profiles-page.css">
     <link rel="stylesheet" href="src/styles/pages/logs.css">
 
@@ -94,6 +95,13 @@
                     <div class="main-container-area">
                         <div class="main-container-top">
                             <div class="main-container-title">Reports > Logs</div>
+                        </div>
+                        <div class="pagination-container">
+                            <img src="src/assets/icons/left-arrows.png" id="backAll-pag">
+                            <img src="src/assets/icons/back.png" id="back-pag">
+                            <div class="pagination-number">1</div>
+                            <img src="src/assets/icons/next.png" id="next-pag">
+                            <img src="src/assets/icons/right-arrows.png" id="nextAll-pag">
                         </div>
                         <table id="table-area">
                             <tr class="table-row-title">
@@ -207,6 +215,7 @@
     <script src="src/script/utils/swapIcons.js"></script>
     <script src="src/script/utils/searchTable.js"></script>
     <script src="src/script/utils/clearInput.js"></script>
+    <script src="src/script/utils/pagination.js"></script>
     <script src="src/script/manage/updateProfile.js"></script>
     <script src="src/script/manage/authManage.js"></script>
 </body>

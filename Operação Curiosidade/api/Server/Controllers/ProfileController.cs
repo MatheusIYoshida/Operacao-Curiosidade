@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Server.DTOs;
 using Server.DTOs.Mappings;
 using Server.Models;
+using Server.Pagination;
 using Server.Repositories;
 using Server.Services;
 
@@ -27,6 +28,25 @@ namespace Server.Controllers
             var profiles = _repository.GetProfiles();
 
             return Ok(profiles.ToProfileDTOList());
+        }
+
+        [HttpGet("Pagination")]
+        [Authorize]
+        public ActionResult<PagedList<ProfileDTO>> GetPagination([FromQuery] int currentPage, [FromQuery] int pageSize) 
+        {
+            var profiles = _repository.GetProfilesPagination(currentPage, pageSize);
+            var response = new
+            {
+                Items = profiles.ToProfileDTOList(),
+                CurrentPage = profiles.CurrentPage,
+                PageSize = profiles.PageSize,
+                TotalCount = profiles.TotalCount,
+                TotalPages = profiles.TotalPage,
+                HasPrevious = profiles.HasPrevious,
+                HasNext = profiles.HasNext
+            };
+
+            return Ok(response);
         }
 
         [HttpGet("by-email/{email}", Name = "GetProfile")]

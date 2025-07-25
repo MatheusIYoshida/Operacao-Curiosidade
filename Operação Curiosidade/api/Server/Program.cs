@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Server.Pagination;
 using Server.Repositories;
 using Server.Services;
 using Server.Services.Interfaces;
@@ -20,6 +21,7 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<IEmailValidation, EmailValidation>();
 builder.Services.AddScoped<IProfileStatusValidation, ProfileStatusValidation>();
 builder.Services.AddScoped<IDataService, DataService>();
+builder.Services.AddScoped<IPaginationHelper, PaginationHelper>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) //O parâmetro define que por padrão o sistema usará a autenticação baseada em tokens jwt 
     .AddJwtBearer(options =>

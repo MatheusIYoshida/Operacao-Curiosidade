@@ -1,21 +1,39 @@
 checkAuth();
 
 document.addEventListener("DOMContentLoaded", function() {
-    userList();
+    userList(1, 15);
 });
 
-async function userList(){
+async function userList(currentPage, pageSize){
     const token = localStorage.getItem("Token");
     const currentUser = JSON.parse(localStorage.getItem("currentProfile"));
     const table = document.getElementById("table-area");
 
     try{
-        const profiles = await getProfiles(token);
+        const response = await fetch(`https://localhost:7160/api/Profile/Pagination?currentPage=${currentPage}&pageSize=${pageSize}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-type': 'application/json',
+            },
+        })
+
+        profiles = await response.json();
+        pagination = {
+            currentPage: profiles.currentPage,
+            totalPages: profiles.totalPages,
+            hasNext: profiles.hasNext,
+            hasPrevious: profiles.hasPrevious
+        }
+        localStorage.setItem("ProfilePagination", JSON.stringify(pagination));
+        hasPageValidation("ProfilePagination");
+        verifyCurrrentPage("ProfilePagination");
+        
         const rows = table.querySelectorAll(".table-row-itens");
         rows.forEach(row => row.remove());
 
         if(profiles != null){
-            profiles.forEach(profile => {
+            profiles.items.forEach(profile => {
                 const tableRow = document.createElement("tr");
                 tableRow.className = "table-row-itens";
                 table.appendChild(tableRow);
@@ -88,7 +106,6 @@ async function userList(){
                 tableEditRemove.appendChild(tableRemoveImg);
             })    
         }
-
     }
     catch(error){
         console.error("Error loading users", error);
@@ -96,3 +113,22 @@ async function userList(){
 }
 
 document.getElementById("confirm-removeProfile").addEventListener("click", removeProfile);
+
+document.getElementById("backAll-pag").addEventListener("click", () => {
+    userList(1, 15);
+});
+
+document.getElementById("back-pag").addEventListener("click", () => {
+    const profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
+    userList(profilePag.currentPage - 1, 15);
+});
+
+document.getElementById("next-pag").addEventListener("click", () => {
+    const profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
+    userList(profilePag.currentPage + 1, 15);
+});
+
+document.getElementById("nextAll-pag").addEventListener("click", () => {
+    const profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
+    userList(profilePag.totalPages, 15);
+});

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Server.DTOs;
 using Server.Models;
+using Server.Pagination;
 using Server.Repositories;
 
 namespace Server.Controllers;
@@ -20,9 +21,20 @@ public class LogController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public ActionResult<IEnumerable<Log>> GetAll()
+    public ActionResult<PagedList<Log>> GetAll([FromQuery] int currentPage, [FromQuery] int pageSize)
     {
-        return Ok(_log.GetLogs().OrderByDescending(l => l.CreatedAt));
+        var logs = _log.GetLogs(currentPage, pageSize);
+        var response = new
+        {
+            Items = logs,
+            CurrentPage = logs.CurrentPage,
+            PageSize = logs.PageSize,
+            TotalCount = logs.TotalCount,
+            TotalPages = logs.TotalPage,
+            HasPrevious = logs.HasPrevious,
+            HasNext = logs.HasNext
+        };
+        return Ok(response);
     }
 
     [HttpGet("by-id/{id}", Name = "GetLog")]

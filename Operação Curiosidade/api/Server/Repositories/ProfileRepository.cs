@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Server.Models;
+using Server.Pagination;
 using Server.Services.Interfaces;
 using System.Net;
 
@@ -13,12 +14,15 @@ namespace Server.Repositories
         private readonly IEmailValidation _emailValidation;
         private readonly IProfileStatusValidation _statusValidation;
         private readonly IDataService _profileData;
+        private readonly IPaginationHelper _paginationHelper;
 
-        public ProfileRepository(IEmailValidation emailValidation, IProfileStatusValidation statusValidation, IDataService profileData)
+        public ProfileRepository(IEmailValidation emailValidation, IProfileStatusValidation statusValidation, 
+            IDataService profileData, IPaginationHelper paginationHelper)
         {
             _emailValidation = emailValidation;
             _statusValidation = statusValidation;
             _profileData = profileData;
+            _paginationHelper = paginationHelper;
             _profiles = _profileData.LoadData<Profile>(FilePath);
             _profileId = _profiles.Count > 0 ? _profiles.Max(p => p.Id) + 1 : 1;
         }
@@ -26,6 +30,13 @@ namespace Server.Repositories
         public IEnumerable<Profile> GetProfiles()
         {
             return _profiles.Where(p=>!p.Deleted).ToList();
+        }
+
+        public PagedList<Profile> GetProfilesPagination(int currentPage, int pageSize)
+        {
+            var profiles = _profiles.Where(p => !p.Deleted).ToList();
+            var profilesPag = _paginationHelper.ToPagedList(profiles, currentPage, pageSize);
+            return profilesPag;
         }
 
         public Profile? GetProfile(string email)

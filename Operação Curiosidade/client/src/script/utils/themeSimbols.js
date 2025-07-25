@@ -12,7 +12,7 @@ document.querySelector(".change-theme-box").addEventListener("click", () =>{
         night.classList.remove("hide");
         localStorage.setItem("theme", "dark");
     }
-
+    swapArrows();
     body.classList.toggle("dark");
 
 })
