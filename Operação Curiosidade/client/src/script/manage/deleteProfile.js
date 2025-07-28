@@ -5,13 +5,17 @@ async function removeProfile() {
 
     try {
         const response = await fetch(`https://localhost:7160/api/Profile/by-email/${emailToRemove}`, {
-            method: 'Delete',
+            method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             }
         });
 
+        if (!response.ok) {
+            throw new Error('Failed to delete profile');
+        }
+        
         const removalAlert = document.getElementById("removal-alert");
         removalAlert.classList.remove("hide");
         setTimeout(() => {

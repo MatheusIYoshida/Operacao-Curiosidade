@@ -85,6 +85,6 @@ if (openModalCreate) {
 }
 
 if (closeModalRemove){
-    closeModalRemove.addEventListener("click", toggleModalRemove);
     localStorage.removeItem("removeProfile");
+    closeModalRemove.addEventListener("click", toggleModalRemove);
 }

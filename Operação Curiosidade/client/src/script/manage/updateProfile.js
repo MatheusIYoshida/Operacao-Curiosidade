@@ -147,7 +147,6 @@ async function editProfiles() {
                 },
                 body: JSON.stringify(profile)
             });
-
             if (currentEmail == currentProfile.email) {
                 var log = {
                     name: currentProfile.name,
@@ -188,6 +187,9 @@ async function editProfiles() {
                 case "logs.html":
                     var logsPag = JSON.parse(localStorage.getItem("LogsPagination"));
                     logsList(logsPag.currentPage, 15);
+                    break;
+                case "reports.html":
+                    userListReports();
                     break;
                 default:
             }
