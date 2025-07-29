@@ -11,8 +11,8 @@ public class PagedList<T> : List<T>
 
     public PagedList(IEnumerable<T> list, int currentPage, int count, int pageSize)
     {
-        CurrentPage = currentPage;
         TotalPage = (int)Math.Ceiling(count/(double) pageSize);
+        CurrentPage = currentPage > TotalPage ? TotalPage : currentPage;
         PageSize = pageSize;
         TotalCount = count;
 
