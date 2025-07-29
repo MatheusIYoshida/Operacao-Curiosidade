@@ -12,7 +12,7 @@ namespace ApiUnitTests.UnitTests.ProfileUnitTestController.GetTests;
 public class GetByEmailUnitTest : ProfileUnitTestController
 {
     [Fact]
-    public void GetByEmail_ExistingEmail_ReturnProfile()
+    public void GetByEmail_ExistingEmail_OkResult_ReturnProfile()
     {
         var testEmail = "test1@example.com";
         _mockRepo.Setup(repo => repo.GetProfile(testEmail))
@@ -26,7 +26,7 @@ public class GetByEmailUnitTest : ProfileUnitTestController
     }
 
     [Fact]
-    public void GetByEmail_NonExistingEmail_ReturnProfile()
+    public void GetByEmail_NonExistingEmail_NotFoundResult()
     {
         _mockRepo.Setup(repo => repo.GetProfile("any@gmail.com"))
             .Returns((Profile)null);

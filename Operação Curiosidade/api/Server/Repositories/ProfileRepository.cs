@@ -46,9 +46,6 @@ namespace Server.Repositories
 
         public (Profile? Profile, string? Error) CreateProfile(Profile profile)
         {
-            if (profile is null)
-                return(null, "Profile is null");
-
             if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles))
                 return (null, "Email already exists");
 
