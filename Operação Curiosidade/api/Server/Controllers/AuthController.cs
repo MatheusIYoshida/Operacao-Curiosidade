@@ -16,12 +16,10 @@ namespace Server.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly ITokenService _tokenService;
-    private readonly IProfileRepository _repository;
 
-    public AuthController(ITokenService tokenService, IProfileRepository repository)
+    public AuthController(ITokenService tokenService)
     {
         _tokenService = tokenService;
-        _repository = repository;
     }
 
     [HttpPost("login")]
