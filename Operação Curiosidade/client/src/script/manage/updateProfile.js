@@ -139,7 +139,7 @@ async function editProfiles() {
 
     if (profile.name != 0 && nameValid(profile.name) && emailValid(profile.email) && profile.password.length >= 6) {
         try {
-            await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
+            const response = await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
                 method: 'Put',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -147,6 +147,22 @@ async function editProfiles() {
                 },
                 body: JSON.stringify(profile)
             });
+
+            if (!response.ok) {
+                if (response.status === 409) {
+                    throw {
+                        status: response.status,
+                        message: 'This Email already exists',
+                        isConflict: true
+                    };
+                } else {
+                    throw {
+                        status: response.status,
+                        message: responseData?.message || 'Edit profile error'
+                    };
+                }
+            }
+            
             if (currentEmail == currentProfile.email) {
                 var log = {
                     name: currentProfile.name,
@@ -157,6 +173,18 @@ async function editProfiles() {
 
                 localStorage.removeItem("currentProfile");
                 localStorage.setItem("currentProfile", JSON.stringify(profile));
+
+                if(profile.email != currentProfile.email || profile.admin != currentProfile.admin){
+                    localStorage.removeItem("Token");
+                    const redirectionAlert = document.getElementById("redirect-alert");
+                    redirectionAlert.classList.remove("hide");
+                    setTimeout(() => {
+                        redirectionAlert.classList.add("hide");
+                        checkAuth();
+                    }, 5000);
+                }else{
+                    userIcon();
+                }
             } else {
                 var log = {
                     name: currentProfile.name,
@@ -195,7 +223,15 @@ async function editProfiles() {
             }
         }
         catch (error) {
-            console.error('Edit Profile error', error);
+            if (error.isConflict) {
+                emailInput.style.border = "2px solid red";
+                emailInput.nextElementSibling.style.display = "none";
+                alertEmailRequirement.style.display = "none";
+                alertEmailExist.style.display = "block";
+                emailInput.scrollIntoView({ block: "center" });
+            } else {
+                console.error('Edit profile error', error);
+            }
         }
     }
 }

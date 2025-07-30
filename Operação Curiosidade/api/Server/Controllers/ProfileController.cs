@@ -7,6 +7,7 @@ using Server.Models;
 using Server.Pagination;
 using Server.Repositories;
 using Server.Services;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Server.Controllers
 {
@@ -40,7 +41,6 @@ namespace Server.Controllers
                 Items = profiles.ToProfileDTOList(),
                 CurrentPage = profiles.CurrentPage,
                 PageSize = profiles.PageSize,
-                TotalCount = profiles.TotalCount,
                 TotalPages = profiles.TotalPage,
                 HasPrevious = profiles.HasPrevious,
                 HasNext = profiles.HasNext
@@ -81,17 +81,22 @@ namespace Server.Controllers
         [Authorize]
         public ActionResult<ProfileDTO> Put(string email, [FromBody] ProfileDTO profileDTO)
         {
-            if (email != profileDTO.Email)
-                return BadRequest("Invalid data");
-
             var existing = _repository.GetProfile(email);
             if (existing == null)
                 return NotFound();
 
             var profile = profileDTO.ToProfile();
-            _repository.UpdateProfile(profile);
+            var (updatedProfile, error) = _repository.UpdateProfile(email, profile);
 
-            return Ok(profile.ToProfileDTO());
+            if (error != null) 
+            {
+                if (error == "Email already exists")
+                    return Conflict(error);
+
+                return BadRequest(error);
+            }
+
+            return Ok(updatedProfile.ToProfileDTO());
         }
 
         [HttpDelete("by-email/{email}")]

@@ -40,7 +40,7 @@ async function getProfile(emailValue, token){
 
 async function createLogs(log){
     const response = await fetch(`${url}Log`, {
-        method: 'Post',
+        method: 'POST',
         headers: {
             'Content-type': 'application/json',
         },

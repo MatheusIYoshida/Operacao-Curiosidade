@@ -9,7 +9,7 @@ namespace Server.Repositories
         PagedList<Profile> GetProfilesPagination(int currentPage, int pageSize);
         Profile? GetProfile(string email);
         (Profile? Profile, string? Error) CreateProfile(Profile profile);
-        Profile UpdateProfile(Profile profile);
+        (Profile? Profile, string? Error) UpdateProfile(string email, Profile profile);
         bool DeleteProfile(string email);
     }
 }

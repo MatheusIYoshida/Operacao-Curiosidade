@@ -61,15 +61,15 @@ namespace Server.Repositories
             return (profile, null);
         }
 
-        public Profile UpdateProfile(Profile profile)
+        public (Profile? Profile, string? Error) UpdateProfile(string email, Profile profile)
         {
-            var existingProfile = _profiles.FirstOrDefault(p => p.Email == profile.Email);
+            var existingProfile = _profiles.FirstOrDefault(p => p.Email == email);
             
             if(existingProfile is null)
-                throw new KeyNotFoundException($"Profile with email {profile.Email} not found");
+                return (null, $"Profile with email {email} not found");
             
-            if (existingProfile.Email != profile.Email && _emailValidation.EmailAlreadyExist(profile.Email, _profiles))
-                throw new InvalidOperationException("Email already exists");
+            if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles) && profile.Email != email)
+                return (null, "Email already exists");
 
             existingProfile.Name = profile.Name;
             existingProfile.Birthday = profile.Birthday;
@@ -85,7 +85,7 @@ namespace Server.Repositories
             existingProfile.Status = _statusValidation.StatusValid(profile) ? "Complete" : "Incomplete";
 
             _profileData.SaveData(FilePath, _profiles);
-            return existingProfile;
+            return (existingProfile, null);
         }
 
         public bool DeleteProfile(string email)
