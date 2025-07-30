@@ -96,10 +96,10 @@ namespace Server.Controllers
 
         [HttpDelete("by-email/{email}")]
         [Authorize]
-        public ActionResult<ProfileDTO> Delete(string email)
+        public ActionResult Delete(string email)
         {
             bool deletado = _repository.DeleteProfile(email);
-            return deletado ? Ok($"Profile email: {email} deleted succesfully!") : StatusCode(500, $"Failed to delete profile email: {email}");
+            return deletado ? Ok($"Profile email: {email} deleted successfully!") : StatusCode(500, $"Failed to delete profile email: {email}");
         }
     }
 }
