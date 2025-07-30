@@ -30,9 +30,6 @@ public class LogRepository : ILogRepository
 
     public Log? CreateLog(Log log)
     {
-        if(log is null)
-            throw new ArgumentNullException(nameof(log));
-
         log.Id = _countId++;
         log.CreatedAt = DateTime.UtcNow;
         _logs.Add(log);

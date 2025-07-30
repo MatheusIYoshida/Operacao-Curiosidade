@@ -19,7 +19,7 @@ public class PostLogUnitTest : LogUnitTestController
 
         var result = _controller.Post(log);
 
-        Assert.IsType<CreatedAtRouteResult>(result.Result);
+        Assert.IsType<CreatedAtActionResult>(result.Result);
         _mockRepo.Verify(repo => repo.CreateLog(log), Times.Once);
     }
 }

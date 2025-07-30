@@ -41,6 +41,6 @@ public class LogController : ControllerBase
     public ActionResult<Log> Post([FromBody] Log log)
     {
         var createdLog = _log.CreateLog(log);
-        return new CreatedAtRouteResult("GetLog", new { id = createdLog.Id }, createdLog);
+        return CreatedAtAction(nameof(GetPagination), new { id = createdLog.Id }, createdLog);
     }
 }
