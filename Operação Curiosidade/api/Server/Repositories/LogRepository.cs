@@ -28,11 +28,6 @@ public class LogRepository : ILogRepository
         return logsPag;
     }
 
-    public Log? GetLog(int id)
-    {
-        return _logs.FirstOrDefault(l => l.Id == id);
-    }
-
     public Log? CreateLog(Log log)
     {
         if(log is null)

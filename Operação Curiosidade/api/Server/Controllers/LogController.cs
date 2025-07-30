@@ -21,7 +21,7 @@ public class LogController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public ActionResult<PagedList<Log>> GetAll([FromQuery] int currentPage, [FromQuery] int pageSize)
+    public ActionResult<PagedList<Log>> GetPagination([FromQuery] int currentPage, [FromQuery] int pageSize)
     {
         var logs = _log.GetLogs(currentPage, pageSize);
         var response = new
@@ -35,18 +35,6 @@ public class LogController : ControllerBase
             HasNext = logs.HasNext
         };
         return Ok(response);
-    }
-
-    [HttpGet("by-id/{id}", Name = "GetLog")]
-    [Authorize]
-    public ActionResult<Log> GetLog(int id) 
-    {
-        var log = _log.GetLog(id);
-
-        if (log is null)
-            return NotFound("Log not found");
-
-        return Ok(log);
     }
 
     [HttpPost]
