@@ -66,7 +66,7 @@ namespace Server.Repositories
             var existingProfile = _profiles.FirstOrDefault(p => p.Email == email);
             
             if(existingProfile is null)
-                return (null, $"Profile with email {email} not found");
+                return (null, "Profile not found");
             
             if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles) && profile.Email != email)
                 return (null, "Email already exists");

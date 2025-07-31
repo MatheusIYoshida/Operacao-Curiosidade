@@ -81,19 +81,17 @@ namespace Server.Controllers
         [Authorize]
         public ActionResult<ProfileDTO> Put(string email, [FromBody] ProfileDTO profileDTO)
         {
-            var existing = _repository.GetProfile(email);
-            if (existing == null)
-                return NotFound();
-
             var profile = profileDTO.ToProfile();
             var (updatedProfile, error) = _repository.UpdateProfile(email, profile);
 
             if (error != null) 
             {
-                if (error == "Email already exists")
-                    return Conflict(error);
-
-                return BadRequest(error);
+                return error switch
+                {
+                    "Email already exists" => Conflict(error),
+                    "Profile not found" => NotFound(error),
+                    _ => BadRequest(error)
+                };
             }
 
             return Ok(updatedProfile.ToProfileDTO());
