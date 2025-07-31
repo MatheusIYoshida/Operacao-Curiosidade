@@ -3,11 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Server.DTOs;
 using Server.DTOs.Mappings;
-using Server.Models;
 using Server.Pagination;
 using Server.Repositories;
-using Server.Services;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Server.Controllers
 {
@@ -33,17 +30,18 @@ namespace Server.Controllers
 
         [HttpGet("Pagination")]
         [Authorize]
-        public ActionResult<PagedList<ProfileDTO>> GetPagination([FromQuery] int currentPage, [FromQuery] int pageSize) 
+        public ActionResult<PagedList<ProfileDTO>> GetPagination([FromQuery] string? filter, [FromQuery] int currentPage, 
+            [FromQuery] int pageSize) 
         {
-            var profiles = _repository.GetProfilesPagination(currentPage, pageSize);
+            var profiles = _repository.GetProfilesPagination(filter, currentPage, pageSize);
             var response = new
             {
                 Items = profiles.ToProfileDTOList(),
-                CurrentPage = profiles.CurrentPage,
-                PageSize = profiles.PageSize,
+                profiles.CurrentPage,
+                profiles.PageSize,
                 TotalPages = profiles.TotalPage,
-                HasPrevious = profiles.HasPrevious,
-                HasNext = profiles.HasNext
+                profiles.HasPrevious,
+                profiles.HasNext
             };
 
             return Ok(response);
@@ -102,7 +100,8 @@ namespace Server.Controllers
         public ActionResult Delete(string email)
         {
             bool deletado = _repository.DeleteProfile(email);
-            return deletado ? Ok($"Profile email: {email} deleted successfully!") : StatusCode(500, $"Failed to delete profile email: {email}");
+            return deletado ? Ok($"Profile email: {email} deleted successfully!") : 
+                StatusCode(500, $"Failed to delete profile email: {email}");
         }
     }
 }

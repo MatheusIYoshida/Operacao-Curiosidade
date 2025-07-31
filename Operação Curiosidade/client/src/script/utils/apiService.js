@@ -19,6 +19,24 @@ async function getProfiles(token){
     return await response.json();
 }
 
+async function getProfilesPagination(filter, currentPage, pageSize, token){
+    let apiUrl = `${url}Profile/Pagination?currentPage=${currentPage}&pageSize=${pageSize}`;
+    
+    if (filter) {
+        apiUrl += `&filter=${filter}`;
+    }
+
+    const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    });
+
+    return await response.json();
+}
+
 async function getProfile(emailValue, token){
     const response = await fetch(`${url}Profile/by-email/${emailValue}`, {
         method: 'GET',
@@ -34,6 +52,24 @@ async function getProfile(emailValue, token){
             message: 'Get profile error'
         };
     }
+
+    return await response.json();
+}
+
+async function getLogsPagination(filter, currentPage, pageSize, token){
+    let apiUrl = `${url}Log?currentPage=${currentPage}&pageSize=${pageSize}`;
+    
+    if (filter) {
+        apiUrl += `&filter=${filter}`;
+    }
+
+    const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+    });
 
     return await response.json();
 }

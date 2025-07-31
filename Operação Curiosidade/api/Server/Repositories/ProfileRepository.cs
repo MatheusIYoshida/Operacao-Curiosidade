@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Server.Models;
+﻿using Server.Models;
 using Server.Pagination;
 using Server.Services.Interfaces;
-using System.Net;
 
 namespace Server.Repositories
 {
@@ -32,9 +30,14 @@ namespace Server.Repositories
             return _profiles.Where(p=>!p.Deleted).ToList();
         }
 
-        public PagedList<Profile> GetProfilesPagination(int currentPage, int pageSize)
+        public PagedList<Profile> GetProfilesPagination(string? filter, int currentPage, int pageSize)
         {
             var profiles = _profiles.Where(p => !p.Deleted).ToList();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                profiles = profiles.Where(p =>p.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
+                || p.Email.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
             var profilesPag = _paginationHelper.ToPagedList(profiles, currentPage, pageSize);
             return profilesPag;
         }

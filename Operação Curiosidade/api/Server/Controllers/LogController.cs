@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using Server.DTOs;
 using Server.Models;
 using Server.Pagination;
 using Server.Repositories;
@@ -21,18 +19,18 @@ public class LogController : ControllerBase
 
     [HttpGet]
     [Authorize]
-    public ActionResult<PagedList<Log>> GetPagination([FromQuery] int currentPage, [FromQuery] int pageSize)
+    public ActionResult<PagedList<Log>> GetPagination([FromQuery] string? filter, [FromQuery] int currentPage, 
+        [FromQuery] int pageSize)
     {
-        var logs = _log.GetLogs(currentPage, pageSize);
+        var logs = _log.GetLogs(filter, currentPage, pageSize);
         var response = new
         {
             Items = logs,
-            CurrentPage = logs.CurrentPage,
-            PageSize = logs.PageSize,
-            TotalCount = logs.TotalCount,
+            logs.CurrentPage,
+            logs.PageSize,
             TotalPages = logs.TotalPage,
-            HasPrevious = logs.HasPrevious,
-            HasNext = logs.HasNext
+            logs.HasPrevious,
+            logs.HasNext
         };
         return Ok(response);
     }

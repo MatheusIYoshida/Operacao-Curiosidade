@@ -1,7 +1,6 @@
 ﻿using Server.Models;
 using Server.Pagination;
 using Server.Services.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Server.Repositories;
 
@@ -21,9 +20,15 @@ public class LogRepository : ILogRepository
         _countId = _logs.Count > 0 ? _logs.Max(l => l.Id) + 1 : 1;
     }
 
-    public PagedList<Log> GetLogs(int currentPage, int pageSize)
+    public PagedList<Log> GetLogs(string? filter, int currentPage, int pageSize)
     {
         var logs = _logs.OrderByDescending(l => l.CreatedAt).ToList();
+        if (!string.IsNullOrEmpty(filter))
+        {
+            logs = logs.Where(l => l.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
+            || l.Email.Contains(filter, StringComparison.OrdinalIgnoreCase)
+            || l.Action.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
         var logsPag = _paginationHelper.ToPagedList(logs, currentPage, pageSize);
         return logsPag;
     }
