@@ -1,14 +1,17 @@
-checkAuth();
+let timeout;
+var currentFilter = null;
 
+checkAuth();
 document.addEventListener("DOMContentLoaded", function() {
-    requestUserList(1, 15);
+    requestUserList(1, 15, null);
+    currentFilter = null;
     swapArrows();
 });
 
-async function requestUserList(currentPage, pageSize){
+async function requestUserList(currentPage, pageSize, filter = currentFilter){
     const token = localStorage.getItem("Token");
     try{
-        const profiles = await getProfilesPagination(null, currentPage, pageSize, token);
+        const profiles = await getProfilesPagination(filter, currentPage, pageSize, token);
         pagination = {
             currentPage: profiles.currentPage,
             totalPages: profiles.totalPages,
@@ -24,27 +27,6 @@ async function requestUserList(currentPage, pageSize){
         console.error("Error loading users", error);
     }
 }
-
-document.querySelector("#profiles-header-input-box").addEventListener("keyup", async function(){
-
-    const search = this.value;
-    const token = localStorage.getItem("Token");
-    try{
-        const profiles = await getProfilesPagination(search, 1, 15, token);
-        pagination = {
-            currentPage: profiles.currentPage,
-            totalPages: profiles.totalPages,
-            hasNext: profiles.hasNext,
-            hasPrevious: profiles.hasPrevious
-        }
-        localStorage.setItem("ProfilePagination", JSON.stringify(pagination));
-        hasPageValidation("ProfilePagination");
-        userList(profiles)
-    }
-    catch(error){
-        console.error("Error loading users", error);
-    }
-})
 
 async function userList(profiles){
     const currentUser = JSON.parse(localStorage.getItem("currentProfile"));
@@ -126,6 +108,13 @@ async function userList(profiles){
     }
 }
 
+document.querySelector("#profiles-header-input-box").addEventListener("keyup", async function() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        requestUserList(1, 15, this.value);
+        currentFilter = this.value;
+    }, 300)
+})
 
 document.getElementById("confirm-removeProfile").addEventListener("click", removeProfile);
 

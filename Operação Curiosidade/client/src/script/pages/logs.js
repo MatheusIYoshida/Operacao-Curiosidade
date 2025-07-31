@@ -1,13 +1,17 @@
+var timeout;
+var currentFilter = null;
+
 checkAuth();
 document.addEventListener("DOMContentLoaded", function() {
-    requestLogsList(1, 15);
+    requestLogsList(1, 15, null);
+    currentFilter = null;
     swapArrows();
 });
 
-async function requestLogsList(currentPage, pageSize){
+async function requestLogsList(currentPage, pageSize, filter = currentFilter){
     const token = localStorage.getItem("Token");
     try{
-        const logs = await getLogsPagination(null, currentPage, pageSize, token);
+        const logs = await getLogsPagination(filter, currentPage, pageSize, token);
         pagination = {
             currentPage: logs.currentPage,
             totalPages: logs.totalPages,
@@ -23,28 +27,6 @@ async function requestLogsList(currentPage, pageSize){
         console.error("Error loading logs", error);
     }
 }
-
-document.querySelector("#logs-header-input-box").addEventListener("keyup", async function(){
-
-    const search = this.value;
-    const token = localStorage.getItem("Token");
-    try{
-        const logs = await getLogsPagination(search, 1, 15, token);
-        pagination = {
-            currentPage: logs.currentPage,
-            totalPages: logs.totalPages,
-            hasNext: logs.hasNext,
-            hasPrevious: logs.hasPrevious
-        }
-        localStorage.setItem("LogsPagination", JSON.stringify(pagination));
-        hasPageValidation("LogsPagination");
-        verifyCurrrentPage("LogsPagination");
-        logsList(logs)
-    }
-    catch(error){
-        console.error("Error loading users", error);
-    }
-})
 
 async function logsList(logs){
     const table = document.getElementById("table-area");
@@ -77,6 +59,14 @@ async function logsList(logs){
         })
     }
 }
+
+document.querySelector("#logs-header-input-box").addEventListener("keyup", async function(){
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+        requestLogsList(1, 15, this.value);
+        currentFilter = this.value;
+    }, 300)
+});
 
 document.getElementById("backAll-pag").addEventListener("click", () => {
     requestLogsList(1, 15);
