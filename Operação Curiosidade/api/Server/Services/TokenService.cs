@@ -23,7 +23,8 @@ public class TokenService : ITokenService
     public string GenerateTokenJWT(ProfileLoginDTO profileLoginDTO)
     {
         var profileDataBase = _repository.GetProfile(profileLoginDTO.Email);
-        if (profileDataBase == null || profileLoginDTO.Email != profileDataBase.Email || profileLoginDTO.Password != profileDataBase.Password)
+        if (profileDataBase == null || profileLoginDTO.Email != profileDataBase.Email || 
+            profileLoginDTO.Password != profileDataBase.Password)
             return string.Empty;
 
         var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:SecretKey"]));

@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Server.DTOs;
 using Server.Models;
 using Server.Pagination;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiUnitTests.UnitTests.ProfileUnitTestController.GetTests;
 
@@ -17,15 +11,18 @@ public class GetPaginationUnitTest : ProfileUnitTestController
     {
         var currentPage = 1;
         var pageSize = 1;
-        _mockRepo.Setup(repo => repo.GetProfilesPagination(currentPage, pageSize))
+        var filter = "test2@gmail.com";
+        _mockRepo.Setup(repo => repo.GetProfilesPagination(filter, currentPage, pageSize))
             .Returns(new PagedList<Profile>(
-                list: _testProfiles.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(),
+                list: _testProfiles.Where(l => l.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
+            || l.Email.Contains(filter, StringComparison.OrdinalIgnoreCase))
+                .Skip((currentPage - 1) * pageSize).Take(pageSize).ToList(),
                 currentPage: currentPage,
                 count: _testProfiles.Count,
                 pageSize: pageSize
             ));
 
-        var result = _controller.GetPagination(currentPage, pageSize);
+        var result = _controller.GetPagination(filter, currentPage, pageSize);
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         Assert.Equal(200, okResult.StatusCode);

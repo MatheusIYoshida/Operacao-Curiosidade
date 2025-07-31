@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.DTOs;
 using Server.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiUnitTests.UnitTests.DashboardUnitTestController.GetTets;
 
@@ -32,6 +27,6 @@ public class GetRecentUnitTest : DashboardUnitTestController
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         var returnValue = Assert.IsType<List<ProfileDTO>>(okResult.Value);
-        Assert.Equal(0, returnValue.Count);
+        Assert.Empty(returnValue);
     }
 }

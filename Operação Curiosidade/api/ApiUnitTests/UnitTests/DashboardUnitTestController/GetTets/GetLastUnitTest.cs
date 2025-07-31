@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Server.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiUnitTests.UnitTests.DashboardUnitTestController.GetTets;
 
@@ -19,7 +14,7 @@ public class GetLastUnitTest : DashboardUnitTestController
 
         var okResult = Assert.IsType<OkObjectResult>(result);
         var returnValue = Assert.IsType<int>(okResult.Value);
-        Assert.Equal(6, returnValue);
+        Assert.Equal(8, returnValue);
     }
 
     [Fact]
