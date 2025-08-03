@@ -169,7 +169,7 @@ async function editProfiles() {
                     email: currentProfile.email,
                     action: "Edited your own profile"
                 };
-                createLogs(log);
+                await createLogs(log);
 
                 localStorage.removeItem("currentProfile");
                 localStorage.setItem("currentProfile", JSON.stringify(profile));
@@ -209,12 +209,10 @@ async function editProfiles() {
                     pendingUsers();
                     break;
                 case "profiles-page.html":
-                    var profilePag = JSON.parse(localStorage.getItem("ProfilePagination"));
-                    userList(profilePag.currentPage, 15);
+                    requestUserList(1, 15);
                     break;
                 case "logs.html":
-                    var logsPag = JSON.parse(localStorage.getItem("LogsPagination"));
-                    logsList(logsPag.currentPage, 15);
+                    await requestLogsList(1, 15);
                     break;
                 case "reports.html":
                     userListReports();

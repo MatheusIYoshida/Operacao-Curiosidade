@@ -11,10 +11,17 @@ public class DataService : IDataService
             return new List<T>();
 
         var json = File.ReadAllText(filePath);
-        var result = JsonSerializer.Deserialize<List<T>>(json);
-        if(result == null)
+        try
+        {
+            var result = JsonSerializer.Deserialize<List<T>>(json);
+            if(result == null)
+                return new List<T>();
+            return result;
+        }
+        catch
+        {
             return new List<T>();
-        return result;
+        }
     }
 
     public void SaveData<T>(string filePath, List<T> data)

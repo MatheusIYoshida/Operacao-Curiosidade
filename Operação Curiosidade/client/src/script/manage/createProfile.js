@@ -181,7 +181,7 @@ async function createProfile() {
                 window.location.href = "login-page.html";
             } else if (window.location.href.split("/").pop() == "profiles-page.html") {
                 toggleModalCreate();
-                userList(1, 15);
+                requestUserList(1, 15);
             }
         } catch (error) {
             if (error.isConflict) {

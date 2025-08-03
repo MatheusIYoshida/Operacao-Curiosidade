@@ -21,7 +21,7 @@ async function requestLogsList(currentPage, pageSize, filter = currentFilter){
         localStorage.setItem("LogsPagination", JSON.stringify(pagination));
         hasPageValidation("LogsPagination");
         verifyCurrrentPage("LogsPagination");
-        logsList(logs)
+        logsList(logs);
     }
     catch(error){
         console.error("Error loading logs", error);
