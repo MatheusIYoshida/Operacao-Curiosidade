@@ -2,7 +2,7 @@
 using Server.DTOs.Mappings;
 using Server.Models;
 
-namespace ApiUnitTests.UnitTests.DTOs.MappingUnitTests;
+namespace ApiUnitTests.UnitTests.DTOs.MappingUnitTests.ProfileDTOMapping;
 
 public class ToProfileDTOUnitTest
 {
