@@ -17,4 +17,14 @@ public class PostLogUnitTest : LogUnitTestController
         Assert.IsType<CreatedAtActionResult>(result.Result);
         _mockRepo.Verify(repo => repo.CreateLog(log), Times.Once);
     }
+
+    [Fact]
+    public void PostLog_BadRequestResult()
+    {
+        Log log = null;
+
+        var result = _controller.Post(log);
+
+        Assert.IsType<BadRequestObjectResult>(result.Result);
+    }
 }

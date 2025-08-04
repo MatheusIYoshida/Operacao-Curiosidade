@@ -38,6 +38,11 @@ public class LogController : ControllerBase
     [HttpPost]
     public ActionResult<Log> Post([FromBody] Log log)
     {
+        if (log == null)
+        {
+            return BadRequest("Log is null");
+        }
+
         var createdLog = _log.CreateLog(log);
         return CreatedAtAction(nameof(GetPagination), new { id = createdLog.Id }, createdLog);
     }
