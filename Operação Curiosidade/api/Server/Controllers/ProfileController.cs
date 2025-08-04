@@ -25,7 +25,7 @@ namespace Server.Controllers
         {
             var profiles = _repository.GetProfiles();
 
-            return Ok(profiles.ToProfileDTOList());
+            return Ok(profiles.ToProfileListingDTOList());
         }
 
         [HttpGet("Pagination")]
@@ -36,7 +36,7 @@ namespace Server.Controllers
             var profiles = _repository.GetProfilesPagination(filter, currentPage, pageSize);
             var response = new
             {
-                Items = profiles.ToProfileDTOList(),
+                Items = profiles.ToProfileListingDTOList(),
                 profiles.CurrentPage,
                 profiles.PageSize,
                 TotalPages = profiles.TotalPage,

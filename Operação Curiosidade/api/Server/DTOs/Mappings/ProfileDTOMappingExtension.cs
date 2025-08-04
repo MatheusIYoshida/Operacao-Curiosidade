@@ -51,28 +51,4 @@ public static class ProfileDTOMappingExtension
             CreatedAt = profileDTO.CreatedAt
         };
     }
-
-    public static IEnumerable<ProfileDTO> ToProfileDTOList(this IEnumerable<Profile> profiles)
-    {
-        if(profiles is null || !profiles.Any())
-            return new List<ProfileDTO>();
-
-        return profiles.Select(profile => new ProfileDTO
-        {
-            Id = profile.Id,
-            Name = profile.Name,
-            Birthday = profile.Birthday,
-            Email = profile.Email,
-            Password = profile.Password,
-            Address = profile.Address,
-            MoreInformations = profile.MoreInformations,
-            Interests = profile.Interests,
-            Feelings = profile.Feelings,
-            CoreValues = profile.CoreValues,
-            Active = profile.Active,
-            Status = profile.Status,
-            Admin = profile.Admin,
-            CreatedAt = profile.CreatedAt
-        }).ToList();
-    }
 }
