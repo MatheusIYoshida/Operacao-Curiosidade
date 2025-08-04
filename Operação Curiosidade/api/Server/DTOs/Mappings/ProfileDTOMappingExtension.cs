@@ -54,7 +54,7 @@ public static class ProfileDTOMappingExtension
 
     public static IEnumerable<ProfileDTO> ToProfileDTOList(this IEnumerable<Profile> profiles)
     {
-        if(!profiles.Any() || profiles is null)
+        if(profiles is null || !profiles.Any())
             return new List<ProfileDTO>();
 
         return profiles.Select(profile => new ProfileDTO
