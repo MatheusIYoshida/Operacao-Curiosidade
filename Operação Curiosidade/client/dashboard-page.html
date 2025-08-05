@@ -147,7 +147,7 @@
                                             Name
                                             <div class="required-input">*</div>
                                         </label>
-                                        <input id="profile-name" type="text" name="Name" required oninput="removeRedBorder(this)"> 
+                                        <input id="profile-name" type="text" name="Name" maxlength="100" required oninput="removeRedBorder(this)"> 
                                         <span class="alert-user">Enter your name</span>
                                         <span class="alert-user alert-name-requirements">Invalid name</span>
                                     </div>
@@ -162,7 +162,7 @@
                                             Email
                                             <div class="required-input">*</div>
                                         </label>
-                                        <input id="profile-email" type="email" name="Email" required oninput="removeRedBorder(this)">
+                                        <input id="profile-email" type="email" name="Email" maxlength="200" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Email</span>
                                         <span class="alert-user alert-email-requirements">Invalid email</span>
                                         <span class="alert-user alert-email-exist">This Email already exists, try another one!</span>
@@ -172,7 +172,7 @@
                                             Password
                                             <div class="required-input">*</div>
                                         </label>
-                                        <input id="profile-password" type="password" name="Password" required oninput="removeRedBorder(this)">
+                                        <input id="profile-password" type="password" name="Password" maxlength="100" required oninput="removeRedBorder(this)">
                                         <span class="alert-user">Enter your Password</span>
                                         <span class="password-requirements">Minimum 6 characters required</span>
                                         <span class="alert-user alert-password-requirements">Password must be at least 6 characters</span>
@@ -180,28 +180,28 @@
                                 </div>
                                 <div class="profile-input modal-input-address">
                                     <label for="address">Address</label>
-                                    <input id="profile-address" type="text" name="Address">
+                                    <input id="profile-address" type="text" name="Address" maxlength="200">
                                 </div>
                                 <div class="profile-input">
                                     <label for="more informations">More Informations</label>
-                                    <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="500"></textarea>
+                                    <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="2000"></textarea>
                                 </div>
                                 <h3>2º Interests</h3>
                                 <div class="facts-inputs">
                                     <div class="profile-input">
-                                        <textarea id="profile-interests" name="Interests" rows="4" maxlength="500"></textarea>
+                                        <textarea id="profile-interests" name="Interests" rows="4" maxlength="2000"></textarea>
                                     </div>
                                 </div>
                                 <h3>3º Feelings</h3>
                                 <div class="facts-inputs">
                                     <div class="profile-input">
-                                        <textarea id="profile-feelings" name="Interests" rows="4" maxlength="500"></textarea>
+                                        <textarea id="profile-feelings" name="Interests" rows="4" maxlength="2000"></textarea>
                                     </div>
                                 </div>
                                 <h3>4º Core Values</h3>
                                 <div class="facts-inputs">
                                     <div class="profile-input">
-                                       <textarea id="profile-coreValues" name="Interests" rows="4" maxlength="500"></textarea>
+                                       <textarea id="profile-coreValues" name="Interests" rows="4" maxlength="2000"></textarea>
                                     </div>
                                 </div>
                                 <div class="profile-button">

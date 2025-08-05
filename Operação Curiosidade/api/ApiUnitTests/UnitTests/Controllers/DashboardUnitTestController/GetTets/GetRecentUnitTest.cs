@@ -14,7 +14,7 @@ public class GetRecentUnitTest : DashboardUnitTestController
         var result = _controller.GetRecentProfiles();
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
-        var returnValue = Assert.IsType<List<ProfileDTO>>(okResult.Value);
+        var returnValue = Assert.IsType<List<ProfileListingDTO>>(okResult.Value);
         Assert.Equal(15, returnValue.Count);
     }
 
@@ -26,7 +26,7 @@ public class GetRecentUnitTest : DashboardUnitTestController
         var result = _controller.GetRecentProfiles();
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
-        var returnValue = Assert.IsType<List<ProfileDTO>>(okResult.Value);
+        var returnValue = Assert.IsType<List<ProfileListingDTO>>(okResult.Value);
         Assert.Empty(returnValue);
     }
 }
