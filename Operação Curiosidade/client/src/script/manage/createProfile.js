@@ -135,9 +135,10 @@ async function createProfile() {
                 },
                 body: JSON.stringify(newProfile)
             });
-
+            
             if (!response.ok) {
-                if (response.status === 409) {
+                const errorData = await response.json();
+                if (errorData.errors.find(error => error.includes("Email already exists"))) {
                     throw {
                         status: response.status,
                         message: 'This Email already exists',

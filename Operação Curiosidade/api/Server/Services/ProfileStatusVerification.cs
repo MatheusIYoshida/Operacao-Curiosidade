@@ -3,7 +3,7 @@ using Server.Services.Interfaces;
 
 namespace Server.Services;
 
-public class ProfileStatusValidation : IProfileStatusValidation
+public class ProfileStatusVerification : IProfileStatusVerification
 {
     public bool StatusValid(Profile profile)
     {

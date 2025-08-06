@@ -149,7 +149,8 @@ async function editProfiles() {
             });
 
             if (!response.ok) {
-                if (response.status === 409) {
+                const errorData = await response.json();
+                if (errorData.errors.find(error => error.includes("Email already exists"))) {
                     throw {
                         status: response.status,
                         message: 'This Email already exists',
@@ -158,7 +159,7 @@ async function editProfiles() {
                 } else {
                     throw {
                         status: response.status,
-                        message: responseData?.message || 'Edit profile error'
+                        message: responseData?.message || 'Create profile error'
                     };
                 }
             }

@@ -9,7 +9,7 @@ namespace ApiUnitTests.UnitTests.Repositories.ProfileRepositoryUnitTests;
 public class ProfileRepositoryUnitTest
 {
     protected readonly Mock<IEmailValidation> _mockEmailValidation;
-    protected readonly Mock<IProfileStatusValidation> _mockStatusValidation;
+    protected readonly Mock<IProfileStatusVerification> _mockStatusValidation;
     protected readonly Mock<IDataService> _mockDataService;
     protected readonly Mock<IPaginationHelper> _mockPaginationHelper;
     protected readonly ProfileRepository _repository;
@@ -23,7 +23,7 @@ public class ProfileRepositoryUnitTest
     public ProfileRepositoryUnitTest()
     {
         _mockEmailValidation = new Mock<IEmailValidation>();
-        _mockStatusValidation = new Mock<IProfileStatusValidation>();
+        _mockStatusValidation = new Mock<IProfileStatusVerification>();
         _mockDataService = new Mock<IDataService>();
         _mockPaginationHelper = new Mock<IPaginationHelper>();
 

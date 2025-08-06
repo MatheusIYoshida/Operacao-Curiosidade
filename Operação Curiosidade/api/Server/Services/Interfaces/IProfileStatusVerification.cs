@@ -2,7 +2,7 @@
 
 namespace Server.Services.Interfaces;
 
-public interface IProfileStatusValidation
+public interface IProfileStatusVerification
 {
     public bool StatusValid(Profile profile);
 }

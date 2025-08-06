@@ -66,11 +66,13 @@ namespace Server.Controllers
 
             if (error != null)
             {
-                if (error == "Email already exists")
-                    return Conflict(error);
-
-                return BadRequest(error);
+                return BadRequest(new
+                {
+                    Title = "Validation Error",
+                    error.Errors
+                });
             }
+
             return new CreatedAtRouteResult("GetProfile", new { email = createdProfile.Email }, createdProfile.ToProfileDTO());
         }
 
@@ -83,12 +85,11 @@ namespace Server.Controllers
 
             if (error != null) 
             {
-                return error switch
+                return BadRequest(new
                 {
-                    "Email already exists" => Conflict(error),
-                    "Profile not found" => NotFound(error),
-                    _ => BadRequest(error)
-                };
+                    Title = "Validation Error",
+                    error.Errors
+                });
             }
 
             return Ok(updatedProfile.ToProfileDTO());

@@ -5,7 +5,7 @@ namespace ApiUnitTests.UnitTests.Services.ProfileStatusValidationUnitTest;
 
 public class ProfileStatusValidationUnitTest
 {
-    private readonly ProfileStatusValidation _service = new ProfileStatusValidation();
+    private readonly ProfileStatusVerification _service = new ProfileStatusVerification();
 
     [Fact]
     public void StatusValidation_StatusValid_ReturnTrue()

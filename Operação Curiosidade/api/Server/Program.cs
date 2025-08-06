@@ -15,8 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<ILogRepository, LogRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IEmailValidation, EmailValidation>();
-builder.Services.AddScoped<IProfileStatusValidation, ProfileStatusValidation>();
+builder.Services.AddScoped<IProfileStatusVerification, ProfileStatusVerification>();
 builder.Services.AddScoped<IDataService, DataService>();
 builder.Services.AddScoped<IPaginationHelper, PaginationHelper>();
 

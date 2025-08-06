@@ -1,6 +1,7 @@
 ﻿using Server.Models;
 using Server.Pagination;
 using Server.Services.Interfaces;
+using Server.Validations;
 
 namespace Server.Repositories
 {
@@ -9,15 +10,13 @@ namespace Server.Repositories
         private static List<Profile> _profiles = new List<Profile>();
         private static int _profileId = 1;
         private const string FilePath = "Data/profiles.json";
-        private readonly IEmailValidation _emailValidation;
-        private readonly IProfileStatusValidation _statusValidation;
+        private readonly IProfileStatusVerification _statusValidation;
         private readonly IDataService _profileData;
         private readonly IPaginationHelper _paginationHelper;
 
-        public ProfileRepository(IEmailValidation emailValidation, IProfileStatusValidation statusValidation, 
+        public ProfileRepository(IProfileStatusVerification statusValidation, 
             IDataService profileData, IPaginationHelper paginationHelper)
         {
-            _emailValidation = emailValidation;
             _statusValidation = statusValidation;
             _profileData = profileData;
             _paginationHelper = paginationHelper;
@@ -47,10 +46,11 @@ namespace Server.Repositories
             return _profiles.FirstOrDefault(p => p.Email == email && !p.Deleted);
         }
 
-        public (Profile? Profile, string? Error) CreateProfile(Profile profile)
+        public (Profile? Profile, ValidationResult? Error) CreateProfile(Profile profile)
         {
-            if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles))
-                return (null, "Email already exists");
+            var errors = profile.ValidateProfile(_profiles);
+            if (!errors.IsValid)
+                return (null, errors);
 
             if (_profiles.Count == 0)
                 profile.Admin = true;
@@ -64,15 +64,20 @@ namespace Server.Repositories
             return (profile, null);
         }
 
-        public (Profile? Profile, string? Error) UpdateProfile(string email, Profile profile)
+        public (Profile? Profile, ValidationResult? Error) UpdateProfile(string email, Profile profile)
         {
             var existingProfile = _profiles.FirstOrDefault(p => p.Email == email);
-            
-            if(existingProfile is null)
-                return (null, "Profile not found");
-            
-            if (_emailValidation.EmailAlreadyExist(profile.Email, _profiles) && profile.Email != email)
-                return (null, "Email already exists");
+
+            if (existingProfile is null)
+            {
+                var error = new ValidationResult();
+                error.AddErrors("Profile not found");
+                return (null, error);
+            }
+
+            var errors = profile.ValidateProfile(_profiles);
+            if (!errors.IsValid && profile.Email != email)
+                return (null, errors);
 
             existingProfile.Name = profile.Name;
             existingProfile.Birthday = profile.Birthday;
@@ -101,6 +106,5 @@ namespace Server.Repositories
             _profileData.SaveData(FilePath, _profiles);
             return true;
         }
-
     }
 }
