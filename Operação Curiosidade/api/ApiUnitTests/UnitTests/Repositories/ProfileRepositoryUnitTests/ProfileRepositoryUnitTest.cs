@@ -8,7 +8,6 @@ namespace ApiUnitTests.UnitTests.Repositories.ProfileRepositoryUnitTests;
 
 public class ProfileRepositoryUnitTest
 {
-    protected readonly Mock<IEmailValidation> _mockEmailValidation;
     protected readonly Mock<IProfileStatusVerification> _mockStatusValidation;
     protected readonly Mock<IDataService> _mockDataService;
     protected readonly Mock<IPaginationHelper> _mockPaginationHelper;
@@ -22,14 +21,13 @@ public class ProfileRepositoryUnitTest
 
     public ProfileRepositoryUnitTest()
     {
-        _mockEmailValidation = new Mock<IEmailValidation>();
         _mockStatusValidation = new Mock<IProfileStatusVerification>();
         _mockDataService = new Mock<IDataService>();
         _mockPaginationHelper = new Mock<IPaginationHelper>();
 
         _mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(listProfiles);
 
-        _repository = new ProfileRepository(_mockEmailValidation.Object, _mockStatusValidation.Object, 
+        _repository = new ProfileRepository(_mockStatusValidation.Object, 
             _mockDataService.Object, _mockPaginationHelper.Object);
     }
 }

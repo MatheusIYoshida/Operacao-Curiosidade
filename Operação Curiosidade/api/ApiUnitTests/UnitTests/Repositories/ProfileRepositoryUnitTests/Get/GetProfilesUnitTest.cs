@@ -19,7 +19,7 @@ public class GetProfilesUnitTest : ProfileRepositoryUnitTest
     public void GetProfiles_EmptyList_ReturnEmptyList()
     {
         _mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(new List<Profile>());
-        ProfileRepository _repository = new ProfileRepository(_mockEmailValidation.Object, _mockStatusValidation.Object,
+        ProfileRepository _repository = new ProfileRepository(_mockStatusValidation.Object,
             _mockDataService.Object, _mockPaginationHelper.Object);
 
         var result = _repository.GetProfiles();

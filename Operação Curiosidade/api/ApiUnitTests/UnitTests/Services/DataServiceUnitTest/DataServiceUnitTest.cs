@@ -11,6 +11,7 @@ public abstract class DataServiceUnitTest : IDisposable
     {
         if (File.Exists(_testFilePath))
         {
+            Thread.Sleep(3000);
             File.Delete(_testFilePath);
         }        
     }

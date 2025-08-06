@@ -2,6 +2,7 @@
 using Moq;
 using Server.DTOs;
 using Server.Models;
+using Server.Validations;
 
 namespace ApiUnitTests.UnitTests.Controllers.ProfileUnitTestController.PostTests;
 
@@ -22,27 +23,14 @@ public class PostUnitTest : ProfileUnitTestController
     }
 
     [Fact]
-    public void Post_DuplicateEmail_ConflictResult()
-    {
-        var newProfileDTO = new ProfileDTO { Name = "Teste", Email = "teste1@gmail.com", Password = "123123" };
-        var errorMessage = "Email already exists";
-        _mockRepo.Setup(repo => repo.CreateProfile(It.IsAny<Profile>())).Returns((null, "Email already exists"));
-
-        var result = _controller.Post(newProfileDTO);
-
-        var conflictResult = Assert.IsType<ConflictObjectResult>(result.Result);
-        Assert.Equal(errorMessage, conflictResult.Value);
-    }
-
-    [Fact]
     public void Post_BadRequestResult()
     {
         var newProfileDTO = new ProfileDTO { Name = "Teste", Email = "Teste@gmail.com", Password = "123123" };
-        _mockRepo.Setup(repo => repo.CreateProfile(It.IsAny<Profile>())).Returns((null, "Some validation error"));
+        var error = new ValidationResult();
+        _mockRepo.Setup(repo => repo.CreateProfile(It.IsAny<Profile>())).Returns((null, error));
 
         var result = _controller.Post(newProfileDTO);
 
         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
-        Assert.Equal("Some validation error", badRequestResult.Value);
     }
 }

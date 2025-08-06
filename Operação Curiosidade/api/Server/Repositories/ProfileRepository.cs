@@ -75,8 +75,8 @@ namespace Server.Repositories
                 return (null, error);
             }
 
-            var errors = profile.ValidateProfile(_profiles);
-            if (!errors.IsValid && profile.Email != email)
+            var errors = profile.ValidateProfile(_profiles.Where(p => p.Email != email));
+            if (!errors.IsValid)
                 return (null, errors);
 
             existingProfile.Name = profile.Name;

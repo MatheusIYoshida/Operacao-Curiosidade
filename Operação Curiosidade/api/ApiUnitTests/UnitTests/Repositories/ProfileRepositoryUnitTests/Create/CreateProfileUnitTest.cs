@@ -1,6 +1,8 @@
 ﻿using Moq;
 using Server.Models;
 using Server.Repositories;
+using Server.Services.Interfaces;
+using Server.Validations;
 
 namespace ApiUnitTests.UnitTests.Repositories.ProfileRepositoryUnitTests.Create;
 
@@ -9,8 +11,7 @@ public class CreateProfileUnitTest : ProfileRepositoryUnitTest
     [Fact]
     public void CreateProfile_StatusIncomplete_ReturnProfile()
     {
-        Profile profile = new Profile() { Name = "test4", Email = "test4@gmail.com", Password = "123123" };
-        _mockEmailValidation.Setup(mock => mock.EmailAlreadyExist(profile.Email, listProfiles)).Returns(false);
+        Profile profile = new Profile() { Name = "test", Email = "test4@gmail.com", Password = "123123" };
         _mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(false);
 
         var (result, error) = _repository.CreateProfile(profile);
@@ -23,22 +24,20 @@ public class CreateProfileUnitTest : ProfileRepositoryUnitTest
     [Fact]
     public void CreateProfile_EmailExists_ReturnError()
     {
-        Profile profile = new Profile() { Name = "test4", Email = "test3@gmail.com", Password = "123123" };
-        _mockEmailValidation.Setup(mock => mock.EmailAlreadyExist(profile.Email, listProfiles)).Returns(true);
+        Profile profile = new Profile() { Name = "test", Email = "test3@gmail.com", Password = "123123" };
         _mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(false);
 
         var (result, error) = _repository.CreateProfile(profile);
 
         Assert.Null(result);
-        Assert.IsType<string>(error);
-        Assert.Equal("Email already exists", error);
+        Assert.IsType<ValidationResult>(error);
+        Assert.Contains("Email already exists", error.Errors);
     }
 
     [Fact]
     public void CreateProfile_StatusComplete_ReturnError()
     {
-        Profile profile = new Profile() { Name = "test4", Email = "test4@gmail.com", Password = "123123" };
-        _mockEmailValidation.Setup(mock => mock.EmailAlreadyExist(profile.Email, listProfiles)).Returns(false);
+        Profile profile = new Profile() { Name = "test", Email = "test4@gmail.com", Password = "123123" };
         _mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(true);
 
         var (result, error) = _repository.CreateProfile(profile);
@@ -51,18 +50,18 @@ public class CreateProfileUnitTest : ProfileRepositoryUnitTest
     [Fact]
     public void CreateProfile_FirstProfile_AdminTrue_ReturnProfile()
     {
-        Profile profile = new Profile() { Name = "test4", Email = "test4@gmail.com", Password = "123123", Admin = false };
-        var list = new List<Profile>() { };
-        _mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(list);
-        var _repository = new ProfileRepository(_mockEmailValidation.Object, _mockStatusValidation.Object,
-            _mockDataService.Object, _mockPaginationHelper.Object);
-        _mockEmailValidation.Setup(mock => mock.EmailAlreadyExist(profile.Email, list)).Returns(false);
+        Profile profile = new Profile() { Name = "test", Email = "test4@gmail.com", Password = "123123", Admin = false };
+        var list = new List<Profile>();
+        var mockDataService = new Mock<IDataService>();
+        mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(list);
+        var repository = new ProfileRepository(_mockStatusValidation.Object,
+            mockDataService.Object, _mockPaginationHelper.Object);
         _mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(true);
 
-        var (result, error) = _repository.CreateProfile(profile);
+        var (result, error) = repository.CreateProfile(profile);
 
         Assert.IsType<Profile>(result);
-        Assert.Equal(true, result.Admin);
+        Assert.True(result.Admin);
         Assert.Null(error);
     }
 }
