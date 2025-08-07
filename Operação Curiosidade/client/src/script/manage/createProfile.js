@@ -1,18 +1,24 @@
 async function createProfile() {
-    var name = document.getElementById("create-profile-name").value;
-    var email = document.getElementById("create-profile-email").value;
-    var password = document.getElementById("create-profile-password").value;
-    var nameInput = document.getElementById("create-profile-name");
-    var alertNameRequirement = document.querySelector(".alert-name-requirements-create");
-    var emailInput = document.getElementById("create-profile-email");
-    var alertEmailRequirement = document.querySelector(".alert-email-requirements-create");
-    var alertEmailExist = document.querySelector(".alert-email-exist-create");
-    var passwordInput = document.getElementById("create-profile-password");
-    var passwordRequirement = document.querySelector(".password-requirements-create");
-    var alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
+    const name = document.getElementById("create-profile-name").value;
+    const email = document.getElementById("create-profile-email").value;
+    const password = document.getElementById("create-profile-password").value;
+    const nameInput = document.getElementById("create-profile-name");
+    const alertNameRequirement = document.querySelector(".alert-name-requirements-create");
+    const birthdayInput = document.getElementById("create-profile-birthday");
+    const alertBirthdayRequirement = document.querySelector(".alert-birthday-create");
+    const emailInput = document.getElementById("create-profile-email");
+    const alertEmailRequirement = document.querySelector(".alert-email-requirements-create");
+    const alertEmailExist = document.querySelector(".alert-email-exist-create");
+    const passwordInput = document.getElementById("create-profile-password");
+    const passwordRequirement = document.querySelector(".password-requirements-create");
+    const alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
+    const currentDate = new Date();
+    const userDate = new Date(`${document.getElementById("create-profile-birthday").value}T00:00:00`);
+    const limitDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
     const currentProfile = JSON.parse(localStorage.getItem("currentProfile"));
+    var birthVerification = 0;
 
-    if (name == 0) {
+    if (name == "") {
         nameInput.style.border = "2px solid red";
         nameInput.nextElementSibling.style.display = "block";
         alertNameRequirement.style.display = "none";
@@ -27,7 +33,7 @@ async function createProfile() {
         alertNameRequirement.style.display = "none";
     }
 
-    if (email == 0) {
+    if (email == "") {
         emailInput.style.border = "2px solid red";
         emailInput.nextElementSibling.style.display = "block";
         alertEmailRequirement.style.display = "none";
@@ -45,7 +51,7 @@ async function createProfile() {
         alertEmailExist.style.display = "none";
     }
 
-    if (password == 0) {
+    if (password == "") {
         passwordInput.style.border = "2px solid red";
         passwordInput.nextElementSibling.style.display = "block";
         passwordRequirement.style.display = "none";
@@ -63,12 +69,35 @@ async function createProfile() {
         alertPasswordRequirement.style.display = "none";
     }
 
-    if (name != 0 && nameValid(name) && password.length >= 6) {
+    if(document.getElementById("create-profile-birthday") != null){
+        const day = String(limitDate.getDate()).padStart(2, '0');
+        const month = String(limitDate.getMonth() + 1).padStart(2, '0');
+        const year = limitDate.getFullYear(-120);   
+        if(userDate > currentDate){
+            alertBirthdayRequirement.style.display = "block";
+            birthdayInput.style.border = "2px solid red";
+            alertBirthdayRequirement.innerHTML = "Birthday date cannot be in the future";
+            birthdayInput.scrollIntoView({ block: "center" });
+            birthVerification = 1;
+        }else if(userDate < limitDate){
+            alertBirthdayRequirement.style.display = "block";
+            birthdayInput.style.border = "2px solid red";
+            alertBirthdayRequirement.innerHTML = `Birthday date cannot be earlier than 
+                ${day}/${month}/${year}`;
+            birthdayInput.scrollIntoView({ block: "center" });
+            birthVerification = 1;
+        }else{
+            alertBirthdayRequirement.style.display = "none";
+            birthVerification = 0;
+        }
+    }
 
+    if (name != 0 && nameValid(name) && email != 0 && emailValid(email) && password.length >= 6 && birthVerification == 0) {
+            console.log(1+1)
         if (document.getElementById("create-profile-birthday") == null) {
             var birthday = "";
         } else {
-            var birthday = document.getElementById("create-profile-birthday").value;
+            var birthday = document.getElementById("create-profile-birthday").value;            
         }
 
         if (document.getElementById("create-profile-address") == null) {

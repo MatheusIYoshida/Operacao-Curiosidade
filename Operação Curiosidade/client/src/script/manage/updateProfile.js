@@ -65,13 +65,19 @@ async function editProfiles() {
     const currentProfile = JSON.parse(localStorage.getItem("currentProfile"));
     const token = localStorage.getItem("Token");
     const nameInput = document.getElementById("profile-name");
+    const birthdayInput = document.getElementById("profile-birthday");
     const emailInput = document.getElementById("profile-email");
     const passwordInput = document.getElementById("profile-password");
     const alertNameRequirement = document.querySelector(".alert-name-requirements");
+    const alertBirthdayRequirement = document.querySelector(".alert-birthday-requirements");
     const alertEmailRequirement = document.querySelector(".alert-email-requirements");
     const alertEmailExist = document.querySelector(".alert-email-exist");
     const passwordRequirement = document.querySelector(".password-requirements");
     const alertPasswordRequirement = document.querySelector(".alert-password-requirements");
+    const currentDate = new Date();
+    const userDate = new Date(`${document.getElementById("profile-birthday").value}T00:00:00`);
+    const limitDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
+    var birthVerification = 0;
 
     var profile = {
         name: document.getElementById("profile-name").value,
@@ -137,7 +143,30 @@ async function editProfiles() {
         alertPasswordRequirement.style.display = "none";
     }
 
-    if (profile.name != 0 && nameValid(profile.name) && emailValid(profile.email) && profile.password.length >= 6) {
+    if(document.getElementById("profile-birthday") != null){
+        const day = String(limitDate.getDate()).padStart(2, '0');
+        const month = String(limitDate.getMonth() + 1).padStart(2, '0');
+        const year = limitDate.getFullYear(-120);   
+        if(userDate > currentDate){
+            alertBirthdayRequirement.style.display = "block";
+            birthdayInput.style.border = "2px solid red";
+            alertBirthdayRequirement.innerHTML = "Birthday date cannot be in the future";
+            birthdayInput.scrollIntoView({ block: "center" });
+            birthVerification = 1;
+        }else if(userDate < limitDate){
+            alertBirthdayRequirement.style.display = "block";
+            birthdayInput.style.border = "2px solid red";
+            alertBirthdayRequirement.innerHTML = `Birthday date cannot be earlier than 
+                ${day}/${month}/${year}`;
+            birthdayInput.scrollIntoView({ block: "center" });
+            birthVerification = 1;
+        }else{
+            alertBirthdayRequirement.style.display = "none";
+            birthVerification = 0;
+        }
+    }
+
+    if (profile.name != 0 && nameValid(profile.name) && emailValid(profile.email) && profile.password.length >= 6 && birthVerification == 0) {
         try {
             const response = await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
                 method: 'Put',

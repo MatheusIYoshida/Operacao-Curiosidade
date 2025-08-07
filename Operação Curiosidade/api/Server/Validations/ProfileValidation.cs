@@ -14,6 +14,7 @@ public static class ProfileValidation
         result.AddErrors(NameValidations.NameIsValid(profile.Name));
         result.AddErrors(EmailValidations.EmailAlreadyExist(profile.Email, listProfiles));
         result.AddErrors(EmailValidations.EmailIsValid(profile.Email));
+        result.AddErrors(BirthdayValidation.BirthdayDateValid(profile.Birthday));
         result.AddErrors(StringLengthValidations.MaxStringLength(profile.Name, 100, "Name"));
         result.AddErrors(StringLengthValidations.MaxStringLength(profile.Email, 200, "Email"));
         result.AddErrors(StringLengthValidations.MaxStringLength(profile.Password, 100, "Password"));
