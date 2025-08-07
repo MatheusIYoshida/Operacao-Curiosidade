@@ -1,11 +1,26 @@
-﻿namespace ApiUnitTests.UnitTests.Repositories.ProfileRepositoryUnitTests.Delete;
+﻿using Moq;
+using Server.Models;
+using Server.Repositories;
+using Server.Services.Interfaces;
+
+namespace ApiUnitTests.UnitTests.Repositories.ProfileRepositoryUnitTests.Delete;
 
 public class DeleteProfileUnitTest : ProfileRepositoryUnitTest
 {
     [Fact]
     public void DeleteProfile_ReturnTrue()
     {
+        List<Profile> list = new List<Profile>
+        {
+            new Profile {Name = "test", Email = "test@gmail.com", Password = "123123", Deleted = false},
+            new Profile {Name = "test2", Email = "test2@gmail.com", Password = "123123", Deleted = true},
+            new Profile {Name = "test3", Email = "test3@gmail.com", Password = "123123", Deleted = false}
+        };
         var email = "test3@gmail.com";
+        var mockDataService = new Mock<IDataService>();
+        mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(list);
+        var repository = new ProfileRepository(_mockStatusValidation.Object,
+            mockDataService.Object, _mockPaginationHelper.Object);
 
         var result = _repository.DeleteProfile(email);
 

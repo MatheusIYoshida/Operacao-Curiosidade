@@ -1,5 +1,6 @@
 ﻿using Moq;
 using Server.Models;
+using Server.Pagination;
 using Server.Repositories;
 using Server.Services.Interfaces;
 using Server.Validations;
@@ -51,12 +52,13 @@ public class CreateProfileUnitTest : ProfileRepositoryUnitTest
     public void CreateProfile_FirstProfile_AdminTrue_ReturnProfile()
     {
         Profile profile = new Profile() { Name = "test", Email = "test4@gmail.com", Password = "123123", Admin = false };
-        var list = new List<Profile>();
         var mockDataService = new Mock<IDataService>();
-        mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(list);
-        var repository = new ProfileRepository(_mockStatusValidation.Object,
-            mockDataService.Object, _mockPaginationHelper.Object);
-        _mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(true);
+        var mockPaginationHelper = new Mock<IPaginationHelper>();
+        var mockStatusValidation = new Mock<IProfileStatusVerification>();
+        mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(new List<Profile>());
+        mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(true);
+        var repository = new ProfileRepository(mockStatusValidation.Object,
+            mockDataService.Object, mockPaginationHelper.Object);
 
         var (result, error) = repository.CreateProfile(profile);
 

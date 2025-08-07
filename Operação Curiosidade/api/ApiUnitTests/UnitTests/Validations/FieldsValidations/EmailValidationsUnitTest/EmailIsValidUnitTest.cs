@@ -15,7 +15,7 @@ public class EmailIsValidUnitTest
     }
 
     [Fact]
-    public void EmailIsValid_Invalid_ReturnStringErrro()
+    public void EmailIsValid_Invalid_ReturnStringErroR()
     {
         var email = "test";
 
