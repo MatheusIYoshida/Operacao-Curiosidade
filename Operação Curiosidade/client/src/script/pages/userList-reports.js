@@ -1,5 +1,5 @@
 checkAuth();
-document.addEventListener("DOMContentLoaded", function() {
+document.querySelector(".reports-lists-text").addEventListener("click", function() {
     userListReports();
 });
 
@@ -47,6 +47,7 @@ async function userListReports(){
                 tableRow.appendChild(tableCreatedAt);
             })
         }
+        window.print();
     }
     catch(error){
         console.error("Error loading users", error);
