@@ -19,20 +19,20 @@ builder.Services.AddScoped<IProfileStatusVerification, ProfileStatusVerification
 builder.Services.AddScoped<IDataService, DataService>();
 builder.Services.AddScoped<IPaginationHelper, PaginationHelper>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) //O parâmetro define que por padrão o sistema usará a autenticação baseada em tokens jwt 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.TokenValidationParameters = new TokenValidationParameters //Definição de parâmetros específicos para a validação dok token
+        options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = true, //valida emissor
-            ValidateAudience = true, //valida audiência
-            ValidateLifetime = true, //validade do token
-            ValidateIssuerSigningKey = true, //Valida a chave de assinatura do token
-            ClockSkew = TimeSpan.Zero, //Permite que não haja um delay entre o servidor de autenticação com o servidor de aplicação
-            ValidIssuer = builder.Configuration["JWT:ValidIssuer"], //Valor para o emissor
-            ValidAudience = builder.Configuration["JWT:ValidAudience"], //Valor para a audiência
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ClockSkew = TimeSpan.Zero,
+            ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+            ValidAudience = builder.Configuration["JWT:ValidAudience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"])) //Chave simétrica criada a partir da chave secreta
+                Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
         };
     });
 

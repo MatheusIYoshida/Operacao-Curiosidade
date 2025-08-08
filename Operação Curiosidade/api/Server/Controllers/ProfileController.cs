@@ -24,7 +24,7 @@ namespace Server.Controllers
         {
             var profiles = _repository.GetProfiles();
 
-            return Ok(profiles.ToProfileListingDTOList());
+            return Ok(profiles.ToProfileReportsDTOList());
         }
 
         [HttpGet("Pagination")]

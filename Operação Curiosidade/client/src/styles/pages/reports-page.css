@@ -36,7 +36,8 @@
     .main-container-title,
     .reports-table,
     .table-line,
-    .reports-lists{
+    .reports-lists,
+    .alert{
         display: none;
     }
 

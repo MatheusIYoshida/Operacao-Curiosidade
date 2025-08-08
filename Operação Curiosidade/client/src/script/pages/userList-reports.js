@@ -8,6 +8,7 @@ async function userListReports(){
     const token = localStorage.getItem("Token");
     
     try{
+        table.innerHTML = "";
         const profiles = await getProfiles(token);
         if(profiles != null){
             profiles.forEach(profile => {

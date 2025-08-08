@@ -2,12 +2,12 @@
 using Server.DTOs.Mappings;
 using Server.Models;
 
-namespace ApiUnitTests.UnitTests.DTOs.MappingUnitTests.ProfileListingDTOMapping;
+namespace ApiUnitTests.UnitTests.DTOs.MappingUnitTests.ProfileReportsDTOMapping;
 
-public class ToProfileListingDTOUnitTest
+public class ToProfileReportsDTOUnitTest
 {
     [Fact]
-    public void ToProfileListingDTO_CorrectConversion_ReturnsProfileListingDTO()
+    public void ToProfileReportsDTO_CorrectConversion_ReturnsProfileReportsDTO()
     {
         var date = DateTime.Now;
         var profile = new Profile
@@ -29,9 +29,9 @@ public class ToProfileListingDTOUnitTest
             Deleted = false
         };
 
-        var result = profile.ToProfileListingDTO();
+        var result = profile.ToProfileReportsDTO();
 
-        Assert.IsType<ProfileListingDTO>(result);
+        Assert.IsType<ProfileReportsDTO>(result);
         Assert.Equal(profile.Name, result.Name);
         Assert.Equal(profile.Email, result.Email);
         Assert.True(result.Active);
@@ -40,11 +40,11 @@ public class ToProfileListingDTOUnitTest
     }
 
     [Fact]
-    public void ToProfileListingDTO_ProfileIsNull_ReturnNull()
+    public void ToProfileReportsDTO_ProfileIsNull_ReturnNull()
     {
         Profile profile = null;
 
-        var result = profile.ToProfileListingDTO();
+        var result = profile.ToProfileReportsDTO();
 
         Assert.Null(result);
     }

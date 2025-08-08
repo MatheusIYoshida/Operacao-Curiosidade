@@ -202,7 +202,12 @@ async function editProfiles() {
                 await createLogs(log);
 
                 localStorage.removeItem("currentProfile");
-                localStorage.setItem("currentProfile", JSON.stringify(profile));
+                const current = {
+                    name: document.getElementById("profile-name").value,
+                    email: document.getElementById("profile-email").value,
+                    admin: document.getElementById("modal-admin-checkbox").checked
+                }
+                localStorage.setItem("currentProfile", JSON.stringify(current));
 
                 if(profile.email != currentProfile.email || profile.admin != currentProfile.admin){
                     localStorage.removeItem("Token");
@@ -244,9 +249,6 @@ async function editProfiles() {
                     break;
                 case "logs.html":
                     await requestLogsList(1, 15);
-                    break;
-                case "reports.html":
-                    userListReports();
                     break;
                 default:
             }

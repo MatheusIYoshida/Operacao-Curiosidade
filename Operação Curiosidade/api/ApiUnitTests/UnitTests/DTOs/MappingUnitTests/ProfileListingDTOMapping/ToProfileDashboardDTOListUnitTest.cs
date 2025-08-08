@@ -4,7 +4,7 @@ using Server.Models;
 
 namespace ApiUnitTests.UnitTests.DTOs.MappingUnitTests.ProfileListingDTOMapping;
 
-public class ToProfileListingDTOListUnitTest
+public class ToProfileDashboardDTOListUnitTest
 {
     [Fact]
     public void ToProfileListingDTOList_CorrectConversion_ReturnProfileListingDTOList()
@@ -16,10 +16,9 @@ public class ToProfileListingDTOListUnitTest
         };
 
         var result = profiles.ToProfileListingDTOList();
-        
+
         Assert.IsType<List<ProfileListingDTO>>(result);
         Assert.Equal(2, result.Count());
-
     }
 
     [Fact]

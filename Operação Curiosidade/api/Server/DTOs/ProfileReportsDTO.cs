@@ -1,9 +1,12 @@
-﻿namespace Server.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
 
-public class ProfileListingDTO
+namespace Server.DTOs;
+
+public class ProfileReportsDTO
 {
     public string? Name { get; set; }
     public string? Email { get; set; }
     public bool Active { get; set; }
     public string? Status { get; set; }
+    public DateTime? CreatedAt { get; set; }
 }

@@ -40,6 +40,9 @@ const toggleModalCreate = () => {
             input.style.border = "";
             input.value = "";
         });
+        document.querySelectorAll(".profile-input textarea").forEach(textarea => {
+            textarea.value = "";
+        });
         document.getElementById("create-modal-admin-checkbox").checked = false;
         
         modalCreate.scrollTop = 0;

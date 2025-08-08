@@ -15,7 +15,7 @@ namespace ApiUnitTests.UnitTests.Controllers.ProfileUnitTestController.GetTests
 
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
             Assert.Equal(200, okResult.StatusCode);
-            var returnValue = Assert.IsType<List<ProfileListingDTO>>(okResult.Value);
+            var returnValue = Assert.IsType<List<ProfileReportsDTO>>(okResult.Value);
             Assert.Equal(3, returnValue.Count());
         }
 
@@ -27,7 +27,7 @@ namespace ApiUnitTests.UnitTests.Controllers.ProfileUnitTestController.GetTests
             var result = _controller.GetAll();
 
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
-            var resultValue = Assert.IsType<List<ProfileListingDTO>>(okResult.Value);
+            var resultValue = Assert.IsType<List<ProfileReportsDTO>>(okResult.Value);
             Assert.Empty(resultValue);
         }
     }
