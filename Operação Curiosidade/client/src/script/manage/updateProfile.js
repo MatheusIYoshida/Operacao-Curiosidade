@@ -239,7 +239,8 @@ async function editProfiles() {
                     pendingUsers();
                     break;
                 case "profiles-page.html":
-                    requestUserList(1, 15);
+                    const pagination = JSON.parse(localStorage.getItem("ProfilePagination"));
+                    requestUserList(pagination.currentPage, 15);
                     break;
                 case "logs.html":
                     await requestLogsList(1, 15);

@@ -48,7 +48,6 @@ namespace Server.Controllers
 
         [HttpGet("by-email/{email}", Name = "GetProfile")]
         [Authorize]
-
         public ActionResult<ProfileDTO> GetByEmail(string email)
         {
             var profile = _repository.GetProfile(email);

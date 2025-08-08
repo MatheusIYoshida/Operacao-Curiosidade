@@ -13,7 +13,6 @@ async function createProfile() {
     const passwordRequirement = document.querySelector(".password-requirements-create");
     const alertPasswordRequirement = document.querySelector(".alert-password-requirements-create");
     const currentDate = new Date();
-    const userDate = new Date(`${document.getElementById("create-profile-birthday").value}T00:00:00`);
     const limitDate = new Date(currentDate.getFullYear() - 120, currentDate.getMonth(), currentDate.getDate());
     const currentProfile = JSON.parse(localStorage.getItem("currentProfile"));
     var birthVerification = 0;
@@ -70,6 +69,7 @@ async function createProfile() {
     }
 
     if(document.getElementById("create-profile-birthday") != null){
+        const userDate = new Date(`${document.getElementById("create-profile-birthday").value}T00:00:00`);
         const day = String(limitDate.getDate()).padStart(2, '0');
         const month = String(limitDate.getMonth() + 1).padStart(2, '0');
         const year = limitDate.getFullYear(-120);   
@@ -93,7 +93,6 @@ async function createProfile() {
     }
 
     if (name != 0 && nameValid(name) && email != 0 && emailValid(email) && password.length >= 6 && birthVerification == 0) {
-            console.log(1+1)
         if (document.getElementById("create-profile-birthday") == null) {
             var birthday = "";
         } else {

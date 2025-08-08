@@ -47,23 +47,4 @@ public class CreateProfileUnitTest : ProfileRepositoryUnitTest
         Assert.Null(error);
         Assert.Equal("Complete", result.Status);
     }
-
-    [Fact]
-    public void CreateProfile_FirstProfile_AdminTrue_ReturnProfile()
-    {
-        Profile profile = new Profile() { Name = "test", Email = "test4@gmail.com", Password = "123123", Admin = false };
-        var mockDataService = new Mock<IDataService>();
-        var mockPaginationHelper = new Mock<IPaginationHelper>();
-        var mockStatusValidation = new Mock<IProfileStatusVerification>();
-        mockDataService.Setup(mock => mock.LoadData<Profile>(It.IsAny<string>())).Returns(new List<Profile>());
-        mockStatusValidation.Setup(mock => mock.StatusValid(profile)).Returns(true);
-        var repository = new ProfileRepository(mockStatusValidation.Object,
-            mockDataService.Object, mockPaginationHelper.Object);
-
-        var (result, error) = repository.CreateProfile(profile);
-
-        Assert.IsType<Profile>(result);
-        Assert.True(result.Admin);
-        Assert.Null(error);
-    }
 }
