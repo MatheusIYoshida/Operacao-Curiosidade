@@ -203,7 +203,7 @@ async function createProfile() {
                     email: newProfile.Email,
                     action: `Created their own profile`
                 };
-                createLogs(log);
+                await createLogs(log);
             }
 
             if (window.location.href.split("/").pop() == "login-registration.html") {
