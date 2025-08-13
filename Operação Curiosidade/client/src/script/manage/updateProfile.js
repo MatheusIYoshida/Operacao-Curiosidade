@@ -168,14 +168,16 @@ async function editProfiles() {
 
     if (profile.name != 0 && nameValid(profile.name) && emailValid(profile.email) && profile.password.length >= 6 && birthVerification == 0) {
         try {
-            const response = await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}`, {
-                method: 'Put',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(profile)
-            });
+            console.log(currentEmail)
+            const response = await fetch(`https://localhost:7160/api/Profile/by-email/${currentEmail}/${currentProfile.name}
+                /${currentProfile.email}`, {
+                    method: 'Put',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(profile)
+                });
 
             if (!response.ok) {
                 const errorData = await response.json();
@@ -194,13 +196,6 @@ async function editProfiles() {
             }
             
             if (currentEmail == currentProfile.email) {
-                var log = {
-                    name: currentProfile.name,
-                    email: currentProfile.email,
-                    action: "Edited your own profile"
-                };
-                await createLogs(log);
-
                 localStorage.removeItem("currentProfile");
                 const current = {
                     name: document.getElementById("profile-name").value,
@@ -220,13 +215,6 @@ async function editProfiles() {
                 }else{
                     userIcon();
                 }
-            } else {
-                var log = {
-                    name: currentProfile.name,
-                    email: currentProfile.email,
-                    action: `Edited the profile ${profile.email}`
-                };
-                createLogs(log);
             }
 
             const editionAlert = document.getElementById("edition-alert");

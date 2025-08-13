@@ -59,9 +59,10 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProfileDTO> Post([FromBody] ProfileDTO profileDTO)
+        public ActionResult<ProfileDTO> Post([FromBody] ProfileDTO profileDTO, [FromQuery] string nameCreate, 
+            [FromQuery] string emailCreate)
         {
-            var (createdProfile, error) = _repository.CreateProfile(profileDTO.ToProfile());
+            var (createdProfile, error) = _repository.CreateProfile(profileDTO.ToProfile(), nameCreate, emailCreate);
 
             if (error != null)
             {
@@ -75,12 +76,11 @@ namespace Server.Controllers
             return new CreatedAtRouteResult("GetProfile", new { email = createdProfile.Email }, createdProfile.ToProfileDTO());
         }
 
-        [HttpPut("by-email/{email}")]
+        [HttpPut("by-email/{email}/{nameCreate}/{emailCreate}")]
         [Authorize]
-        public ActionResult<ProfileDTO> Put(string email, [FromBody] ProfileDTO profileDTO)
+        public ActionResult<ProfileDTO> Put(string email, string nameCreate, string emailCreate, [FromBody] ProfileDTO profileDTO)
         {
-            var profile = profileDTO.ToProfile();
-            var (updatedProfile, error) = _repository.UpdateProfile(email, profile);
+            var (updatedProfile, error) = _repository.UpdateProfile(profileDTO.ToProfile(), email, nameCreate, emailCreate);
 
             if (error != null) 
             {
@@ -94,11 +94,11 @@ namespace Server.Controllers
             return Ok(updatedProfile.ToProfileDTO());
         }
 
-        [HttpDelete("by-email/{email}")]
+        [HttpDelete("by-email/{email}/{nameCreate}/{emailCreate}")]
         [Authorize]
-        public ActionResult Delete(string email)
+        public ActionResult Delete(string email, string nameCreate, string emailCreate)
         {
-            bool deletado = _repository.DeleteProfile(email);
+            bool deletado = _repository.DeleteProfile(email, nameCreate, emailCreate);
             return deletado ? Ok($"Profile email: {email} deleted successfully!") : 
                 StatusCode(500, $"Failed to delete profile email: {email}");
         }

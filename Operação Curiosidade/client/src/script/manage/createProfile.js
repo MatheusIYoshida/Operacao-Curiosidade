@@ -155,8 +155,21 @@ async function createProfile() {
             Admin: admin
         };
 
+        let newLog;
+        if(currentProfile){
+            newLog = {
+                Name: currentProfile.name,
+                Email: currentProfile.email
+            }
+        }else{
+            newLog = {
+                Name: name,
+                Email: email
+            }
+        }
+
         try {
-            const response = await fetch('https://localhost:7160/api/Profile', {
+            const response = await fetch(`https://localhost:7160/api/Profile?nameCreate=${newLog.Name}&emailCreate=${newLog.Email}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -188,22 +201,6 @@ async function createProfile() {
                 setTimeout(() => {
                     creationAlert.classList.add("hide");
                 }, 5000);
-            }
-
-            if (currentProfile) {
-                var log = {
-                    name: currentProfile.name,
-                    email: currentProfile.email,
-                    action: `Created the profile ${newProfile.Email}`
-                };
-                createLogs(log);
-            } else {
-                var log = {
-                    name: newProfile.Name,
-                    email: newProfile.Email,
-                    action: `Created their own profile`
-                };
-                await createLogs(log);
             }
 
             if (window.location.href.split("/").pop() == "login-registration.html") {

@@ -1,5 +1,8 @@
-﻿using Server.Models;
+﻿using Server.DTOs;
+using Server.Models;
+using Server.Models.Enum;
 using Server.Pagination;
+using Server.Services;
 using Server.Services.Interfaces;
 using Server.Validations;
 
@@ -8,8 +11,11 @@ namespace Server.Repositories
     public class ProfileRepository : IProfileRepository
     {
         private static List<Profile> _profiles = new List<Profile>();
+        private static List<Log> _logs = new List<Log>();
         private static int _profileId = 1;
+        private static int _countId = 1;
         private const string FilePath = "Data/profiles.json";
+        private const string LogFilePath = "Data/logs.json";
         private readonly IProfileStatusVerification _statusValidation;
         private readonly IDataService _profileData;
         private readonly IPaginationHelper _paginationHelper;
@@ -21,7 +27,9 @@ namespace Server.Repositories
             _profileData = profileData;
             _paginationHelper = paginationHelper;
             _profiles = _profileData.LoadData<Profile>(FilePath);
+            _logs = _profileData.LoadData<Log>(LogFilePath);
             _profileId = _profiles.Count > 0 ? _profiles.Max(p => p.Id) + 1 : 1;
+            _countId = _logs.Count > 0 ? _logs.Max(p => p.Id) + 1 : 1;
         }
 
         public IEnumerable<Profile> GetProfiles()
@@ -46,7 +54,7 @@ namespace Server.Repositories
             return _profiles.FirstOrDefault(p => p.Email == email && !p.Deleted);
         }
 
-        public (Profile? Profile, ValidationResult? Error) CreateProfile(Profile profile)
+        public (Profile? Profile, ValidationResult? Error) CreateProfile(Profile profile, string nameCreate, string emailCreate)
         {
             var errors = profile.ValidateProfile(_profiles);
             if (!errors.IsValid)
@@ -59,12 +67,17 @@ namespace Server.Repositories
             profile.CreatedAt = DateTime.UtcNow;
             profile.Status = _statusValidation.StatusValid(profile) ? "Complete" : "Incomplete";
 
+            var log = LogService.CreateLog(ELogAction.Create, profile.Email, nameCreate, emailCreate);
+            
             _profiles.Add(profile);
             _profileData.SaveData(FilePath, _profiles);
+            _logs.Add(log);
+            _profileData.SaveData(LogFilePath, _logs);
             return (profile, null);
         }
 
-        public (Profile? Profile, ValidationResult? Error) UpdateProfile(string email, Profile profile)
+        public (Profile? Profile, ValidationResult? Error) UpdateProfile(Profile profile, string email, string nameCreate,
+            string emailCreate)
         {
             var existingProfile = _profiles.FirstOrDefault(p => p.Email == email);
 
@@ -78,6 +91,8 @@ namespace Server.Repositories
             var errors = profile.ValidateProfile(_profiles.Where(p => p.Email != email));
             if (!errors.IsValid)
                 return (null, errors);
+
+            var log = LogService.CreateLog(ELogAction.Update, existingProfile.Email, nameCreate, emailCreate);
 
             existingProfile.Name = profile.Name;
             existingProfile.Birthday = profile.Birthday;
@@ -93,17 +108,24 @@ namespace Server.Repositories
             existingProfile.Status = _statusValidation.StatusValid(profile) ? "Complete" : "Incomplete";
 
             _profileData.SaveData(FilePath, _profiles);
+            _logs.Add(log);
+            _profileData.SaveData(LogFilePath, _logs);
             return (existingProfile, null);
         }
 
-        public bool DeleteProfile(string email)
+        public bool DeleteProfile(string email, string nameCreate, string emailCreate)
         {
             var profile = _profiles.FirstOrDefault(p => p.Email == email && !p.Deleted);
             if (profile == null) 
                 return false;
 
             profile.Deleted = true;
+
+            var log = LogService.CreateLog(ELogAction.Delete, email, nameCreate, emailCreate);
+
             _profileData.SaveData(FilePath, _profiles);
+            _logs.Add(log);
+            _profileData.SaveData(LogFilePath, _logs);
             return true;
         }
     }

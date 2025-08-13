@@ -73,22 +73,3 @@ async function getLogsPagination(filter, currentPage, pageSize, token){
 
     return await response.json();
 }
-
-async function createLogs(log){
-    const response = await fetch(`${url}Log`, {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-        },
-        body: JSON.stringify(log) 
-    });
-
-    if(!response.ok){
-        throw {
-            status: response.status,
-            message: 'Create logs error'
-        }
-    }
-
-    return await response.json();
-}

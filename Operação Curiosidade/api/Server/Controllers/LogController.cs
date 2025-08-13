@@ -7,6 +7,7 @@ using Server.Repositories;
 namespace Server.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class LogController : ControllerBase
 {
@@ -18,7 +19,6 @@ public class LogController : ControllerBase
     }
 
     [HttpGet]
-    [Authorize]
     public ActionResult<PagedList<Log>> GetPagination([FromQuery] string? filter, [FromQuery] int currentPage, 
         [FromQuery] int pageSize)
     {
@@ -33,17 +33,5 @@ public class LogController : ControllerBase
             logs.HasNext
         };
         return Ok(response);
-    }
-
-    [HttpPost]
-    public ActionResult<Log> Post([FromBody] Log log)
-    {
-        if (log == null)
-        {
-            return BadRequest("Log is null");
-        }
-
-        var createdLog = _log.CreateLog(log);
-        return CreatedAtAction(nameof(GetPagination), new { id = createdLog.Id }, createdLog);
     }
 }

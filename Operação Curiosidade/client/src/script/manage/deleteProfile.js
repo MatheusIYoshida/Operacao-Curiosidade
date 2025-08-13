@@ -4,7 +4,8 @@ async function removeProfile() {
     const emailToRemove = localStorage.getItem("removeProfile");
 
     try {
-        const response = await fetch(`https://localhost:7160/api/Profile/by-email/${emailToRemove}`, {
+        const response = await fetch(`https://localhost:7160/api/Profile/by-email/${emailToRemove}/${currentProfile.name}/${currentProfile.email}`, 
+        {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -25,21 +26,8 @@ async function removeProfile() {
         localStorage.removeItem("removeProfile");
 
         if (emailToRemove == currentProfile.email) {
-            var log = {
-                name: currentProfile.name,
-                email: currentProfile.email,
-                action: "Removed their own profile"
-            };
-            createLogs(log);
             localStorage.removeItem("Token");
             checkAuth();
-        } else {
-            var log = {
-                name: currentProfile.name,
-                email: currentProfile.email,
-                action: `Removed the profile ${emailToRemove}`
-            };
-            createLogs(log);
         }
 
         toggleModalRemove();
