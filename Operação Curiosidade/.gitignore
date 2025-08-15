@@ -2,4 +2,3 @@
 .vscode/
 **/bin/
 **/obj/
-/api/Server/Data/
