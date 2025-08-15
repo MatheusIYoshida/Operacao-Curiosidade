@@ -9,6 +9,26 @@ async function userListReports(){
     
     try{
         table.innerHTML = "";
+        const tableRow = document.createElement("tr");
+        tableRow.className = "table-row-title";
+        table.appendChild(tableRow);
+
+        const tableName = document.createElement("td");
+        tableName.textContent = "NAME";
+        tableRow.appendChild(tableName);
+
+        const tableEmail = document.createElement("td");
+        tableEmail.textContent = "EMAIL";
+        tableRow.appendChild(tableEmail);
+
+        const tableStatus = document.createElement("td");
+        tableStatus.textContent = "STATUS";
+        tableRow.appendChild(tableStatus);
+
+        const tableCreatedAt = document.createElement("td");
+        tableCreatedAt.textContent = "CREATED";
+        tableRow.appendChild(tableCreatedAt);
+
         const profiles = await getProfiles(token);
         if(profiles != null){
             profiles.forEach(profile => {

@@ -3,9 +3,9 @@ using Server.Services.Interfaces;
 
 namespace Server.Services;
 
-public class ProfileStatusVerification : IProfileStatusVerification
+public static class ProfileStatusVerification
 {
-    public bool StatusValid(Profile profile)
+    public static bool StatusValid(Profile profile)
     {
         return profile.Birthday.HasValue && 
                !string.IsNullOrWhiteSpace(profile.Address) &&

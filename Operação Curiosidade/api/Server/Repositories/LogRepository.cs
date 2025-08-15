@@ -1,33 +1,25 @@
-﻿using Server.Models;
-using Server.Pagination;
-using Server.Services.Interfaces;
+﻿using Server.Data;
+using Server.Models;
 
 namespace Server.Repositories;
 
 public class LogRepository : ILogRepository
 {
-    private static List<Log> _logs = new List<Log>();
-    private const string FilePath = "Data/logs.json";
-    private readonly IDataService _logData;
-    private readonly IPaginationHelper _paginationHelper;
+    private readonly ApplicationDbContext _context;
 
-    public LogRepository(IDataService logData, IPaginationHelper paginationHelper)
+    public LogRepository(ApplicationDbContext context)
     {
-        _logData = logData;
-        _paginationHelper = paginationHelper;
-        _logs = _logData.LoadData<Log>(FilePath) ?? new List<Log>();
+        _context = context;
     }
 
-    public PagedList<Log> GetLogs(string? filter, int currentPage, int pageSize)
+    public IEnumerable<Log> GetLogs()
     {
-        var logs = _logs.OrderByDescending(l => l.CreatedAt).ToList();
-        if (!string.IsNullOrEmpty(filter))
-        {
-            logs = logs.Where(l => l.Name.Contains(filter, StringComparison.OrdinalIgnoreCase)
-            || l.Email.Contains(filter, StringComparison.OrdinalIgnoreCase)
-            || l.Action.Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
-        }
-        var logsPag = _paginationHelper.ToPagedList(logs, currentPage, pageSize);
-        return logsPag;
+        return _context.Logs.ToList();
+    }
+
+    public void CreateLog(Log log)
+    {
+        _context.Logs.Add(log);
+        _context.SaveChanges();
     }
 }

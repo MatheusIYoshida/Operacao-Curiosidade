@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Server.Data;
 using Server.Pagination;
 using Server.Repositories;
 using Server.Services;
@@ -11,13 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<ILogRepository, LogRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddScoped<IProfileStatusVerification, ProfileStatusVerification>();
-builder.Services.AddScoped<IDataService, DataService>();
 builder.Services.AddScoped<IPaginationHelper, PaginationHelper>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ILogService, LogService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

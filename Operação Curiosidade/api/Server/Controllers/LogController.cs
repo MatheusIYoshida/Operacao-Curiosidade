@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Server.Models;
 using Server.Pagination;
-using Server.Repositories;
+using Server.Services.Interfaces;
 
 namespace Server.Controllers;
 
@@ -11,18 +11,18 @@ namespace Server.Controllers;
 [Route("api/[controller]")]
 public class LogController : ControllerBase
 {
-    private readonly ILogRepository _log;
+    private readonly ILogService _service;
 
-    public LogController(ILogRepository log)
+    public LogController(ILogService service)
     {
-        _log = log;
+        _service = service;
     }
 
     [HttpGet]
     public ActionResult<PagedList<Log>> GetPagination([FromQuery] string? filter, [FromQuery] int currentPage, 
         [FromQuery] int pageSize)
     {
-        var logs = _log.GetLogs(filter, currentPage, pageSize);
+        var logs = _service.GetLogs(filter, currentPage, pageSize);
         var response = new
         {
             Items = logs,

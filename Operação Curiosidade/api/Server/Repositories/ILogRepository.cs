@@ -5,5 +5,6 @@ namespace Server.Repositories;
 
 public interface ILogRepository
 {
-    PagedList<Log> GetLogs(string? filter, int currentPage, int pageSize);
+    public IEnumerable<Log> GetLogs();
+    public void CreateLog(Log log);
 }
