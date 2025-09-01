@@ -1,0 +1,33 @@
+<div class="register-container">
+    <div class="title">{{ formTitle }}</div>
+    <form class="form" [formGroup]="registerForm">
+        <input 
+            class="input" 
+            type="text" 
+            placeholder="Name:" 
+            maxlength="{}"/>
+        <span
+            *ngIf="alertName"
+            class="global-span"
+            >{{ spanName }}</span>
+        
+        <input 
+            class="input" 
+            type="email" 
+            placeholder="Email:" 
+            maxlength="{}"/>
+        <span
+            *ngIf="alertEmail"
+            class="global-span"
+        >{{ spanEmail }}</span>
+
+        <input 
+            class="input" 
+            type="password" 
+            placeholder="Password:" 
+            maxlength="{}"/>
+        <span
+            class="global-span"
+        >{{ spanPassword }}</span>
+    </form>
+</div>
