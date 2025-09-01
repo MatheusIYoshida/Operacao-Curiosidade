@@ -1,0 +1,46 @@
+<div class="login-container">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onFormSubmit()">
+        <input 
+            class="input" 
+            type="email" 
+            formControlName="email" 
+            placeholder="Email:" 
+            maxlength="{{ emailMaxLength }}"
+            (click)="clearInput($event)"
+            [ngStyle]="{
+                'border': alertEmail ? '2px solid #ba0933' : '2px solid #000'
+            }"/>
+        <span 
+            *ngIf="alertEmail"
+            [ngStyle]="{
+                'font-size': '11px',
+                'color': alertPassword ? '#ba0933' : '#000'
+            }">{{ spanEmailMessage }}</span>
+            
+        <input 
+            class="input" 
+            type="password" 
+            formControlName="password" 
+            placeholder="Password:" 
+            maxlength="{{ passwordMaxLength }}"
+            (click)="clearInput($event)"
+            [ngStyle]="{
+                'border': alertPassword ? '2px solid #ba0933' : '2px solid #000'
+            }"/>
+        <span 
+            [ngStyle]="{
+                'font-size': '11px',
+                'color': alertPassword ? '#ba0933' : '#000'
+        }">{{ spanPasMessage }}</span>
+        <button class="button" type="submit">Sign In</button>
+    </form>
+
+    <div class="create-profile">
+        <div class="create-profile-title">
+            <div class="bar"></div>
+            <div class="create-profile-text">New to Operação Curiosidade?</div>
+            <div class="bar"></div>
+        </div>
+        <button class="create-profile-button" type="button">Create a new profile</button>
+    </div>
+</div>
