@@ -7,15 +7,13 @@
             placeholder="Email:" 
             maxlength="{{ emailMaxLength }}"
             (click)="clearInput($event)"
-            [ngStyle]="{
-                'border': alertEmail ? '2px solid #ba0933' : '2px solid #000'
-            }"/>
+            [ngClass]="
+                alertPassword ? 'global-input-border-alert' : 'global-input-border'
+            "/>
         <span 
             *ngIf="alertEmail"
-            [ngStyle]="{
-                'font-size': '11px',
-                'color': alertPassword ? '#ba0933' : '#000'
-            }">{{ spanEmailMessage }}</span>
+            class="global-span"
+            >{{ spanEmail }}</span>
             
         <input 
             class="input" 
@@ -24,15 +22,15 @@
             placeholder="Password:" 
             maxlength="{{ passwordMaxLength }}"
             (click)="clearInput($event)"
-            [ngStyle]="{
-                'border': alertPassword ? '2px solid #ba0933' : '2px solid #000'
-            }"/>
+            [ngClass]="
+                alertPassword ? 'global-input-border-alert' : 'global-input-border'
+            "/>
         <span 
-            [ngStyle]="{
-                'font-size': '11px',
-                'color': alertPassword ? '#ba0933' : '#000'
-        }">{{ spanPasMessage }}</span>
-        <button class="button" type="submit">Sign In</button>
+            class="global-span"
+            [ngClass]="
+                alertPassword ? 'text-alert' : 'text-normal'
+            ">{{ spanPassword }}</span>
+        <button class="global-button signIn-button" type="submit">Sign In</button>
     </form>
 
     <div class="create-profile">
@@ -41,6 +39,6 @@
             <div class="create-profile-text">New to Operação Curiosidade?</div>
             <div class="bar"></div>
         </div>
-        <button class="create-profile-button" type="button">Create a new profile</button>
+        <button class="create-profile-button" type="button" (click)="goToRegister()">Create a new profile</button>
     </div>
 </div>

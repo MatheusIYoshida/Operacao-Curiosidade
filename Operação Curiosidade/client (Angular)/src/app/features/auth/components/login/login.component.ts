@@ -1,6 +1,7 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +14,13 @@ export class LoginComponent implements OnInit{
   passwordMaxLength: number = 100;
   alertEmail: boolean = false;
   alertPassword: boolean = false;
-  spanEmailMessage: string = '';
-  spanPasMessage: string = 'Minimum 6 characters required';
+  spanEmail: string = '';
+  spanPassword: string = 'Minimum 6 characters required';
 
   constructor(
     private readonly _fb: FormBuilder,
-    private readonly _authService: AuthService
+    private readonly _authService: AuthService,
+    private readonly _route: Router
   ){}
 
   ngOnInit(){
@@ -46,12 +48,12 @@ export class LoginComponent implements OnInit{
     }else{
       if(!this.password.valid){
         this.alertPassword = true;
-        this.spanPasMessage = this.password.hasError('required')
+        this.spanPassword = this.password.hasError('required')
         ? 'Enter your password' : 'Password must be at least 6 characters';
       }
       if(!this.email.valid){
         this.alertEmail = true;
-        this.spanEmailMessage = this.email.hasError('required')
+        this.spanEmail = this.email.hasError('required')
         ? 'Enter your email' : 'Invalid email';
       }
     }
@@ -59,13 +61,16 @@ export class LoginComponent implements OnInit{
 
   clearInput(event: Event){
     const input = event.target as HTMLInputElement
-    input.style.border = '2px solid #000';
     if(input.type === 'email'){
       this.alertEmail = false;
     }else{
       const span = input.nextElementSibling as HTMLElement;
-      this.spanPasMessage = 'Minimum 6 characters required';
-      span.style.color = '#000';
+      this.spanPassword = 'Minimum 6 characters required';
+      this.alertPassword = false;
     }
+  }
+
+  goToRegister(){
+    this._route.navigate(['/auth/register']);
   }
 }
