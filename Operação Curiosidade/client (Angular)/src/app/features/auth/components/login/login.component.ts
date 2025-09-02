@@ -61,10 +61,9 @@ export class LoginComponent implements OnInit{
 
   clearInput(event: Event){
     const input = event.target as HTMLInputElement
-    if(input.type === 'email'){
+    if(input.name === 'email'){
       this.alertEmail = false;
     }else{
-      const span = input.nextElementSibling as HTMLElement;
       this.spanPassword = 'Minimum 6 characters required';
       this.alertPassword = false;
     }

@@ -1,11 +1,17 @@
 <div class="register-container">
     <div class="title">{{ formTitle }}</div>
-    <form class="form" [formGroup]="registerForm">
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
         <input 
             class="input" 
-            type="text" 
-            placeholder="Name:" 
-            maxlength="{}"/>
+            type="text"
+            name="Name"
+            formControlName="name" 
+            placeholder="Name:"
+            (click)="clearInput($event)"  
+            maxlength="{{ nameMaxLength }}"
+            [ngClass]="
+                alertName ? 'global-input-border-alert' : 'global-input-border'
+            "/>
         <span
             *ngIf="alertName"
             class="global-span"
@@ -13,9 +19,15 @@
         
         <input 
             class="input" 
-            type="email" 
-            placeholder="Email:" 
-            maxlength="{}"/>
+            type="email"
+            name="Email"
+            formControlName="email" 
+            placeholder="Email:"
+            (click)="clearInput($event)"  
+            maxlength="{{ emailMaxLength }}"
+            [ngClass]="
+                alertEmail ? 'global-input-border-alert' : 'global-input-border'
+            "/>
         <span
             *ngIf="alertEmail"
             class="global-span"
@@ -23,11 +35,21 @@
 
         <input 
             class="input" 
-            type="password" 
-            placeholder="Password:" 
-            maxlength="{}"/>
+            type="password"
+            name="Password" 
+            formControlName="password"
+            placeholder="Password:"
+            (click)="clearInput($event)" 
+            maxlength="{{ passwordMaxLength }}"
+            [ngClass]="
+                alertPassword ? 'global-input-border-alert' : 'global-input-border'
+            "/>
         <span
             class="global-span"
-        >{{ spanPassword }}</span>
+            [ngClass]="
+            alertPassword ? 'text-alert' : 'text-normal'
+            ">{{ spanPassword }}</span>
+
+        <button class="global-button create-button" type="submit">CREATE PROFILE</button>
     </form>
 </div>
