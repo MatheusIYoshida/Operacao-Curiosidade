@@ -8,6 +8,7 @@ import { AuthCardComponent } from '../../shared/components/auth-card/auth-card.c
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GoBackArrowComponent } from '../../shared/components/ui/go-back-arrow/go-back-arrow.component';
 
 
 
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoCircleComponent,
     AuthCardComponent,
     LoginComponent,
-    RegisterComponent    
+    RegisterComponent,
+    GoBackArrowComponent    
   ],
   imports: [
     CommonModule,

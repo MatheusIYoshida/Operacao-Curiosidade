@@ -1,0 +1,14 @@
+.return{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    opacity: .7;
+}
+
+.return:hover{
+    transform: translateY(-2px);
+    opacity: 1;
+}
