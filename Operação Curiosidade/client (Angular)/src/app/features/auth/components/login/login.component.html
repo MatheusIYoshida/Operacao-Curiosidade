@@ -1,4 +1,5 @@
 <div class="login-container">
+    <app-forms-alert [verifyAcess]="accessDenied" (closeAlert)='accessDenied = $event'></app-forms-alert>
     <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onFormSubmit()">
         <input 
             class="input" 
@@ -9,7 +10,7 @@
             maxlength="{{ emailMaxLength }}"
             (click)="clearInput($event)"
             [ngClass]="
-                alertPassword ? 'global-input-border-alert' : 'global-input-border'
+                alertEmail ? 'global-input-border-alert' : 'global-input-border'
             "/>
         <span 
             *ngIf="alertEmail"

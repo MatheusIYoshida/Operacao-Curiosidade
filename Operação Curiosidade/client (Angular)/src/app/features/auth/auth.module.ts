@@ -9,6 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoBackArrowComponent } from '../../shared/components/ui/go-back-arrow/go-back-arrow.component';
+import { FormsAlertComponent } from '../../shared/components/ui/forms-alert/forms-alert.component';
 
 
 
@@ -19,7 +20,8 @@ import { GoBackArrowComponent } from '../../shared/components/ui/go-back-arrow/g
     AuthCardComponent,
     LoginComponent,
     RegisterComponent,
-    GoBackArrowComponent    
+    GoBackArrowComponent,
+    FormsAlertComponent    
   ],
   imports: [
     CommonModule,

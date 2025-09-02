@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit{
   loginForm!: FormGroup;
+  accessDenied: boolean = false
   emailMaxLength: number = 200;
   passwordMaxLength: number = 100;
   alertEmail: boolean = false;
@@ -42,8 +43,8 @@ export class LoginComponent implements OnInit{
     if(this.loginForm.valid){
       const { email, password } = this.loginForm.value;
       this._authService.login(email, password).subscribe({
-        next: (response) => alert('login success'),
-        error: (error) => alert('login error')
+        next: (response) => console.log('Login Success'),
+        error: (error) => this.accessDenied = true
       });
     }else{
       if(!this.password.valid){
@@ -61,7 +62,7 @@ export class LoginComponent implements OnInit{
 
   clearInput(event: Event){
     const input = event.target as HTMLInputElement
-    if(input.name === 'email'){
+    if(input.name === 'Email'){
       this.alertEmail = false;
     }else{
       this.spanPassword = 'Minimum 6 characters required';
