@@ -7,14 +7,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthModule } from './features/auth/auth.module';
 import { RouterModule } from '@angular/router';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
-import { HeaderComponent } from './shared/components/header/header.component';
+import { MainModule } from './features/main/main.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +19,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    AuthModule
+    AuthModule,
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]

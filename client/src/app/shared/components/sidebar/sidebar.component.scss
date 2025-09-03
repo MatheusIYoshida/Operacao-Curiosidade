@@ -1,0 +1,32 @@
+nav{
+    height: 100%;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.sidebar{
+    width: 277px;
+    height: 100%;
+
+    &-logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        margin: 20px 20px 0px 20px;
+        background-color: #eff4fc;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 6px 25px rgba(0, 0, 0, 0.1);
+    
+        &-img{
+            font-size: 40px;
+            font-weight: bold;
+            padding-right: 10px;
+        }
+
+        &-text{
+            font-size: 14px;
+        }
+    }
+
+
+}
