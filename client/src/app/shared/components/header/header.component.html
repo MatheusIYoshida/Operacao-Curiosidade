@@ -1,1 +1,12 @@
-<p>header works!</p>
+<div class="header">
+    <div class="header-left">
+        <input class="input" type="text" placeholder="Search:" />
+    </div>
+    <div class="header-right">
+        <div class="current-profile">
+            <div class="current-profile-icon">{{ profileIcon }}</div>
+            <div class="current-profile-name">{{ profileName }}</div>
+        </div>
+        <div class="exit" (click)="logout()">EXIT</div>
+    </div>
+</div>

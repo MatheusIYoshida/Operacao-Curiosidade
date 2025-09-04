@@ -1,9 +1,11 @@
+@import '../../../../../styles/variables';
+
 .menu-item{
     display: flex;
     align-items: center;
     max-height: 50px;
     padding: 15px 0px 15px 20px;
-    background-color: #e0e0e0;
+    background-color: $comp-gray;
     transition: .4;
     cursor: pointer;
     

@@ -1,0 +1,73 @@
+@import '../../../../styles/variables';
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: auto;
+    background-color: $comp-gray;
+    box-shadow: 0 4px 12px $box-shadow, 0 6px 25px $box-shadow;
+    padding: 11px;
+    
+    &-left{
+        height: 100%;
+    }
+
+    &-right{
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+.input{
+    height: 100%;
+    padding-left: 10px;
+    background-color: #f0f0f0;
+    border: none;
+    width: 400px; 
+}
+
+.current-profile{
+    display: flex;
+    align-items: center;
+    opacity: .7;
+    border-right: 3px solid #a9a9a9;
+    transition: .7s;
+    cursor: pointer;
+
+    &-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50%;
+        background-color: #a9a9a9;
+    }
+
+    &-name{
+        margin-right: 20px;
+        font-size: 17px;
+    }
+
+
+}
+
+.current-profile:hover{
+    opacity: 1;
+}
+
+.exit{
+    margin: 0px 20px;
+    cursor: pointer;
+    font-size: 17px;
+    transition: .7s;
+    opacity: .5;
+}
+
+.exit:hover{
+    opacity: 1;
+}
