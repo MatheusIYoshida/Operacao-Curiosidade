@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-panels',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './panels.component.scss'
 })
 export class PanelsComponent {
-  panelTitle: string = 'Apenas testando'
+  @Input({required: true}) title!: string;
+  @Input() info: number = 0;
+  @Input() panelColor: string = '#000';
 }
