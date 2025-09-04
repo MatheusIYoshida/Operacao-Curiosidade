@@ -1,7 +1,10 @@
+@import '../../../../styles/variables';
+
 nav{
     height: 100%;
     background-color: #fff;
     overflow: hidden;
+    box-shadow: 0 4px 12px $box-shadow, 0 6px 25px $box-shadow;
 }
 
 .sidebar{
