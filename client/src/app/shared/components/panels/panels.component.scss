@@ -1,0 +1,21 @@
+@import '../../../../styles/variables';
+
+.panel{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 4px 12px $box-shadow, 0 6px 25px $box-shadow;
+    padding: 50px;
+
+    &-info{
+        font-size: 64px;
+    }
+
+    &-title{
+        position: absolute;
+        bottom: 5px;
+        right: 15px;
+    }
+}
