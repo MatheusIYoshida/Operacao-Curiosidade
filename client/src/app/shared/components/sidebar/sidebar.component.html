@@ -4,5 +4,13 @@
             <div class="sidebar-logo-img">OC</div>
             <div class="sidebar-logo-text">Operação Curiosidade</div>
         </div>
+        <div class="sidebar-menu">
+            <app-menu-item
+                *ngFor="let item of itens;
+                    let i = index"
+                [Icon]=itens[i]
+                [Name]=itens[i]
+            ></app-menu-item>
+        </div>
     </div>
 </nav>

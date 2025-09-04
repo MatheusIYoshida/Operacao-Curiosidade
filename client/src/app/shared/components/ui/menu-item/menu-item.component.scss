@@ -1,0 +1,34 @@
+.menu-item{
+    display: flex;
+    align-items: center;
+    max-height: 50px;
+    padding: 15px 0px 15px 20px;
+    background-color: #e0e0e0;
+    transition: .4;
+    cursor: pointer;
+    
+    &-icon{
+        width: 20px;
+        height: 17px;
+    }
+
+    &-text{
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 10px;
+        transform: translateY(2px);
+    }
+
+    &-selected{
+        opacity: 1;
+    }
+
+    &-noSelected{
+        opacity: .5;
+    }
+}
+
+.menu-item-noSelected:hover{
+    opacity: 1;
+}
+

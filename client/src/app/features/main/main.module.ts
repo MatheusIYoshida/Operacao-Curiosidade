@@ -7,8 +7,7 @@ import { MainLayoutComponent } from '../../layouts/main-layout/main-layout.compo
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MainCardComponent } from '../../shared/components/main-card/main-card.component';
 import { AppMainRountingModule } from './main-routing.module';
-
-
+import { MenuItemComponent } from '../../shared/components/ui/menu-item/menu-item.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +15,8 @@ import { AppMainRountingModule } from './main-routing.module';
     HeaderComponent,
     MainLayoutComponent,
     DashboardComponent,
-    MainCardComponent    
+    MainCardComponent,
+    MenuItemComponent    
   ],
   imports: [
     CommonModule,
