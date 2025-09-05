@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class PanelsComponent {
   @Input({required: true}) title!: string;
-  @Input() info: number = 0;
+  @Input() info!: number;
   @Input() panelColor: string = '#000';
 }

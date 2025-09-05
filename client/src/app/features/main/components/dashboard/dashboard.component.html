@@ -1,7 +1,19 @@
 <div class="panels">
-    <app-panels [title]="panelOneTitle" [panelColor]="panelOneColor"></app-panels>
-    <app-panels [title]="panelTwoTitle" [panelColor]="panelTwoColor"></app-panels>
-    <app-panels [title]="panelThreeTitle" [panelColor]="panelThreeColor"></app-panels>
+    <app-panels 
+        [title]="panelOneTitle" 
+        [panelColor]="panelOneColor" 
+        [info]="panelOneInfo"
+    ></app-panels>
+    <app-panels 
+        [title]="panelTwoTitle" 
+        [panelColor]="panelTwoColor"
+        [info]="panelTwoInfo"
+    ></app-panels>
+    <app-panels 
+        [title]="panelThreeTitle" 
+        [panelColor]="panelThreeColor"
+        [info]="panelThreeInfo"
+    ></app-panels>
 </div>
 <app-main-card [title]="mainCardTitle">
     <app-table [thColumns]="thColumns" [users]="users"></app-table>

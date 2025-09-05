@@ -1,14 +1,20 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient, private _lsService: LocalStorageService) { }
 
   get(apiUrl: string){
-    return this._http.get(apiUrl);
+    const token = this._lsService.getItem('token').token
+    const headers = new HttpHeaders({
+      'Authorization': `bearer ${token}` 
+    });
+
+    return this._http.get(apiUrl, {headers});
   }
 }
