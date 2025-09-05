@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../../../services/auth.service';
 import { Router } from '@angular/router';
+import { DecodePayloadService } from '../../../../services/decode-payload.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit{
   constructor(
     private readonly _fb: FormBuilder,
     private readonly _authService: AuthService,
-    private readonly _route: Router
+    private readonly _route: Router,
+    private readonly _payload: DecodePayloadService
   ){}
 
   ngOnInit(){
@@ -43,8 +45,10 @@ export class LoginComponent implements OnInit{
     if(this.loginForm.valid){
       const { email, password } = this.loginForm.value;
       this._authService.login(email, password).subscribe({
-        next: (response) => { 
-          localStorage.setItem('token', JSON.stringify(response))
+        next: (response: any) => { 
+          const token = response.token;
+          this._payload.parseJwt(token)
+          localStorage.setItem('token', JSON.stringify(token))
           this._route.navigate(['/main/dashboard'])
         },
         error: (error) => this.accessDenied = true

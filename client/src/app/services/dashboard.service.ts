@@ -10,7 +10,7 @@ export class DashboardService {
   constructor(private _http: HttpClient, private _lsService: LocalStorageService) { }
 
   get(apiUrl: string){
-    const token = this._lsService.getItem('token').token
+    const token = this._lsService.getItem('token')
     const headers = new HttpHeaders({
       'Authorization': `bearer ${token}` 
     });

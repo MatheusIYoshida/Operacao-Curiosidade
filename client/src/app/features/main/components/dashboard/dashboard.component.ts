@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit{
   thColumns: string[] = ['Name', 'Email', 'Status'];
   users: any = [];
 
-  constructor(private _dashboardService: DashboardService, private _lsService: LocalStorageService){}
+  constructor(private _dashboardService: DashboardService){}
 
   ngOnInit(){
     this._dashboardService.get('https://localhost:7160/api/Dashboard/recent-profiles')
