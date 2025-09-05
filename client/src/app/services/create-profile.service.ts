@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ICreateLog } from './Interfaces/create-log.interface';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,20 +10,10 @@ export class CreateProfileService {
   private currentProfile: ICreateLog | null = null;
   private newLog: ICreateLog | null = null;
 
-  constructor(private http: HttpClient) {
-    this.loadCurrentUser();
-  }
-
-  loadCurrentUser(){
-    const stored = localStorage.getItem('currentProfile');
-    if(stored){
-      this.currentProfile = JSON.parse(stored);
-    }else{
-      this.currentProfile = null;
-    }
-  }
+  constructor(private http: HttpClient, private _lsService: LocalStorageService) {}
 
   create(Name: string, Email: string, Password: string){
+    this.currentProfile = this._lsService.getItem('currentProfile')
     if(this.currentProfile === null){
       this.newLog = {
         Name: Name,

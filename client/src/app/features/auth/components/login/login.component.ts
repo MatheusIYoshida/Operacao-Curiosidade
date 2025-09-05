@@ -43,7 +43,10 @@ export class LoginComponent implements OnInit{
     if(this.loginForm.valid){
       const { email, password } = this.loginForm.value;
       this._authService.login(email, password).subscribe({
-        next: (response) => this._route.navigate(['/main/dashboard']),
+        next: (response) => { 
+          localStorage.setItem('token', JSON.stringify(response))
+          this._route.navigate(['/main/dashboard'])
+        },
         error: (error) => this.accessDenied = true
       });
     }else{
