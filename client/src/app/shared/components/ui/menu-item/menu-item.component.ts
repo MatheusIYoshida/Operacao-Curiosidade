@@ -24,7 +24,6 @@ export class MenuItemComponent implements OnInit {
   ngOnInit(){
     if(this._router.url.split("/").pop() === this.menuItemText.toLowerCase()){
       this.currentPage = true;
-      console.log('teste')
     }else{
       this.currentPage = false;
     }

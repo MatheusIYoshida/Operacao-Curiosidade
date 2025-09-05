@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let column of thColumns; let idx = index">{{ column }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr 
+         *ngFor="let user of users; 
+          let isEven = even"
+          [ngClass]="
+             isEven ? 'evenRow' : 'oddRow'
+        ">
+            <td 
+                *ngFor="let column of thColumns">
+                {{ getUserProperty(user, column) }}
+            </td>
+        </tr> 
+    </tbody>
+</table> 

@@ -9,6 +9,7 @@ import { MainCardComponent } from '../../shared/components/main-card/main-card.c
 import { AppMainRountingModule } from './main-routing.module';
 import { MenuItemComponent } from '../../shared/components/ui/menu-item/menu-item.component';
 import { PanelsComponent } from '../../shared/components/panels/panels.component';
+import { TableComponent } from '../../shared/components/table/table.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PanelsComponent } from '../../shared/components/panels/panels.component
     DashboardComponent,
     MainCardComponent,
     MenuItemComponent,
-    PanelsComponent
+    PanelsComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
