@@ -3,10 +3,17 @@
         <input class="input" type="text" placeholder="Search:" />
     </div>
     <div class="header-right">
-        <div class="current-profile">
+        <div class="current-profile" (click)="openModal()">
             <div class="current-profile-icon">{{ profileIcon }}</div>
             <div class="current-profile-name">{{ profileName }}</div>
         </div>
         <div class="exit" (click)="logout()">EXIT</div>
     </div>
 </div>
+<app-form-modal
+    *ngIf="visibleModal"
+    [title]="editModalTitle" 
+    [submitButtonColor]="'#0056b3'"
+    [submitButtonText]="'EDIT PROFILE'"
+    (closeModalEmitter)="closeModal()">
+</app-form-modal>

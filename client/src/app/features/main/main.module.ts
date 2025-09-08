@@ -10,6 +10,7 @@ import { AppMainRountingModule } from './main-routing.module';
 import { MenuItemComponent } from '../../shared/components/ui/menu-item/menu-item.component';
 import { PanelsComponent } from '../../shared/components/panels/panels.component';
 import { TableComponent } from '../../shared/components/table/table.component';
+import { FormModalComponent } from '../../shared/components/form-modal/form-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TableComponent } from '../../shared/components/table/table.component';
     MainCardComponent,
     MenuItemComponent,
     PanelsComponent,
-    TableComponent
+    TableComponent,
+    FormModalComponent
   ],
   imports: [
     CommonModule,

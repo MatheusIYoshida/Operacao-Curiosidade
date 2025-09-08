@@ -1,0 +1,72 @@
+<div class="fade" (click)="onCloseModal()"></div>
+<div class="modal">
+    <div class="modal-header">
+        <h2>{{ modalTitle }}</h2>
+        <svg (click)="onCloseModal()" class="size-6 modal-header-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+    </div>
+    <div class="modal-body">
+        <div class="modal-body-top">
+            <h3>1º Facts and Figures</h3>
+            <div class="checkbox">
+                <input class="checkbox-option" id="active-checkbox" type="checkbox" name="active" value="active"/>
+                <div class="checkbox-title">Active</div>
+                <input class="checkbox-option" id="admin-checkbox" type="checkbox" name="admin" value="admin" />
+                <div class="checkbox-title">Admin</div>
+            </div>
+        </div>
+        <div class="modal-row-double">
+            <div class="shorter-input">
+                <label for="name">
+                    Name
+                    <div class="required-input">*</div>
+                </label>
+                <input id="profile-name" type="text" name="Name" maxlength="100" required />
+            </div>
+            <div class="shorter-input">
+                <label for="birthday date">Birthday Date</label>
+                <input id="profile-birthday" type="date" name="Birthday" />
+            </div>
+        </div>
+        <div class="modal-row-double">
+            <div class="shorter-input">
+                <label for="email">
+                    Email
+                    <div class="required-input">*</div>
+                </label>
+                <input id="profile-email" type="email" name="Email" maxlength="200" required />
+            </div>
+            <div class="shorter-input">
+                <label for="password">
+                    Password
+                    <div class="required-input">*</div>
+                </label>
+                <input id="profile-password" type="password" name="Password" maxlength="100" required />
+            </div>
+        </div>
+        <div class="modal-row-single">
+            <label for="address">Address</label>
+            <input id="profile-address" type="text" name="Address" maxlength="2002" />
+        </div>
+        <div class="modal-row-single">
+            <label for="more informations">More informations</label>
+            <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div class="modal-row-single">
+            <h3>2º Interests</h3>
+            <textarea id="profile-interests" name="Interests" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div class="modal-row-single">
+            <h3>3º Feelings</h3>
+            <textarea id="profile-feelings" name="Feelings" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div class="modal-row-single">
+            <h3>4º Core Values</h3>
+            <textarea id="profile-coreValues" name="Core Values" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div class="modal-button">
+            <input [ngStyle]="{'background-color': submitButtonColor}" class="global-button" type="submit" value={{submitButtonText}} />
+        </div>
+    </div>
+</div>

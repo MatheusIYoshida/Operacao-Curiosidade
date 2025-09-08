@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit{
   profileIcon: string = 'U';
   profileName: string = 'Undefined';
+  editModalTitle: string = 'Edit Profile';
+  visibleModal: boolean = false;
 
   constructor(private _router: Router){}
 
@@ -23,5 +25,13 @@ export class HeaderComponent implements OnInit{
     const name = JSON.parse(currentProfile).name
     this.profileIcon = name[0].toUpperCase();
     this.profileName = name;
+  }
+
+  openModal(){
+    this.visibleModal = true;
+  }
+
+  closeModal(){
+    this.visibleModal = false;
   }
 }
