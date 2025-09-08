@@ -11,6 +11,8 @@ import { MenuItemComponent } from '../../shared/components/ui/menu-item/menu-ite
 import { PanelsComponent } from '../../shared/components/panels/panels.component';
 import { TableComponent } from '../../shared/components/table/table.component';
 import { FormModalComponent } from '../../shared/components/form-modal/form-modal.component';
+import { ProfilesComponent } from './components/profiles/profiles.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { FormModalComponent } from '../../shared/components/form-modal/form-moda
     MenuItemComponent,
     PanelsComponent,
     TableComponent,
-    FormModalComponent
+    FormModalComponent,
+    ProfilesComponent
   ],
   imports: [
     CommonModule,
-    AppMainRountingModule
+    AppMainRountingModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }

@@ -6,13 +6,13 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
     </div>
-    <div class="modal-body">
+    <form [formGroup]="modalForm" class="modal-body">
         <div class="modal-body-top">
             <h3>1º Facts and Figures</h3>
             <div class="checkbox">
-                <input class="checkbox-option" id="active-checkbox" type="checkbox" name="active" checked={{activeCheckbox}} />
+                <input class="checkbox-option" #activeCheckbox type="checkbox" name="active" formControlName="active" checked={{activeCheckbox}} />
                 <div class="checkbox-title">Active</div>
-                <input class="checkbox-option" id="admin-checkbox" type="checkbox" name="admin" checked={{adminCheckbox}} />
+                <input class="checkbox-option" #adminCheckbox type="checkbox" name="admin" formControlName="admin" checked="false" />
                 <div class="checkbox-title">Admin</div>
             </div>
         </div>
@@ -22,11 +22,11 @@
                     Name
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-name" type="text" name="Name" maxlength="100" required value={{nameValue}} />
+                <input id="profile-name" type="text" name="Name" formControlName="name" maxlength="100"/>
             </div>
             <div class="shorter-input">
                 <label for="birthday date">Birthday Date</label>
-                <input id="profile-birthday" type="date" name="Birthday" value={{birthdayValue}}/>
+                <input id="profile-birthday" type="date" name="Birthday" formControlName="birthday"/>
             </div>
         </div>
         <div class="modal-row-double">
@@ -35,38 +35,38 @@
                     Email
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-email" type="email" name="Email" maxlength="200" required value={{emailValue}} />
+                <input id="profile-email" type="email" name="Email" formControlName="email" maxlength="200"/>
             </div>
             <div class="shorter-input">
                 <label for="password">
                     Password
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-password" type="password" name="Password" maxlength="100" required value={{passwordValue}} />
+                <input id="profile-password" type="password" name="Password" formControlName="password" maxlength="100"/>
             </div>
         </div>
         <div class="modal-row-single">
             <label for="address">Address</label>
-            <input id="profile-address" type="text" name="Address" maxlength="2000" value={{addressValue}}/>
+            <input id="profile-address" type="text" name="Address" formControlName="address" maxlength="2000"/>
         </div>
         <div class="modal-row-single">
             <label for="more informations">More informations</label>
-            <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="2000" value={{moreInfoValue}}></textarea>
+            <textarea id="profile-moreInformations" name="More Informations" formControlName="moreInformations" rows="4" maxlength="2000"></textarea>
         </div>
         <div class="modal-row-single">
             <h3>2º Interests</h3>
-            <textarea id="profile-interests" name="Interests" rows="4" maxlength="2000" value={{interestsValue}}></textarea>
+            <textarea id="profile-interests" name="Interests" formControlName="interests" rows="4" maxlength="2000"></textarea>
         </div>
         <div class="modal-row-single">
             <h3>3º Feelings</h3>
-            <textarea id="profile-feelings" name="Feelings" rows="4" maxlength="2000" value={{feelingsValue}}></textarea>
+            <textarea id="profile-feelings" name="Feelings" formControlName="feelings" rows="4" maxlength="2000"></textarea>
         </div>
         <div class="modal-row-single">
             <h3>4º Core Values</h3>
-            <textarea id="profile-coreValues" name="Core Values" rows="4" maxlength="2000" value={{coreValValue}}></textarea>
+            <textarea id="profile-coreValues" name="Core Values" formControlName="coreValues" rows="4" maxlength="2000"></textarea>
         </div>
         <div class="modal-button">
             <input [ngStyle]="{'background-color': submitButtonColor}" class="global-button" type="submit" value={{submitButtonText}} />
         </div>
-    </div>
+    </form>
 </div>

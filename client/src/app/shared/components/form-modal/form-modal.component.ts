@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UpdateProfileService } from '../../../services/update-profile.service';
 import { FormatDateService } from '../../../services/format-date.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-modal',
@@ -13,24 +14,31 @@ export class FormModalComponent implements OnInit{
   @Input() submitButtonText: string = 'Submit'
   @Input() preLoadInfo!: boolean;
   @Output() closeModalEmitter = new EventEmitter<boolean>();
-  activeCheckbox: boolean = true;
-  adminCheckbox: boolean = false;
-  nameValue: string = "";
-  birthdayValue: string | null = null;
-  emailValue: string = "";
-  passwordValue: string = "";
-  addressValue: string = "";
-  moreInfoValue: string = "";
-  interestsValue: string = "";
-  feelingsValue: string = "";
-  coreValValue: string = "";
+  @ViewChild('activeCheckbox') activeCheckbox!: ElementRef<HTMLInputElement>;
+  @ViewChild('adminCheckbox') adminCheckbox!: ElementRef<HTMLInputElement>;
+  modalForm!: FormGroup;
 
   constructor(
-    private _updateService: UpdateProfileService,
-    private _dateService: FormatDateService
+    private readonly _updateService: UpdateProfileService,
+    private readonly _dateService: FormatDateService,
+    private readonly _fb: FormBuilder
   ) {}
 
   ngOnInit(){
+    this.modalForm = this._fb.group({
+      active: ['', {validators: [Validators.required]}],
+      admin: ['', {validators: [Validators.required]}],
+      name: ['', {validators: [Validators.required]}],
+      birthday: [''],
+      email: ['', {validators: [Validators.required, Validators.email]}],
+      password: ['', {validators: [Validators.required, Validators.minLength(6)]}],
+      address: [''],
+      moreInformations: [''],
+      interests: [''],
+      feelings: [''],
+      coreValues: ['']
+    });
+
     if(this.preLoadInfo){
       this.fillProfileForm()
     }
@@ -43,18 +51,19 @@ export class FormModalComponent implements OnInit{
   fillProfileForm(){
     this._updateService.getProfile().subscribe({
         next: (response: any) => {
-          this.activeCheckbox = response.active;
-          this.adminCheckbox = response.admin;
-          this.nameValue = response.name;
-          this.birthdayValue = response.birthday 
-            ? this._dateService.formatDateInput(response.birthday) : null;
-          this.emailValue = response.email;
-          this.passwordValue = response.password;
-          this.addressValue = response.address;
-          this.moreInfoValue = response.moreInformations;
-          this.interestsValue = response.interests;
-          this.feelingsValue = response.feelings;
-          this.coreValValue = response.coreValues;
+          console.log(response.active);
+          this.modalForm.get('active')?.setValue(response.active);
+          this.modalForm.get('admin')?.setValue(response.admin);
+          this.modalForm.get('name')?.setValue(response.name); 
+          this.modalForm.get('birthday')?.setValue(response.birthday 
+            ? this._dateService.formatDateInput(response.birthday) : null)
+          this.modalForm.get('email')?.setValue(response.email);
+          this.modalForm.get('password')?.setValue(response.password);
+          this.modalForm.get('address')?.setValue(response.address);
+          this.modalForm.get('moreInformations')?.setValue(response.moreInformations);
+          this.modalForm.get('interests')?.setValue(response.interests);
+          this.modalForm.get('feelings')?.setValue(response.feelings);
+          this.modalForm.get('coreValues')?.setValue(response.coreValues);
         },
         error: (error) => console.error('Get profile error', error)
       });
