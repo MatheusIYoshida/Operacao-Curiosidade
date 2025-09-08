@@ -10,9 +10,9 @@
         <div class="modal-body-top">
             <h3>1º Facts and Figures</h3>
             <div class="checkbox">
-                <input class="checkbox-option" id="active-checkbox" type="checkbox" name="active" value="active"/>
+                <input class="checkbox-option" id="active-checkbox" type="checkbox" name="active" checked={{activeCheckbox}} />
                 <div class="checkbox-title">Active</div>
-                <input class="checkbox-option" id="admin-checkbox" type="checkbox" name="admin" value="admin" />
+                <input class="checkbox-option" id="admin-checkbox" type="checkbox" name="admin" checked={{adminCheckbox}} />
                 <div class="checkbox-title">Admin</div>
             </div>
         </div>
@@ -22,11 +22,11 @@
                     Name
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-name" type="text" name="Name" maxlength="100" required />
+                <input id="profile-name" type="text" name="Name" maxlength="100" required value={{nameValue}} />
             </div>
             <div class="shorter-input">
                 <label for="birthday date">Birthday Date</label>
-                <input id="profile-birthday" type="date" name="Birthday" />
+                <input id="profile-birthday" type="date" name="Birthday" value={{birthdayValue}}/>
             </div>
         </div>
         <div class="modal-row-double">
@@ -35,35 +35,35 @@
                     Email
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-email" type="email" name="Email" maxlength="200" required />
+                <input id="profile-email" type="email" name="Email" maxlength="200" required value={{emailValue}} />
             </div>
             <div class="shorter-input">
                 <label for="password">
                     Password
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-password" type="password" name="Password" maxlength="100" required />
+                <input id="profile-password" type="password" name="Password" maxlength="100" required value={{passwordValue}} />
             </div>
         </div>
         <div class="modal-row-single">
             <label for="address">Address</label>
-            <input id="profile-address" type="text" name="Address" maxlength="2002" />
+            <input id="profile-address" type="text" name="Address" maxlength="2000" value={{addressValue}}/>
         </div>
         <div class="modal-row-single">
             <label for="more informations">More informations</label>
-            <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="2000"></textarea>
+            <textarea id="profile-moreInformations" name="More Informations" rows="4" maxlength="2000" value={{moreInfoValue}}></textarea>
         </div>
         <div class="modal-row-single">
             <h3>2º Interests</h3>
-            <textarea id="profile-interests" name="Interests" rows="4" maxlength="2000"></textarea>
+            <textarea id="profile-interests" name="Interests" rows="4" maxlength="2000" value={{interestsValue}}></textarea>
         </div>
         <div class="modal-row-single">
             <h3>3º Feelings</h3>
-            <textarea id="profile-feelings" name="Feelings" rows="4" maxlength="2000"></textarea>
+            <textarea id="profile-feelings" name="Feelings" rows="4" maxlength="2000" value={{feelingsValue}}></textarea>
         </div>
         <div class="modal-row-single">
             <h3>4º Core Values</h3>
-            <textarea id="profile-coreValues" name="Core Values" rows="4" maxlength="2000"></textarea>
+            <textarea id="profile-coreValues" name="Core Values" rows="4" maxlength="2000" value={{coreValValue}}></textarea>
         </div>
         <div class="modal-button">
             <input [ngStyle]="{'background-color': submitButtonColor}" class="global-button" type="submit" value={{submitButtonText}} />

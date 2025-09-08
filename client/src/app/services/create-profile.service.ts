@@ -10,7 +10,7 @@ export class CreateProfileService {
   private currentProfile: ICreateLog | null = null;
   private newLog: ICreateLog | null = null;
 
-  constructor(private http: HttpClient, private _lsService: LocalStorageService) {}
+  constructor(private _http: HttpClient, private _lsService: LocalStorageService) {}
 
   create(Name: string, Email: string, Password: string){
     this.currentProfile = this._lsService.getItem('currentProfile')
@@ -26,6 +26,6 @@ export class CreateProfileService {
       }
     }
 
-    return this.http.post(`https://localhost:7160/api/Profile?nameCreate=${this.newLog.Name}&emailCreate=${this.newLog.Email}`, {Name, Email, Password})
+    return this._http.post(`https://localhost:7160/api/Profile?nameCreate=${this.newLog.Name}&emailCreate=${this.newLog.Email}`, {Name, Email, Password})
   }
 }
