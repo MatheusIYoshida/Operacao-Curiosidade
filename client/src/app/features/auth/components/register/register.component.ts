@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit{
             this.alertEmail = true;
             this.spanEmail = 'Email already exists';
           }else{
-            console.error('Login error');
+            console.error('Login error', error);
           }
         }
       });
