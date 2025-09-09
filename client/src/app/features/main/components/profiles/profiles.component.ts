@@ -11,7 +11,7 @@ export class ProfilesComponent implements OnInit{
   pageSize: number = 15;
   filter: string | null = null; 
   mainCardTitle: string = 'Profiles';
-  thColumns: string[] = ['Name', 'Email', 'Status', 'Actions'];
+  thColumns: string[] = ['name', 'email', 'status', 'actions'];
   users: any = [];
 
   constructor(private readonly _listService: ListService){}

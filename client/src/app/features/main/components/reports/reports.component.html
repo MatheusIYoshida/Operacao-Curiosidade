@@ -1,0 +1,6 @@
+<app-main-card>
+    <div class="main-card-title">{{ mainCardTitle }}</div>
+    <div class="reports-table">OPTIONS</div>
+    <div class="reports-list" (click)="printOut()">User List</div>
+</app-main-card>
+<app-table [thColumns]="thColumns" [users]="users"></app-table>

@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit{
   panelOneInfo: any = 0;
   panelTwoInfo: any = 0;
   panelThreeInfo: any = 0;
-  thColumns: string[] = ['Name', 'Email', 'Status'];
+  thColumns: string[] = ['name', 'email', 'status'];
   users: any = [];
 
   constructor(private _listService: ListService){}

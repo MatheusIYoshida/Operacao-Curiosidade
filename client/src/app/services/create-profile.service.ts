@@ -10,7 +10,7 @@ export class CreateProfileService {
   private currentProfile: ICreateLog | null = null;
   private newLog: ICreateLog | null = null;
 
-  constructor(private _http: HttpClient, private _lsService: LocalStorageService) {}
+  constructor(private readonly _http: HttpClient, private readonly _lsService: LocalStorageService) {}
 
   create(Name: string, Email: string, Password: string){
     this.currentProfile = this._lsService.getItem('currentProfile')

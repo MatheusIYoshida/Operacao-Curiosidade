@@ -1,7 +1,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th *ngFor="let column of thColumns; let idx = index">{{ column }}</th>
+            <th *ngFor="let column of thColumns; let idx = index">{{ column.toUpperCase() }}</th>
         </tr>
     </thead>
     <tbody>

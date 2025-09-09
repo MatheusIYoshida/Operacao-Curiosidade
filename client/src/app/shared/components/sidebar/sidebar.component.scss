@@ -35,3 +35,9 @@ nav{
         margin-top: 40px;
     }
 }
+
+@media print{
+    nav{
+        display: none;
+    }
+}

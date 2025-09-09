@@ -13,6 +13,7 @@ import { TableComponent } from '../../shared/components/table/table.component';
 import { FormModalComponent } from '../../shared/components/form-modal/form-modal.component';
 import { ProfilesComponent } from './components/profiles/profiles.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ReportsComponent } from './components/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     PanelsComponent,
     TableComponent,
     FormModalComponent,
-    ProfilesComponent
+    ProfilesComponent,
+    ReportsComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,37 @@
+.main-card-title{
+    font-size: 19px;
+    max-width: 300px;
+    color: #00000080;
+    font-weight: bold;
+}
+
+.reports-table{
+    margin-top: 20px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #a9a9a9;
+}
+
+.reports-list{
+    font-size: 17px;
+    color: #000;
+    cursor: pointer;
+    padding: 10px 0px;
+    border-top: 1px solid #a9a9a9;
+    border-bottom: 1px solid #a9a9a9;
+    opacity: .8;
+}
+
+.reports-list:hover{
+    opacity: 1;
+}
+
+app-table{
+    display: none;
+}
+
+@media print{
+    app-table{
+        display: block;
+    }
+}
