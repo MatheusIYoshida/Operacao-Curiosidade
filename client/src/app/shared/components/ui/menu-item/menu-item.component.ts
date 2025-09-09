@@ -33,4 +33,8 @@ export class MenuItemComponent implements OnInit {
     const svg = this.iconMap[this.menuItemIcon];
     return this._sanitizer.bypassSecurityTrustHtml(svg);
   }
+
+  redirectTo(){
+    this._router.navigate([`/main/${this.menuItemIcon}`]);
+  }
 }

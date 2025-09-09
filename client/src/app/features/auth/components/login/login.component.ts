@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
           const token = response.token;
           this._payload.parseJwt(token)
           localStorage.setItem('token', JSON.stringify(token))
-          this._route.navigate(['/main/dashboard'])
+          this._route.navigate(['/main/Dashboard'])
         },
         error: (error) => this.accessDenied = true
       });
