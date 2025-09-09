@@ -24,24 +24,37 @@ export class DashboardComponent implements OnInit{
   constructor(private _dashboardService: DashboardService){}
 
   ngOnInit(){
+    this.userList();
+    this.totalProfilesCount();
+    this.lastProfilesCount();
+    this.pendingProfilesCount();
+  }
+
+  userList(){
     this._dashboardService.get('https://localhost:7160/api/Dashboard/recent-profiles')
       .subscribe({
         next: (data) => this.users = data,
         error: (error) => console.error('Load profiles error')
       })
+  }
 
+  totalProfilesCount(){
     this._dashboardService.get('https://localhost:7160/api/Dashboard/total-profiles')
       .subscribe({
         next: (data) => this.panelOneInfo = data,
         error: (error) => console.error('Get total profiles error') 
       })
+  }
 
+  lastProfilesCount(){
     this._dashboardService.get('https://localhost:7160/api/Dashboard/last-profiles')
       .subscribe({
         next: (data) => this.panelTwoInfo = data,
         error: (error) => console.error('Get last profiles error')
       })
+  }
 
+  pendingProfilesCount(){
     this._dashboardService.get('https://localhost:7160/api/Dashboard/pending-profiles')
       .subscribe({
         next: (data) => this.panelThreeInfo = data,

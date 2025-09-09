@@ -6,7 +6,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
         </svg>
     </div>
-    <form [formGroup]="modalForm" class="modal-body">
+    <form [formGroup]="modalForm" class="modal-body" (ngSubmit)="onFormSubmit()">
         <div class="modal-body-top">
             <h3>1º Facts and Figures</h3>
             <div class="checkbox">

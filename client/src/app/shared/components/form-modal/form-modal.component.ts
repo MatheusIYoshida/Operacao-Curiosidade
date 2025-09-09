@@ -12,11 +12,12 @@ export class FormModalComponent implements OnInit{
   @Input({required: true, alias: 'title'}) modalTitle!: string;
   @Input() submitButtonColor: string = '#429a35';
   @Input() submitButtonText: string = 'Submit'
-  @Input() preLoadInfo!: boolean;
+  @Input() editMode!: boolean;
   @Output() closeModalEmitter = new EventEmitter<boolean>();
   @ViewChild('activeCheckbox') activeCheckbox!: ElementRef<HTMLInputElement>;
   @ViewChild('adminCheckbox') adminCheckbox!: ElementRef<HTMLInputElement>;
   modalForm!: FormGroup;
+  currentEmail: string = '';
 
   constructor(
     private readonly _updateService: UpdateProfileService,
@@ -39,9 +40,53 @@ export class FormModalComponent implements OnInit{
       coreValues: ['']
     });
 
-    if(this.preLoadInfo){
+    if(this.editMode){
       this.fillProfileForm()
     }
+  }
+
+  get active(){
+    return this.modalForm.get('active');
+  }
+
+  get admin(){
+    return this.modalForm.get('admin');
+  }
+
+  get name(){
+    return this.modalForm.get('name');
+  }
+
+  get birthday(){
+    return this.modalForm.get('birthday');
+  }
+
+  get email(){
+    return this.modalForm.get('email');
+  }
+
+  get password(){
+    return this.modalForm.get('password');
+  }
+
+  get address(){
+    return this.modalForm.get('address');
+  }
+
+  get moreInformations(){
+    return this.modalForm.get('moreInformations');
+  }
+
+  get interests(){
+    return this.modalForm.get('interests');
+  }
+
+  get feelings(){
+    return this.modalForm.get('feelings');
+  }
+
+  get coreValues(){
+    return this.modalForm.get('coreValues');
   }
 
   onCloseModal(){
@@ -51,21 +96,44 @@ export class FormModalComponent implements OnInit{
   fillProfileForm(){
     this._updateService.getProfile().subscribe({
         next: (response: any) => {
-          console.log(response.active);
-          this.modalForm.get('active')?.setValue(response.active);
-          this.modalForm.get('admin')?.setValue(response.admin);
-          this.modalForm.get('name')?.setValue(response.name); 
-          this.modalForm.get('birthday')?.setValue(response.birthday 
+          this.currentEmail = response.email;
+          this.active?.setValue(response.active);
+          this.admin?.setValue(response.admin);
+          this.name?.setValue(response.name); 
+          this.birthday?.setValue(response.birthday 
             ? this._dateService.formatDateInput(response.birthday) : null)
-          this.modalForm.get('email')?.setValue(response.email);
-          this.modalForm.get('password')?.setValue(response.password);
-          this.modalForm.get('address')?.setValue(response.address);
-          this.modalForm.get('moreInformations')?.setValue(response.moreInformations);
-          this.modalForm.get('interests')?.setValue(response.interests);
-          this.modalForm.get('feelings')?.setValue(response.feelings);
-          this.modalForm.get('coreValues')?.setValue(response.coreValues);
+          this.email?.setValue(response.email);
+          this.password?.setValue(response.password);
+          this.address?.setValue(response.address);
+          this.moreInformations?.setValue(response.moreInformations);
+          this.interests?.setValue(response.interests);
+          this.feelings?.setValue(response.feelings);
+          this.coreValues?.setValue(response.coreValues);
         },
         error: (error) => console.error('Get profile error', error)
       });
+  }
+
+  onFormSubmit(){
+    if(this.editMode){
+      const editedProfile = {
+        name: this.name?.value,
+        birthday: this.birthday?.value,
+        email: this.email?.value,
+        password: this.password?.value,
+        address: this.address?.value,
+        moreInformations: this.moreInformations?.value,
+        interests: this.interests?.value,
+        feelings: this.feelings?.value,
+        coreValues: this.coreValues?.value,
+        active: this.active?.value,
+        admin: this.admin?.value
+      }
+
+      this._updateService.updateProfile(editedProfile, this.currentEmail).subscribe({
+        next: (response) => this.onCloseModal(),
+        error: (error) => console.error('Update profile error', error)
+      })
+    }
   }
 }
