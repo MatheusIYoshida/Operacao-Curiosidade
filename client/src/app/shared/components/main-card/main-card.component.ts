@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './main-card.component.scss'
 })
 export class MainCardComponent {
-  @Input({required: true}) title!: string;
+  
 }

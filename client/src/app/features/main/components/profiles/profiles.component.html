@@ -1,0 +1,7 @@
+<app-main-card [title]="mainCardTitle">
+    <div class="main-card-top">
+        <div class="main-card-title">{{ mainCardTitle }}</div>
+        <button type="button" class="global-button profile-button">CREATE PROFILE</button>
+    </div>
+    <app-table [thColumns]="thColumns" [users]="users"></app-table>
+</app-main-card>
