@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss'
 })
-export class MenuItemComponent implements OnInit {
+export class MenuItemComponent implements AfterContentChecked {
   @Input({alias: 'Icon', required: true}) menuItemIcon!: string;
   @Input({alias: 'Name', required: true}) menuItemText!: string;
   currentPage: boolean = true;
@@ -21,8 +21,8 @@ export class MenuItemComponent implements OnInit {
 
   constructor(private _sanitizer: DomSanitizer, private _router: Router){}
   
-  ngOnInit(){
-    if(this._router.url.split("/").pop() === this.menuItemText.toLowerCase()){
+  ngAfterContentChecked(){
+    if(this._router.url.split("/").pop() === this.menuItemText){
       this.currentPage = true;
     }else{
       this.currentPage = false;
