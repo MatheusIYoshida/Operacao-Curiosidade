@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardService } from '../../../../services/dashboard.service';
-import { LocalStorageService } from '../../../../services/local-storage.service';
+import { ListService } from '../../../../services/list.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +20,7 @@ export class DashboardComponent implements OnInit{
   thColumns: string[] = ['Name', 'Email', 'Status'];
   users: any = [];
 
-  constructor(private _dashboardService: DashboardService){}
+  constructor(private _listService: ListService){}
 
   ngOnInit(){
     this.userList();
@@ -31,7 +30,7 @@ export class DashboardComponent implements OnInit{
   }
 
   userList(){
-    this._dashboardService.get('https://localhost:7160/api/Dashboard/recent-profiles')
+    this._listService.get('https://localhost:7160/api/Dashboard/recent-profiles')
       .subscribe({
         next: (data) => this.users = data,
         error: (error) => console.error('Load profiles error')
@@ -39,7 +38,7 @@ export class DashboardComponent implements OnInit{
   }
 
   totalProfilesCount(){
-    this._dashboardService.get('https://localhost:7160/api/Dashboard/total-profiles')
+    this._listService.get('https://localhost:7160/api/Dashboard/total-profiles')
       .subscribe({
         next: (data) => this.panelOneInfo = data,
         error: (error) => console.error('Get total profiles error') 
@@ -47,7 +46,7 @@ export class DashboardComponent implements OnInit{
   }
 
   lastProfilesCount(){
-    this._dashboardService.get('https://localhost:7160/api/Dashboard/last-profiles')
+    this._listService.get('https://localhost:7160/api/Dashboard/last-profiles')
       .subscribe({
         next: (data) => this.panelTwoInfo = data,
         error: (error) => console.error('Get last profiles error')
@@ -55,7 +54,7 @@ export class DashboardComponent implements OnInit{
   }
 
   pendingProfilesCount(){
-    this._dashboardService.get('https://localhost:7160/api/Dashboard/pending-profiles')
+    this._listService.get('https://localhost:7160/api/Dashboard/pending-profiles')
       .subscribe({
         next: (data) => this.panelThreeInfo = data,
         error: (error) => console.error('Get last profile error')

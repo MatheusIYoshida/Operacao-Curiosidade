@@ -9,12 +9,12 @@ export class ListService {
 
   constructor(private _http: HttpClient, private _lsService: LocalStorageService) { }
   
-    get(apiUrl: string){
-      const token = this._lsService.getItem('token')
-      const headers = new HttpHeaders({
-        'Authorization': `bearer ${token}` 
-      });
+  get(apiUrl: string){
+    const token = this._lsService.getItem('token')
+    const headers = new HttpHeaders({
+      'Authorization': `bearer ${token}` 
+    });
   
-      return this._http.get(apiUrl, {headers});
-    }
+    return this._http.get(apiUrl, {headers});
+  }
 }
