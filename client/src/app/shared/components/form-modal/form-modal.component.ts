@@ -2,6 +2,8 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { UpdateProfileService } from '../../../services/update-profile.service';
 import { FormatDateService } from '../../../services/format-date.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { ChangeNotificationService } from '../../../services/change-notification.service';
 
 @Component({
   selector: 'app-form-modal',
@@ -22,7 +24,8 @@ export class FormModalComponent implements OnInit{
   constructor(
     private readonly _updateService: UpdateProfileService,
     private readonly _dateService: FormatDateService,
-    private readonly _fb: FormBuilder
+    private readonly _fb: FormBuilder,
+    private readonly _notificationService: ChangeNotificationService
   ) {}
 
   ngOnInit(){
@@ -131,7 +134,10 @@ export class FormModalComponent implements OnInit{
       }
 
       this._updateService.updateProfile(editedProfile, this.currentEmail).subscribe({
-        next: (response) => this.onCloseModal(),
+        next: (response) => {
+          this.onCloseModal();
+          this._notificationService.emitValue(true);
+        },
         error: (error) => console.error('Update profile error', error)
       })
     }

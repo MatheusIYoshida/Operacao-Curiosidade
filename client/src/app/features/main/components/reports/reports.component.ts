@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../../../../services/reports.service';
+import { ChangeNotificationService } from '../../../../services/change-notification.service';
 
 @Component({
   selector: 'app-reports',
@@ -12,16 +13,25 @@ export class ReportsComponent implements OnInit{
   thColumns: string[] = ['name', 'email', 'status', 'createdAt'];
   users: any = [];
 
-  constructor(private readonly _reportsService: ReportsService) {}
+  constructor(
+    private readonly _reportsService: ReportsService,
+    private readonly _notificationService: ChangeNotificationService
+  ) {}
 
   ngOnInit(){
+    this.getProfiles();
+    this._notificationService.valueChanged().subscribe(() => {
+      this.getProfiles();
+    })
+  }
+
+  getProfiles(){
     this._reportsService.getAllProfiles().subscribe({
       next: (response) => {
-        console.log(response)
         this.users = response;
       },
       error: (error) => console.error('Get profiles error', error)
-    })
+    });
   }
 
   printOut(){

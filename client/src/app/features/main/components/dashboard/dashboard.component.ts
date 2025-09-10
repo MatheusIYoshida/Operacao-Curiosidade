@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
+import { Observable, of } from 'rxjs';
+import { ChangeNotificationService } from '../../../../services/change-notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,13 +22,21 @@ export class DashboardComponent implements OnInit{
   thColumns: string[] = ['name', 'email', 'status'];
   users: any = [];
 
-  constructor(private _listService: ListService){}
+  constructor(
+    private readonly _listService: ListService,
+    private readonly _notificationService: ChangeNotificationService
+  ){}
 
   ngOnInit(){
     this.userList();
     this.totalProfilesCount();
     this.lastProfilesCount();
     this.pendingProfilesCount();
+
+    this._notificationService.valueChanged().subscribe(() => {
+      this.userList();
+      this.pendingProfilesCount();
+    })
   }
 
   userList(){

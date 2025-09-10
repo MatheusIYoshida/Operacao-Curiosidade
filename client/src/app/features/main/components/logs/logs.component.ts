@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
+import { ChangeNotificationService } from '../../../../services/change-notification.service';
 
 @Component({
   selector: 'app-logs',
@@ -14,10 +15,16 @@ export class LogsComponent implements OnInit{
   thColumns: string[] = ['name', 'email', 'action', 'timestamp'];
   logs: any = [];
 
-  constructor(private readonly _listService: ListService){}
+  constructor(
+    private readonly _listService: ListService,
+    private readonly _notificationService: ChangeNotificationService
+  ){}
 
   ngOnInit(){
     this.logsList();
+    this._notificationService.valueChanged().subscribe(() => {
+      this.logsList();
+    });
   }
 
   logsList(){
