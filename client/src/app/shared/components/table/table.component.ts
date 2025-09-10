@@ -17,17 +17,12 @@ export class TableComponent {
   ) {}
 
   getUserProperty(user: any, column: string){
-    const key = column;
-    const active = 'active';
-    
-    if(key == 'status'){
-      return this._statusService.verifyStatus(user[key], user[active]);
+    if(column == 'createdAt'){
+      return this._dateService.formatDateInput(user[column], true);
+    }else if(column == 'timestamp'){
+      return this._dateService.formatDateInput(user['createdAt'], false);
     }
 
-    if(key == 'createdAt'){
-      return this._dateService.formatDateInput(user[key]);
-    }
-
-    return user[key] || '';
+    return this._statusService.verifyStatus(user, column) || '';
   }
 }

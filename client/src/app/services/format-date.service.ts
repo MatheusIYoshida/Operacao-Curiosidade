@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class FormatDateService {
-  formatDateInput(dateString: string){
+  formatDateInput(dateString: string, shorter: boolean){
     const dateFormated = dateString.split('T');
-    return dateFormated[0];
+    const hourFormated = dateFormated[1].split('.');
+    return shorter == true ? dateFormated[0] : `${hourFormated[0]} - ${dateFormated[0]}`;
   }
 }

@@ -4,8 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfileStatusService {
-  verifyStatus(status: string, active: boolean){
-    return status == 'Incomplete' ? 'Pending Review' : 
-      (active == true) ? 'Complete' : 'Incomplete';
+  verifyStatus(user: any, column: string){
+    if(column == 'status'){
+      return user[column] == 'Incomplete' ? 'Pending Review' : 
+        (user['active'] == true) ? 'Active' : 'Inactive';
+    }
+
+    return user[column];
   }
 }

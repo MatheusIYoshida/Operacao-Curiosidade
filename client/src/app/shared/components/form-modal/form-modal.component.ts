@@ -101,7 +101,7 @@ export class FormModalComponent implements OnInit{
           this.admin?.setValue(response.admin);
           this.name?.setValue(response.name); 
           this.birthday?.setValue(response.birthday 
-            ? this._dateService.formatDateInput(response.birthday) : null)
+            ? this._dateService.formatDateInput(response.birthday, true) : null)
           this.email?.setValue(response.email);
           this.password?.setValue(response.password);
           this.address?.setValue(response.address);
