@@ -7,25 +7,25 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class CreateProfileService {
-  private currentProfile: ICreateLog | null = null;
+  private currentProfile: any | null = null;
   private newLog: ICreateLog | null = null;
 
   constructor(private readonly _http: HttpClient, private readonly _lsService: LocalStorageService) {}
 
-  create(Name: string, Email: string, Password: string){
-    this.currentProfile = this._lsService.getItem('currentProfile')
+  create(newProfile: any){
+    this.currentProfile = this._lsService.getItem('currentProfile');
     if(this.currentProfile === null){
       this.newLog = {
-        Name: Name,
-        Email: Email
-      }
+        Name: newProfile.Name,
+        Email: newProfile.Email
+      };
     }else{
       this.newLog = {
-        Name: this.currentProfile.Name,
-        Email: this.currentProfile.Email
-      }
+        Name: this.currentProfile.name,
+        Email: this.currentProfile.email
+      };
     }
-
-    return this._http.post(`https://localhost:7160/api/Profile?nameCreate=${this.newLog.Name}&emailCreate=${this.newLog.Email}`, {Name, Email, Password})
+    console.log(newProfile);
+    return this._http.post(`https://localhost:7160/api/Profile?nameCreate=${this.newLog.Name}&emailCreate=${this.newLog.Email}`, newProfile);
   }
 }

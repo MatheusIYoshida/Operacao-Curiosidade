@@ -62,7 +62,13 @@ export class RegisterComponent implements OnInit{
   onFormSubmit(){
     if(this.registerForm.valid){
       const {name, email, password} = this.registerForm.value;
-      this._createService.create(name, email, password).subscribe({
+      const newProfile = {
+        Name: name,
+        Email: email,
+        Password: password
+      }
+
+      this._createService.create(newProfile).subscribe({
         next: (response) => this._route.navigate(['/auth/login']),
         error: (error) => {
           if(error.error.errors.includes('Email already exists')){

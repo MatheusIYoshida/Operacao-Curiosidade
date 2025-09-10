@@ -10,7 +10,7 @@ import { ChangeNotificationService } from '../../../../services/change-notificat
 export class LogsComponent implements OnInit{
   mainCardTitle: string = 'Logs';
   currentPage: number = 1;
-  pageSize: number = 15;
+  pageSize: number = 10;
   filter: string | null = null; 
   thColumns: string[] = ['name', 'email', 'action', 'timestamp'];
   logs: any = [];
@@ -43,7 +43,6 @@ export class LogsComponent implements OnInit{
             hasPrevious: data.hasPrevious
           }
           localStorage.setItem("LogsPagination", JSON.stringify(pagination));
-          console.log(data.items)
           this.logs = data.items
       },
       error: (error) => console.error('Load logs list error', error)

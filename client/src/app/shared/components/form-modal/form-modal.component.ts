@@ -4,6 +4,7 @@ import { FormatDateService } from '../../../services/format-date.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { ChangeNotificationService } from '../../../services/change-notification.service';
+import { CreateProfileService } from '../../../services/create-profile.service';
 
 @Component({
   selector: 'app-form-modal',
@@ -23,6 +24,7 @@ export class FormModalComponent implements OnInit{
 
   constructor(
     private readonly _updateService: UpdateProfileService,
+    private readonly _createService: CreateProfileService,
     private readonly _dateService: FormatDateService,
     private readonly _fb: FormBuilder,
     private readonly _notificationService: ChangeNotificationService
@@ -118,28 +120,35 @@ export class FormModalComponent implements OnInit{
   }
 
   onFormSubmit(){
-    if(this.editMode){
-      const editedProfile = {
-        name: this.name?.value,
-        birthday: this.birthday?.value,
-        email: this.email?.value,
-        password: this.password?.value,
-        address: this.address?.value,
-        moreInformations: this.moreInformations?.value,
-        interests: this.interests?.value,
-        feelings: this.feelings?.value,
-        coreValues: this.coreValues?.value,
-        active: this.active?.value,
-        admin: this.admin?.value
-      }
+    const profile = {
+      name: this.name?.value,
+      birthday: this.birthday?.value || null,
+      email: this.email?.value,
+      password: this.password?.value,
+      address: this.address?.value,
+      moreInformations: this.moreInformations?.value,
+      interests: this.interests?.value,
+      feelings: this.feelings?.value,
+      coreValues: this.coreValues?.value,
+      active: this.active?.value || false,
+      admin: this.admin?.value || false
+    }
 
-      this._updateService.updateProfile(editedProfile, this.currentEmail).subscribe({
+    if(this.editMode){
+      this._updateService.updateProfile(profile, this.currentEmail).subscribe({
         next: (response) => {
           this.onCloseModal();
-          this._notificationService.emitValue(true);
         },
         error: (error) => console.error('Update profile error', error)
-      })
+      });
+    }else{
+      this._createService.create(profile).subscribe({
+        next: (response) => {
+          this.onCloseModal();
+        },
+        error: (error) => console.error('Create profile error', error)
+      });
     }
+    this._notificationService.emitValue(true);
   }
 }

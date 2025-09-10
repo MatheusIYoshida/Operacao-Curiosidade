@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
+import { ChangeNotificationService } from '../../../../services/change-notification.service';
 
 @Component({
   selector: 'app-profiles',
@@ -7,17 +8,25 @@ import { ListService } from '../../../../services/list.service';
   styleUrl: './profiles.component.scss'
 })
 export class ProfilesComponent implements OnInit{
+  visibleModal: boolean = false;
+  createModalTitle: string = 'Create Profile';
   currentPage: number = 1;
-  pageSize: number = 15;
+  pageSize: number = 10;
   filter: string | null = null; 
   mainCardTitle: string = 'Profiles';
   thColumns: string[] = ['name', 'email', 'status', 'actions'];
   users: any = [];
 
-  constructor(private readonly _listService: ListService){}
+  constructor(
+    private readonly _listService: ListService,
+    private readonly _notificationService: ChangeNotificationService
+  ){}
 
   ngOnInit(){
     this.userList();
+    this._notificationService.valueChanged().subscribe(() => {
+      this.userList();
+    })
   }
 
   userList(){
@@ -36,11 +45,18 @@ export class ProfilesComponent implements OnInit{
             hasPrevious: data.hasPrevious
           }
           localStorage.setItem("ProfilePagination", JSON.stringify(pagination));
-          this.users = data.items
-          console.log(this.users)
+          this.users = data.items;
           //* FIX ERROR */
         },
         error: (error) => console.error('Load profiles error')
       })
+  }
+
+  openModal(){
+    this.visibleModal = true;
+  }
+
+  closeModal(){
+    this.visibleModal = false;
   }
 }

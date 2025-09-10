@@ -9,7 +9,7 @@ import { ChangeNotificationService } from '../../../../services/change-notificat
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit{
-  mainCardTitle: string = 'Lastest 15 Registrations';
+  mainCardTitle: string = 'Lastest 10 Registrations';
   panelOneTitle: string = 'Total Registrations';
   panelTwoTitle: string = 'Last 30-Day Registrations';
   panelThreeTitle: string = 'Pending Review';
