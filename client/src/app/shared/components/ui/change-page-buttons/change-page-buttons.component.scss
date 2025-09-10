@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+
+    &-icon{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        margin: 1px
+    }
+}

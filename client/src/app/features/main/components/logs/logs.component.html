@@ -1,4 +1,7 @@
 <app-main-card>
     <div class="main-card-title">{{ mainCardTitle }}</div>
+    <div class="arrows-pagination">
+        <app-change-page-buttons></app-change-page-buttons>
+    </div>
     <app-table [thColumns]="thColumns" [users]="logs"></app-table>
 </app-main-card>

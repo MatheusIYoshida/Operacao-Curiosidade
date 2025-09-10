@@ -15,6 +15,7 @@ import { ProfilesComponent } from './components/profiles/profiles.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ReportsComponent } from './components/reports/reports.component';
 import { LogsComponent } from './components/logs/logs.component';
+import { ChangePageButtonsComponent } from '../../shared/components/ui/change-page-buttons/change-page-buttons.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LogsComponent } from './components/logs/logs.component';
     FormModalComponent,
     ProfilesComponent,
     ReportsComponent,
-    LogsComponent
+    LogsComponent,
+    ChangePageButtonsComponent
   ],
   imports: [
     CommonModule,
