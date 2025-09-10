@@ -1,7 +1,12 @@
 <table class="table">
     <thead>
         <tr>
-            <th *ngFor="let column of thColumns; let idx = index">{{ column.toUpperCase() }}</th>
+            <th *ngFor="let column of thColumns; 
+                let idx = index;
+                let isLast = last"
+                [ngClass]="{
+                    'lastColumn': isLast
+                }">{{ column.toUpperCase() }}</th>
         </tr>
     </thead>
     <tbody>

@@ -11,7 +11,7 @@ export class ProfilesComponent implements OnInit{
   visibleModal: boolean = false;
   createModalTitle: string = 'Create Profile';
   currentPage: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 15;
   filter: string | null = null; 
   mainCardTitle: string = 'Profiles';
   thColumns: string[] = ['name', 'email', 'status', 'actions'];

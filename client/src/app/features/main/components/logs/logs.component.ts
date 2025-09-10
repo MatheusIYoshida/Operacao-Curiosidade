@@ -10,7 +10,7 @@ import { ChangeNotificationService } from '../../../../services/change-notificat
 export class LogsComponent implements OnInit{
   mainCardTitle: string = 'Logs';
   currentPage: number = 1;
-  pageSize: number = 10;
+  pageSize: number = 15;
   filter: string | null = null; 
   thColumns: string[] = ['name', 'email', 'action', 'timestamp'];
   logs: any = [];
