@@ -7,8 +7,8 @@
             name="Name"
             formControlName="name" 
             placeholder="Name:"
-            (click)="clearInput($event)"  
-            maxlength="{{ nameMaxLength }}"
+            (input)="clearInput($event)"  
+            maxlength="100"
             [ngClass]="
                 alertName ? 'global-input-border-alert' : 'global-input-border'
             "/>
@@ -23,8 +23,8 @@
             name="Email"
             formControlName="email" 
             placeholder="Email:"
-            (click)="clearInput($event)"  
-            maxlength="{{ emailMaxLength }}"
+            (input)="clearInput($event)"  
+            maxlength="200"
             [ngClass]="
                 alertEmail ? 'global-input-border-alert' : 'global-input-border'
             "/>
@@ -39,8 +39,8 @@
             name="Password" 
             formControlName="password"
             placeholder="Password:"
-            (click)="clearInput($event)" 
-            maxlength="{{ passwordMaxLength }}"
+            (input)="clearInput($event)" 
+            maxlength="100"
             [ngClass]="
                 alertPassword ? 'global-input-border-alert' : 'global-input-border'
             "/>

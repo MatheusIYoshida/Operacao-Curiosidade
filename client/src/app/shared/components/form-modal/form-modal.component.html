@@ -22,7 +22,18 @@
                     Name
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-name" type="text" name="Name" formControlName="name" maxlength="100"/>
+                <input
+                    #nameInput 
+                    id="profile-name" 
+                    type="text" 
+                    name="Name" 
+                    formControlName="name"
+                    (input)="clearInput($event)" 
+                    maxlength="100"
+                    [ngClass]="
+                        alertName ? 'global-input-border-alert' : 'global-input-border'
+                    "/>
+                <span *ngIf="alertName" class="global-span">{{ spanName }}</span>
             </div>
             <div class="shorter-input">
                 <label for="birthday date">Birthday Date</label>
@@ -35,14 +46,34 @@
                     Email
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-email" type="email" name="Email" formControlName="email" maxlength="200"/>
+                <input 
+                    id="profile-email" 
+                    type="email" 
+                    name="Email" 
+                    formControlName="email"
+                    (input)="clearInput($event)"  
+                    maxlength="200"
+                    [ngClass]="
+                        alertEmail ? 'global-input-border-alert' : 'global-input-border'
+                    "/>
+                <span *ngIf="alertEmail" class="global-span">{{ spanEmail }}</span>
             </div>
             <div class="shorter-input">
                 <label for="password">
                     Password
                     <div class="required-input">*</div>
                 </label>
-                <input id="profile-password" type="password" name="Password" formControlName="password" maxlength="100"/>
+                <input 
+                    id="profile-password" 
+                    type="password" 
+                    name="Password" 
+                    formControlName="password"
+                    (input)="clearInput($event)"  
+                    maxlength="100"
+                    [ngClass]="
+                        alertPassword ? 'global-input-border-alert' : 'global-input-border'
+                    "/>
+                <span class="global-span" [ngClass]="alertPassword ? 'text-alert' : 'text-normal'">{{ spanPassword }}</span>
             </div>
         </div>
         <div class="modal-row-single">

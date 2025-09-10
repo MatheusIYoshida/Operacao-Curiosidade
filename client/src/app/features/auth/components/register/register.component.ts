@@ -11,9 +11,6 @@ import { CreateProfileService } from '../../../../services/create-profile.servic
 export class RegisterComponent implements OnInit{
   registerForm!: FormGroup;
   formTitle: string = 'Create Account';
-  nameMaxLength: number = 100;
-  emailMaxLength: number = 200;
-  passwordMaxLength: number = 100;
   spanName: string = '';
   spanEmail: string = '';
   spanPassword: string = 'Minimum 6 characters required';
