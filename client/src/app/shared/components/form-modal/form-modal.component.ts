@@ -4,6 +4,7 @@ import { FormatDateService } from '../../../services/format-date.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ChangeNotificationService } from '../../../services/change-notification.service';
 import { CreateProfileService } from '../../../services/create-profile.service';
+import { NameValidatorService } from '../../../services/name-validator.service';
 
 @Component({
   selector: 'app-form-modal',
@@ -33,14 +34,15 @@ export class FormModalComponent implements OnInit{
     private readonly _createService: CreateProfileService,
     private readonly _dateService: FormatDateService,
     private readonly _fb: FormBuilder,
-    private readonly _notificationService: ChangeNotificationService
+    private readonly _notificationService: ChangeNotificationService,
+    private readonly _nameValidator: NameValidatorService
   ) {}
 
   ngOnInit(){
     this.modalForm = this._fb.group({
       active: ['', {validators: [Validators.required]}],
       admin: ['', {validators: [Validators.required]}],
-      name: ['', {validators: [Validators.required]}],
+      name: ['', {validators: [Validators.required, this._nameValidator.invalidNameValidator()]}],
       birthday: [''],
       email: ['', {validators: [Validators.required, Validators.email]}],
       password: ['', {validators: [Validators.required, Validators.minLength(6)]}],
