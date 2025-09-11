@@ -31,7 +31,10 @@ export class ProfilesComponent implements OnInit{
   ngOnInit(){
     this.userList();
     this._notificationService.valueChanged().subscribe(() => {
-      this.userList();
+      setTimeout(() => {
+        console.log('teste')
+        this.userList();
+      }, 250);
     })
   }
 

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { LocalStorageService } from '../../../services/local-storage.service';
 import { RemoveProfileService } from '../../../services/remove-profile.service';
 import { Router } from '@angular/router';
+import { ChangeNotificationService } from '../../../services/change-notification.service';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -15,7 +16,8 @@ export class ConfirmModalComponent {
   constructor(
     private readonly _lsService: LocalStorageService,
     private readonly _removeService: RemoveProfileService,
-    private readonly _router: Router
+    private readonly _router: Router,
+    private readonly _notificationService: ChangeNotificationService
   ){}
 
   onCloseModal(){
@@ -32,6 +34,7 @@ export class ConfirmModalComponent {
           this._router.navigate(['/auth/login']);
         }else{
           this.onCloseModal();
+          this._notificationService.emitValue(true);
         }
       },
       error: (error) => console.error('Delete profile error', error)

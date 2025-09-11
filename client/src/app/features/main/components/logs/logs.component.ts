@@ -23,7 +23,9 @@ export class LogsComponent implements OnInit{
   ngOnInit(){
     this.logsList();
     this._notificationService.valueChanged().subscribe(() => {
-      this.logsList();
+      setTimeout(() => {
+        this.logsList();
+      }, 250);
     });
   }
 

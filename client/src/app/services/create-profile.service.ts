@@ -25,7 +25,6 @@ export class CreateProfileService {
         Email: this.currentProfile.email
       };
     }
-    console.log(newProfile);
     return this._http.post(`https://localhost:7160/api/Profile?nameCreate=${this.newLog.Name}&emailCreate=${this.newLog.Email}`, newProfile);
   }
 }

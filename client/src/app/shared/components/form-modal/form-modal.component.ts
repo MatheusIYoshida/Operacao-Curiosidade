@@ -41,8 +41,8 @@ export class FormModalComponent implements OnInit{
 
   ngOnInit(){
     this.modalForm = this._fb.group({
-      active: ['', {validators: [Validators.required]}],
-      admin: ['', {validators: [Validators.required]}],
+      active: [''],
+      admin: [''],
       name: ['', {validators: [Validators.required, this._nameValidator.invalidNameValidator()]}],
       birthday: [''],
       email: ['', {validators: [Validators.required, Validators.email]}],

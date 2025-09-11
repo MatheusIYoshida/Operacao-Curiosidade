@@ -34,15 +34,17 @@ export class DashboardComponent implements OnInit{
     this.pendingProfilesCount();
 
     this._notificationService.valueChanged().subscribe(() => {
-      this.userList();
-      this.pendingProfilesCount();
+      setTimeout(() => {
+        this.userList();
+        this.pendingProfilesCount();
+      }, 250);
     })
   }
 
   userList(){
     this._listService.get('https://localhost:7160/api/Dashboard/recent-profiles')
       .subscribe({
-        next: (data) => this.users = data,
+        next: (data) => {this.users = data; console.log(data)},
         error: (error) => console.error('Load profiles error')
       })
   }
