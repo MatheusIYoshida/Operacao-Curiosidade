@@ -16,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ReportsComponent } from './components/reports/reports.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { ChangePageButtonsComponent } from '../../shared/components/ui/change-page-buttons/change-page-buttons.component';
+import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ChangePageButtonsComponent } from '../../shared/components/ui/change-pa
     ProfilesComponent,
     ReportsComponent,
     LogsComponent,
-    ChangePageButtonsComponent
+    ChangePageButtonsComponent,
+    ConfirmModalComponent
   ],
   imports: [
     CommonModule,

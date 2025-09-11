@@ -103,8 +103,7 @@ namespace Server.Controllers
         public ActionResult Delete(string email, string nameCreate, string emailCreate)
         {
             bool deletado = _profileService.DeleteProfileVerification(email, nameCreate, emailCreate);
-            return deletado ? Ok($"Profile email: {email} deleted successfully!") : 
-                StatusCode(500, $"Failed to delete profile email: {email}");
+            return deletado ? Ok() : StatusCode(500);
         }
     }
 }

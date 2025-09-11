@@ -13,6 +13,7 @@ export class TableComponent {
   @Input() hasActions: boolean = false;
   @Input() users!: any[];
   @Output() clickEditBtn = new EventEmitter<string>();
+  @Output() clickRemoveBtn = new EventEmitter<string>();
 
   constructor(
     private readonly _statusService: ProfileStatusService,
@@ -31,5 +32,9 @@ export class TableComponent {
 
   openEditModal(index: number){
     this.clickEditBtn.emit(this.users[index].email);
+  }
+
+  openRemoveModal(index:number){
+    this.clickRemoveBtn.emit(this.users[index].email);
   }
 }

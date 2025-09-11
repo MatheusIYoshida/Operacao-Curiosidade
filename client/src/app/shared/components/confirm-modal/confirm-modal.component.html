@@ -1,0 +1,12 @@
+<div class="fade" (click)="onCloseModal()"></div>
+<div class="modal">
+    <div class="modal-message">
+        You are going to remove this account
+        <br/>
+        <b>Are you sure?</b>
+    </div>
+    <div class="modal-buttons">
+        <button (click)="onCloseModal()" type="button" class="global-button keep-button">KEEP ACCOUNT</button>
+        <button (click)="removeProfile()" type="buton" class="global-button remove-button">REMOVE ACCOUNT</button>
+    </div>
+</div>

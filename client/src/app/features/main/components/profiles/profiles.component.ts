@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
 import { ChangeNotificationService } from '../../../../services/change-notification.service';
 
@@ -9,13 +9,15 @@ import { ChangeNotificationService } from '../../../../services/change-notificat
 })
 export class ProfilesComponent implements OnInit{
   visibleModal: boolean = false;
+  visibleRemoveModal: boolean = false;
   modalTitle!: string;
   modalBtnColor!: string;
   modalBtnText!: string;
   editMode!: boolean;
   emailToEdit: string = '';
+  emailToRemove: string = '';
   currentPage: number = 1;
-  pageSize: number = 15;
+  pageSize: number = 13;
   filter: string | null = null; 
   mainCardTitle: string = 'Profiles';
   thColumns: string[] = ['name', 'email', 'status', 'actions'];
@@ -73,5 +75,14 @@ export class ProfilesComponent implements OnInit{
 
   closeModal(){
     this.visibleModal = false;
+  }
+
+  openRemoveModal(emailToRemove: string){
+    this.visibleRemoveModal = true;
+    this.emailToRemove = emailToRemove;
+  }
+
+  closeRemoveModal(){
+    this.visibleRemoveModal = false;
   }
 }

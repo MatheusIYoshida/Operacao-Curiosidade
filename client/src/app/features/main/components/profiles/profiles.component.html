@@ -10,8 +10,10 @@
         [thColumns]="thColumns" 
         [users]="users" 
         [hasActions]="true"
-        (clickEditBtn)="openModal($event)"></app-table>
+        (clickEditBtn)="openModal($event)"
+        (clickRemoveBtn)="openRemoveModal($event)"></app-table>
 </app-main-card>
+
 <app-form-modal
     *ngIf="visibleModal"
     [title]="modalTitle" 
@@ -21,3 +23,9 @@
     [emailToEdit]="emailToEdit"
     (closeModalEmitter)="closeModal()">
 </app-form-modal>
+
+<app-confirm-modal
+    *ngIf="visibleRemoveModal"
+    [emailToRemove]="emailToRemove"
+    (closeModalEmitter)="closeRemoveModal()">
+</app-confirm-modal>
