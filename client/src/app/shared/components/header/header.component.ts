@@ -20,8 +20,7 @@ export class HeaderComponent implements OnInit{
   ){}
 
   logout(){
-    localStorage.removeItem('token');
-    localStorage.removeItem('currentProfile');
+    localStorage.clear();
     this._router.navigate(['/auth/login']);
   }
 

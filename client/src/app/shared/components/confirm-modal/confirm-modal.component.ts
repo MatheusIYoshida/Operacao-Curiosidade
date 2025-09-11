@@ -29,8 +29,7 @@ export class ConfirmModalComponent {
     this._removeService.delete(currentProfile, this.emailToRemove).subscribe({
       next: (response) => {
         if(currentProfile.email == this.emailToRemove){
-          localStorage.removeItem('token');
-          localStorage.removeItem('currentProfile');
+          localStorage.clear();
           this._router.navigate(['/auth/login']);
         }else{
           this.onCloseModal();
