@@ -50,7 +50,7 @@ export class ProfilesComponent implements OnInit{
             hasNext: data.hasNext,
             hasPrevious: data.hasPrevious
           }
-          localStorage.setItem("ProfilePagination", JSON.stringify(pagination));
+          localStorage.setItem("profilePagination", JSON.stringify(pagination));
           this.users = data.items;
         },
         error: (error) => console.error('Load profiles error')
@@ -84,5 +84,10 @@ export class ProfilesComponent implements OnInit{
 
   closeRemoveModal(){
     this.visibleRemoveModal = false;
+  }
+
+  setCurrentPage(currentPage: number){
+    this.currentPage = currentPage;
+    this.userList();
   }
 }

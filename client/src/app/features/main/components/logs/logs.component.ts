@@ -42,10 +42,15 @@ export class LogsComponent implements OnInit{
             hasNext: data.hasNext,
             hasPrevious: data.hasPrevious
           }
-          localStorage.setItem("LogsPagination", JSON.stringify(pagination));
+          localStorage.setItem("logsPagination", JSON.stringify(pagination));
           this.logs = data.items
       },
       error: (error) => console.error('Load logs list error', error)
     })
+  }
+
+  setCurrentPage(currentPage: number){
+    this.currentPage = currentPage;
+    this.logsList();
   }
 }
