@@ -51,3 +51,8 @@ tbody tr:hover{
     background-color: #D0D0D0;
 }
 
+@media print{
+    .lastColumn{
+        width: 110px;
+    }
+}
