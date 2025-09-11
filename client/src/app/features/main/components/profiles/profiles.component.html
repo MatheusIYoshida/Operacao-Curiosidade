@@ -6,13 +6,18 @@
     <div class="arrows-pagination">
         <app-change-page-buttons class="teste"></app-change-page-buttons>
     </div>
-    <app-table [thColumns]="thColumns" [users]="users"></app-table>
+    <app-table 
+        [thColumns]="thColumns" 
+        [users]="users" 
+        [hasActions]="true"
+        (clickEditBtn)="openModal($event)"></app-table>
 </app-main-card>
 <app-form-modal
     *ngIf="visibleModal"
-    [title]="createModalTitle" 
-    [submitButtonColor]="'#429a35'"
-    [submitButtonText]="'CREATE PROFILE'"
-    (closeModalEmitter)="closeModal()"
-    [editMode]="false">
+    [title]="modalTitle" 
+    [submitButtonColor]="modalBtnColor"
+    [submitButtonText]="modalBtnText"
+    [editMode]="editMode"
+    [emailToEdit]="emailToEdit"
+    (closeModalEmitter)="closeModal()">
 </app-form-modal>

@@ -9,9 +9,7 @@ export class UpdateProfileService {
 
   constructor(private _http: HttpClient, private _lsService: LocalStorageService) { }
 
-  getProfile(){
-    const currentProfile = this._lsService.getItem('currentProfile');
-    const email = currentProfile.email;
+  getProfile(email: string){
     const token = this._lsService.getItem('token')
     const headers = new HttpHeaders({
       'Authorization': `bearer ${token}` 

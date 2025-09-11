@@ -9,7 +9,11 @@ import { ChangeNotificationService } from '../../../../services/change-notificat
 })
 export class ProfilesComponent implements OnInit{
   visibleModal: boolean = false;
-  createModalTitle: string = 'Create Profile';
+  modalTitle!: string;
+  modalBtnColor!: string;
+  modalBtnText!: string;
+  editMode!: boolean;
+  emailToEdit: string = '';
   currentPage: number = 1;
   pageSize: number = 15;
   filter: string | null = null; 
@@ -46,13 +50,24 @@ export class ProfilesComponent implements OnInit{
           }
           localStorage.setItem("ProfilePagination", JSON.stringify(pagination));
           this.users = data.items;
-          //* FIX ERROR */
         },
         error: (error) => console.error('Load profiles error')
       })
   }
 
-  openModal(){
+  openModal(emailToEdit?: string){
+    if(emailToEdit){
+      this.modalTitle = 'Edit Profile';
+      this.modalBtnColor = '#0056b3';
+      this.modalBtnText = 'EDIT PROFILE';
+      this.emailToEdit = emailToEdit;
+      this.editMode = true;  
+    }else{
+      this.modalTitle = 'Create Profile';
+      this.modalBtnColor = '#429a35';
+      this.modalBtnText = 'CREAT PROFILE';
+      this.editMode = false
+    }
     this.visibleModal = true;
   }
 

@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, viewChild, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UpdateProfileService } from '../../../services/update-profile.service';
 import { FormatDateService } from '../../../services/format-date.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ export class FormModalComponent implements OnInit{
   @Input() submitButtonColor: string = '#429a35';
   @Input() submitButtonText: string = 'Submit'
   @Input() editMode!: boolean;
+  @Input() emailToEdit!: string;
   @Output() closeModalEmitter = new EventEmitter<boolean>();
   @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('activeCheckbox') activeCheckbox!: ElementRef<HTMLInputElement>;
@@ -119,7 +120,7 @@ export class FormModalComponent implements OnInit{
   }
 
   fillProfileForm(){
-    this._updateService.getProfile().subscribe({
+    this._updateService.getProfile(this.emailToEdit).subscribe({
         next: (response: any) => {
           this.currentEmail = response.email;
           this.active?.setValue(response.active);

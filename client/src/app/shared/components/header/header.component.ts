@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,13 @@ export class HeaderComponent implements OnInit{
   profileIcon: string = 'U';
   profileName: string = 'Undefined';
   editModalTitle: string = 'Edit Profile';
+  emailToEdit!: string;
   visibleModal: boolean = false;
 
-  constructor(private _router: Router){}
+  constructor(
+    private readonly _router: Router,
+    private readonly _lsService: LocalStorageService
+  ){}
 
   logout(){
     localStorage.removeItem('token');
@@ -28,6 +33,8 @@ export class HeaderComponent implements OnInit{
   }
 
   openModal(){
+    const currentProfile = this._lsService.getItem('currentProfile');
+    this.emailToEdit = currentProfile.email;
     this.visibleModal = true;
   }
 

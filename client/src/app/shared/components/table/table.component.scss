@@ -3,30 +3,36 @@
     table-layout: fixed;
     width: 100%;
     overflow-wrap: break-word;
+
+    &-icon{
+        width: 20px;
+        height: 20px;
+        margin-right: 25px;
+        cursor: pointer;
+    }
 }
 
-table th,
-table td{
-    padding: 5px 0px 5px 5px;
-    border-bottom: 1px solid #000;
-}
+table {
+    & th{
+        padding: 5px 0px 5px 5px;
+        border-bottom: 1px solid #000;
+        text-align: start;
+        background-color: #A0B0C0;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: .8;
+        transition: .4s;
 
+        &:hover{
+            opacity: 1;
+        }
+    }
 
-table th{
-    text-align: start;
-    background-color: #A0B0C0;
-    font-size: 18px;
-    font-weight: bold;
-    opacity: .8;
-    transition: .4s;
-}
-
-table th:hover{
-    opacity: 1;
-}
-
-table td{
-    font-size: 17px;
+    & td{
+        padding: 5px 0px 5px 5px;
+        border-bottom: 1px solid #000;
+        font-size: 17px;
+    }
 }
 
 .oddRow{
@@ -44,3 +50,4 @@ table td{
 tbody tr:hover{
     background-color: #D0D0D0;
 }
+
