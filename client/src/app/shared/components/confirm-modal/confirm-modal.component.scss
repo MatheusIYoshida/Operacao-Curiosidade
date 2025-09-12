@@ -38,16 +38,6 @@
     pointer-events: all;
 }
 
-.modal.hide,
-.fade.hide{
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal.hide{
-    top: 0;
-}
-
 .keep-button{
     background-color: $btn-green;
     opacity: 1;

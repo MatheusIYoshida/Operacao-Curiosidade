@@ -30,16 +30,6 @@
     pointer-events: all;
 }
 
-.modal.hide,
-.fade.hide{
-    opacity: 0;
-    pointer-events: none;
-}
-
-.modal-hide{
-    top: 0;
-}
-
 .modal-header{
     display: flex;
     justify-content: space-between;
