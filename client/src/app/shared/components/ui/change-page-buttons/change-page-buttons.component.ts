@@ -1,12 +1,13 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { LocalStorageService } from '../../../../services/local-storage.service';
+import { PageNotifyService } from '../../../../services/page-notify.service';
 
 @Component({
   selector: 'app-change-page-buttons',
   templateUrl: './change-page-buttons.component.html',
   styleUrl: './change-page-buttons.component.scss'
 })
-export class ChangePageButtonsComponent implements AfterViewInit{
+export class ChangePageButtonsComponent implements OnInit{
   containerNumber: number = 1;
   @Input({required: true}) lsProperties!: string;
   @Output() currentPage = new EventEmitter<number>();
@@ -16,11 +17,14 @@ export class ChangePageButtonsComponent implements AfterViewInit{
   @ViewChild('lastPage') lastPage!: ElementRef<HTMLElement>;
 
   constructor(
-    private readonly _lsService: LocalStorageService
+    private readonly _lsService: LocalStorageService,
+    private readonly _pageNotify: PageNotifyService
   ){}
 
-  ngAfterViewInit(){
-
+  ngOnInit(){
+    this._pageNotify.valueChanged().subscribe((response: number) => {
+      this.containerNumber = response;
+    })
   }
 
   goToFirst(){
@@ -30,7 +34,6 @@ export class ChangePageButtonsComponent implements AfterViewInit{
 
   goToLast(){
     const logsPagination: any = this._lsService.getItem(this.lsProperties);
-    console.log(this.lsProperties)
     this.containerNumber = logsPagination.totalPages;
     this.currentPage.emit(this.containerNumber);
   }

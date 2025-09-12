@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../../../services/local-storage.service';
+import { ChangeNotificationService } from '../../../services/change-notification.service';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,19 @@ import { LocalStorageService } from '../../../services/local-storage.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
+  @Input() searchEnable: boolean = false;
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
   profileIcon: string = 'U';
   profileName: string = 'Undefined';
   editModalTitle: string = 'Edit Profile';
   emailToEdit!: string;
   visibleModal: boolean = false;
+  timeout: any = 0;
 
   constructor(
     private readonly _router: Router,
-    private readonly _lsService: LocalStorageService
+    private readonly _lsService: LocalStorageService,
+    private readonly _notificationService: ChangeNotificationService
   ){}
 
   logout(){
@@ -39,5 +44,13 @@ export class HeaderComponent implements OnInit{
 
   closeModal(){
     this.visibleModal = false;
+  }
+
+  searchList(){
+    if(this.searchEnable){
+      this.timeout = setTimeout(() => {
+        this._notificationService.emitValue(this.searchInput.nativeElement.value);
+      })
+    }
   }
 }

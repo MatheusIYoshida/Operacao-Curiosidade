@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit{
   userList(){
     this._listService.get('https://localhost:7160/api/Dashboard/recent-profiles')
       .subscribe({
-        next: (data) => {this.users = data; console.log(data)},
+        next: (data) => this.users = data,
         error: (error) => console.error('Load profiles error')
       })
   }

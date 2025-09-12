@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
 import { ChangeNotificationService } from '../../../../services/change-notification.service';
+import { PageNotifyService } from '../../../../services/page-notify.service';
 
 @Component({
   selector: 'app-profiles',
@@ -25,14 +26,17 @@ export class ProfilesComponent implements OnInit{
 
   constructor(
     private readonly _listService: ListService,
-    private readonly _notificationService: ChangeNotificationService
+    private readonly _notificationService: ChangeNotificationService,
+    private readonly _pageNotifyService: PageNotifyService
   ){}
 
   ngOnInit(){
     this.userList();
-    this._notificationService.valueChanged().subscribe(() => {
+    this._notificationService.valueChanged().subscribe((response: string | null) => {
+      this.filter = response;
+      this.currentPage = 1;
+      this._pageNotifyService.emitValue(1);
       setTimeout(() => {
-        console.log('teste')
         this.userList();
       }, 250);
     })
@@ -56,7 +60,7 @@ export class ProfilesComponent implements OnInit{
           localStorage.setItem("profilePagination", JSON.stringify(pagination));
           this.users = data.items;
         },
-        error: (error) => console.error('Load profiles error')
+        error: (error) => console.error('Load profiles error', error)
       })
   }
 

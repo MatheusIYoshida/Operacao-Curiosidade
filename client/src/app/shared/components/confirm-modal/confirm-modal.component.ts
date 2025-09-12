@@ -33,7 +33,7 @@ export class ConfirmModalComponent {
           this._router.navigate(['/auth/login']);
         }else{
           this.onCloseModal();
-          this._notificationService.emitValue(true);
+          this._notificationService.emitValue(null);
         }
       },
       error: (error) => console.error('Delete profile error', error)

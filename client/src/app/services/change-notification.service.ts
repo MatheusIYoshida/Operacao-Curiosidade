@@ -5,13 +5,13 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ChangeNotificationService {
-  private readonly reloadInfos$ = new Subject<boolean>();
+  private readonly reloadInfos$ = new Subject<string | null>();
   
   valueChanged(){
     return this.reloadInfos$.asObservable();
   }
 
-  emitValue(bool: boolean){
-    this.reloadInfos$.next(bool)
+  emitValue(filter: string | null){
+    this.reloadInfos$.next(filter)
   }
 }

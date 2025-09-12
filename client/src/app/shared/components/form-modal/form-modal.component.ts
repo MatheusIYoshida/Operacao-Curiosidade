@@ -171,7 +171,7 @@ export class FormModalComponent implements OnInit{
           error: (error) => console.error('Create profile error', error)
         });
       }
-      this._notificationService.emitValue(true);
+      this._notificationService.emitValue(null);
     }else{
       this.nameInput.nativeElement.scrollIntoView({ block: "center" })
       if(!this.name.valid){

@@ -1,7 +1,7 @@
 <div class="main-layout">
     <app-sidebar></app-sidebar>
     <div class="main-area">
-        <app-header></app-header>
+        <app-header [searchEnable]="verifySearch()"></app-header>
         <router-outlet></router-outlet>
     </div>
 </div>
