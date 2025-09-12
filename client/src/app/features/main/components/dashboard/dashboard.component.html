@@ -15,9 +15,12 @@
         [info]="panelThreeInfo"
     ></app-panels>
 </div>
+
 <app-main-card>
     <div class="main-card-title">{{ mainCardTitle }}</div>
     <div class="table-container">
         <app-table [thColumns]="thColumns" [users]="users"></app-table>
     </div>
 </app-main-card>
+
+<app-notification-alert></app-notification-alert>

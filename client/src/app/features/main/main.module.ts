@@ -17,6 +17,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { LogsComponent } from './components/logs/logs.component';
 import { ChangePageButtonsComponent } from '../../shared/components/ui/change-page-buttons/change-page-buttons.component';
 import { ConfirmModalComponent } from '../../shared/components/confirm-modal/confirm-modal.component';
+import { NotificationAlertComponent } from '../../shared/components/ui/notification-alert/notification-alert.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmModalComponent } from '../../shared/components/confirm-modal/con
     ReportsComponent,
     LogsComponent,
     ChangePageButtonsComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    NotificationAlertComponent
   ],
   imports: [
     CommonModule,

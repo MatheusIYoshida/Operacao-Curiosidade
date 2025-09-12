@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ChangeNotificationService } from '../../../services/change-notification.service';
 import { CreateProfileService } from '../../../services/create-profile.service';
 import { NameValidatorService } from '../../../services/name-validator.service';
+import { AlertNotificationService } from '../../../services/alert-notification.service';
 
 @Component({
   selector: 'app-form-modal',
@@ -36,7 +37,8 @@ export class FormModalComponent implements OnInit{
     private readonly _dateService: FormatDateService,
     private readonly _fb: FormBuilder,
     private readonly _notificationService: ChangeNotificationService,
-    private readonly _nameValidator: NameValidatorService
+    private readonly _nameValidator: NameValidatorService,
+    private readonly _alertService: AlertNotificationService
   ) {}
 
   ngOnInit(){
@@ -160,6 +162,7 @@ export class FormModalComponent implements OnInit{
         this._updateService.updateProfile(profile, this.currentEmail).subscribe({
           next: (response) => {
             this.onCloseModal();
+            this._alertService.emitValue('Profile updated successfully!');
           },
           error: (error) => console.error('Update profile error', error)
         });
@@ -167,6 +170,7 @@ export class FormModalComponent implements OnInit{
         this._createService.create(profile).subscribe({
           next: (response) => {
             this.onCloseModal();
+            this._alertService.emitValue('Profile created successfully!');
           },
           error: (error) => console.error('Create profile error', error)
         });
