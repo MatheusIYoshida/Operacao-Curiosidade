@@ -8,7 +8,7 @@ import { FormatDateService } from '../../../services/format-date.service';
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
-  @ViewChild('tableItem') tableItem!: ElementRef<HTMLTableCellElement>; 
+  @ViewChild('tableItem') tableItem!: ElementRef<HTMLTableElement>; 
   @Input({required: true}) thColumns!: string[];
   @Input() hasActions: boolean = false;
   @Input() users!: any[];
@@ -20,14 +20,14 @@ export class TableComponent {
     private readonly _dateService: FormatDateService
   ) {}
 
-  getUserProperty(user: any, column: string){
+  getUserProperty(user: any, column: string, tableItem: HTMLTableCellElement){
     if(column == 'createdAt'){
       return this._dateService.formatDateInput(user[column], true);
     }else if(column == 'timestamp'){
       return this._dateService.formatDateInput(user['createdAt'], false);
     }
 
-    return this._statusService.verifyStatus(user, column) || '';
+    return this._statusService.verifyStatus(user, column, tableItem) || '';
   }
 
   openEditModal(index: number){
