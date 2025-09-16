@@ -21,7 +21,6 @@ export class AuthService {
 
   verifyLogin(){
     const token = this._lsService.getItem('token');
-    console.log('token')
     if(token){
       this._router.navigate(['/main/Dashboard']);
     }
