@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UpdateProfileService } from '../../../services/update-profile.service';
 import { FormatDateService } from '../../../services/format-date.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -6,13 +6,14 @@ import { ChangeNotificationService } from '../../../services/change-notification
 import { CreateProfileService } from '../../../services/create-profile.service';
 import { NameValidatorService } from '../../../services/name-validator.service';
 import { AlertNotificationService } from '../../../services/alert-notification.service';
+import { LocalStorageService } from '../../../services/local-storage.service';
 
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.scss'
 })
-export class FormModalComponent implements OnInit{
+export class FormModalComponent implements OnInit, AfterViewInit{
   @Input({required: true, alias: 'title'}) modalTitle!: string;
   @Input() submitButtonColor: string = '#429a35';
   @Input() submitButtonText: string = 'Submit'
@@ -22,6 +23,7 @@ export class FormModalComponent implements OnInit{
   @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
   @ViewChild('activeCheckbox') activeCheckbox!: ElementRef<HTMLInputElement>;
   @ViewChild('adminCheckbox') adminCheckbox!: ElementRef<HTMLInputElement>;
+  @ViewChild('adminCheckboxTitle') adminCheckboxTitle!: ElementRef<HTMLDivElement>;
   modalForm!: FormGroup;
   currentEmail: string = '';
   spanName: string = '';
@@ -30,6 +32,7 @@ export class FormModalComponent implements OnInit{
   alertName: boolean = false;
   alertEmail: boolean = false;
   alertPassword: boolean = false;
+  isAdmin!: boolean;
 
   constructor(
     private readonly _updateService: UpdateProfileService,
@@ -38,10 +41,12 @@ export class FormModalComponent implements OnInit{
     private readonly _fb: FormBuilder,
     private readonly _notificationService: ChangeNotificationService,
     private readonly _nameValidator: NameValidatorService,
-    private readonly _alertService: AlertNotificationService
+    private readonly _alertService: AlertNotificationService,
+    private readonly _lsService: LocalStorageService
   ) {}
 
   ngOnInit(){
+    this.isAdmin = this._lsService.getItem('currentProfile').admin;
     this.modalForm = this._fb.group({
       active: [''],
       admin: [''],
@@ -55,9 +60,15 @@ export class FormModalComponent implements OnInit{
       feelings: [''],
       coreValues: ['']
     });
-
     if(this.editMode){
       this.fillProfileForm()
+    }
+  }
+
+  ngAfterViewInit(){
+    if(this._lsService.getItem('currentProfile').admin == false){
+      this.adminCheckbox.nativeElement.disabled = true;
+      this.adminCheckboxTitle.nativeElement.style.opacity = '.5';
     }
   }
 
