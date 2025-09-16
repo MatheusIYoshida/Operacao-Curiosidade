@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProfileStatusService } from '../../../services/profile-status.service';
 import { FormatDateService } from '../../../services/format-date.service';
 import { LocalStorageService } from '../../../services/local-storage.service';
@@ -9,7 +9,6 @@ import { LocalStorageService } from '../../../services/local-storage.service';
   styleUrl: './table.component.scss'
 })
 export class TableComponent {
-  @ViewChild('tableItem') tableItem!: ElementRef<HTMLTableElement>; 
   @Input({required: true}) thColumns!: string[];
   @Input() hasActions: boolean = false;
   @Input() users!: any[];
