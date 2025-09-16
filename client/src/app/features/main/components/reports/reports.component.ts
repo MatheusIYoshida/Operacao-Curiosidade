@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportsService } from '../../../../services/reports.service';
 import { ChangeNotificationService } from '../../../../services/change-notification.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-reports',
@@ -15,10 +16,12 @@ export class ReportsComponent implements OnInit{
 
   constructor(
     private readonly _reportsService: ReportsService,
-    private readonly _notificationService: ChangeNotificationService
+    private readonly _notificationService: ChangeNotificationService,
+    private readonly _authService: AuthService
   ) {}
 
   ngOnInit(){
+    this._authService.verifyLogout();
     this.getProfiles();
     this._notificationService.valueChanged().subscribe(() => {
       this.getProfiles();

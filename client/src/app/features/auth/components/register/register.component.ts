@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { CreateProfileService } from '../../../../services/create-profile.service';
 import { NameValidatorService } from '../../../../services/name-validator.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -23,10 +24,12 @@ export class RegisterComponent implements OnInit{
     private readonly _fb: FormBuilder,
     private readonly _createService: CreateProfileService,
     private readonly _route: Router,
-    private readonly _nameValidator: NameValidatorService
+    private readonly _nameValidator: NameValidatorService,
+    private readonly _authService: AuthService
   ){}
   
   ngOnInit(){
+    this._authService.verifyLogin();
     this.registerForm = this._fb.group({
       name: ['', {validators: [Validators.required, this._nameValidator.invalidNameValidator()]}],
       email: ['', {validators: [Validators.required, Validators.email]}],

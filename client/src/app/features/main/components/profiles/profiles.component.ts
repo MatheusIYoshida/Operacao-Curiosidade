@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
 import { ChangeNotificationService } from '../../../../services/change-notification.service';
 import { PageNotifyService } from '../../../../services/page-notify.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-profiles',
@@ -27,10 +28,12 @@ export class ProfilesComponent implements OnInit{
   constructor(
     private readonly _listService: ListService,
     private readonly _notificationService: ChangeNotificationService,
-    private readonly _pageNotifyService: PageNotifyService
+    private readonly _pageNotifyService: PageNotifyService,
+    private readonly _authService: AuthService
   ){}
 
   ngOnInit(){
+    this._authService.verifyLogout();
     this.userList();
     this._notificationService.valueChanged().subscribe((response: string | null) => {
       this.filter = response;

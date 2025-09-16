@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ListService } from '../../../../services/list.service';
 import { Observable, of } from 'rxjs';
 import { ChangeNotificationService } from '../../../../services/change-notification.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,10 +25,12 @@ export class DashboardComponent implements OnInit{
 
   constructor(
     private readonly _listService: ListService,
-    private readonly _notificationService: ChangeNotificationService
+    private readonly _notificationService: ChangeNotificationService,
+    private readonly _authService: AuthService
   ){}
 
   ngOnInit(){
+    this._authService.verifyLogout();
     this.userList();
     this.totalProfilesCount();
     this.lastProfilesCount();
